@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Bunny Fonts (EU, GDPR-friendly), not Google. Drop-in: identical css2 API.
+   Verified 2026-09-21: HTTP 200, all four weights served. */
+@import url('https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
   --ink:#1C1815;
