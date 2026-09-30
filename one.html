@@ -52,7 +52,34 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="formats">
+  <div class="wrap">
+    <div class="kicker">Supported formats</div>
+    <h2>Old formats, really supported.</h2>
+    <p class="intro">The camcorder formats below were tested against real footage, not just a reading of the format specs.  ONE converts them to ordinary web video the first time you watch them and keeps the result, so the next viewing starts instantly.  Your original files are never changed.</p>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th>Format</th><th>Files</th><th>What ONE does</th></tr></thead>
+        <tbody>
+          <tr><td>Sony AVCHD camcorders</td><td><code>.mts</code> <code>.m2ts</code></td><td>Deinterlaced and converted to H.264 video with AAC audio</td></tr>
+          <tr><td>MiniDV tapes, digitised</td><td><code>.avi</code> (DV)</td><td>Deinterlaced, converted, and the picture's aspect ratio corrected so people don't look squashed</td></tr>
+          <tr><td>DVD-Video discs</td><td><code>VIDEO_TS</code> folders</td><td>The disc's separate files are joined into one video you can play, then deinterlaced, converted and the aspect ratio corrected</td></tr>
+          <tr><td>Other video</td><td><code>.mp4</code> <code>.m4v</code> <code>.mov</code> <code>.mkv</code> <code>.wmv</code> <code>.mpg</code> <code>.mpeg</code></td><td>Converted to H.264 the first time you watch, then kept</td></tr>
+          <tr><td>Apple photos</td><td><code>.heic</code> <code>.heif</code></td><td>Converted to JPEG, so every browser can show them</td></tr>
+          <tr><td>FlashPix (1990s Kodak and similar)</td><td><code>.fpx</code></td><td>Converted to JPEG</td></tr>
+          <tr><td>Camera RAW</td><td><code>.arw</code> <code>.nef</code> <code>.cr2</code> <code>.dng</code></td><td>Shown using the preview JPEG the camera embeds in the file</td></tr>
+          <tr><td>Everyday photos</td><td><code>.jpg</code> <code>.jpeg</code> <code>.png</code></td><td>Shown as they are</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Every video's sound is levelled too,</strong> so a quiet camcorder recording plays at a sensible volume next to a loud one.</p>
+      <p><strong>Canon <code>.cr3</code> files show up but can't be displayed yet.</strong>  They appear as named tiles that say why.  They'll start displaying, with no re-indexing, once a CR3 decoder is added.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
   <div class="wrap split">
     <div>
       <div class="kicker">Old browsers and new</div>
@@ -71,7 +98,7 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section">
   <div class="wrap split">
     <div>
       <div class="kicker">Works with lumento STORE</div>
@@ -91,7 +118,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section alt">
   <div class="wrap">
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
@@ -103,7 +130,7 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section">
   <div class="wrap">
     <div class="kicker">The rest of the family</div>
     <div class="family-strip">
