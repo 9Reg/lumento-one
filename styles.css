@@ -216,3 +216,14 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 
 .family-strip strong span{display:inline;font-size:inherit}
 .split > *,.features > *,.state > *{min-width:0}
+
+/* comparison tables stack into cards on phones instead of scrolling sideways */
+@media(max-width:640px){
+  table.compare{min-width:0}
+  .compare thead{display:none}
+  .compare tr{display:block;padding:14px 18px;border-bottom:1px solid var(--border)}
+  .compare tr:last-child{border-bottom:0}
+  .compare td{display:block;border:0;padding:3px 0}
+  .compare td:first-child{color:var(--ink);font-weight:600;padding-bottom:6px}
+  .compare td[data-label]::before{content:attr(data-label) ": ";font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+}
