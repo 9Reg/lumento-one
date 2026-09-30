@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Inter is loaded from Bunny via <link> in index.html, not @import here:
+   an @import inside a stylesheet is fetched only after this file arrives. */
 
 :root{
   --ink:#1C1815;
@@ -107,6 +108,14 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .note{border-left:3px solid var(--mustard);padding-left:20px}
 .reverse-note{border-right:3px solid var(--mustard);padding-left:20px}
 footer{padding:42px 0 60px}
+.foot-links{display:flex;gap:18px}
+.foot-links a{color:var(--ink-soft);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.foot-links a:hover{color:var(--ink)}
+.legal{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;margin-top:36px}
+.legal h3{font-size:22px;letter-spacing:-.02em;margin:0 0 14px;font-weight:600}
+.legal h4{font-size:15px;margin:26px 0 6px;font-weight:600}
+.legal p{margin:0 0 10px;color:var(--ink-soft);font-size:15px;overflow-wrap:anywhere}
+.legal a{color:var(--ink)}
 .foot{display:flex;justify-content:space-between;gap:20px;color:var(--ink-soft);font-size:13px}
 
 .footer-brand {
@@ -115,27 +124,11 @@ footer{padding:42px 0 60px}
   gap: 24px;
 }
 
-.brand-byline {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .02em;
-  color: var(--teal);
-  white-space: nowrap;
-}
 
-.brand-byline a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
 
-.brand-byline a:hover {
-  color: var(--teal);
-  text-decoration-thickness: 2px;
-}
 
 @media(max-width:800px){
+  .legal{grid-template-columns:1fr;gap:20px}
   .hero{grid-template-columns:1fr;padding-top:65px;gap:20px}
   .hero-art{min-height:360px}
   .grid,.story{grid-template-columns:1fr}
