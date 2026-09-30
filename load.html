@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="lumento LOAD — loads your iPhone's photos and videos onto your own NAS, checks every byte arrived, and tells you when it's safe to delete them from the phone. Coming soon.">
+<title>lumento LOAD — coming soon</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+  <div class="icon"><img src="assets/lumento-load.svg" alt="lumento LOAD icon"></div>
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></span></h1>
+    <p class="lede">LOAD has one job: get the photos and videos on your iPhone safely onto your own NAS, and then tell you, with a number you can check, when it's safe to delete them from the phone.</p>
+    <div class="tags"><span class="pill">iPhone · iOS 18 and later</span><span class="pill">Fire-and-forget, at real scale</span><span class="pill">No cloud</span></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">The one promise</div>
+    <h2>“1,204 of 1,204 assets verified.<br>Safe to delete from iPhone.”</h2>
+    <p class="intro">LOAD never says “uploaded” or “sync complete”.  It says “verified”, and it means the bytes on your NAS were checked against the bytes that left your phone.  Everything on this page exists to make that sentence true.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Speed and stamina</div>
+      <h2>Very fast when it's open.<br>Keeps going overnight.</h2>
+      <p>You can use LOAD two ways, and it's built for both.</p>
+    </div>
+    <div>
+      <h3>With the app open</h3>
+      <p>LOAD goes as fast as it can.  It adjusts how many files it sends at once to suit your phone's temperature and battery.  In our testing, large videos went across at <strong>tens of megabytes a second</strong>.</p>
+      <h3>Plugged in at night</h3>
+      <p>Start a Load in the evening, plug the phone in and lock it.  Uploads run through iOS's own background upload service, so they keep going with the screen locked and even after the app has been closed.  In our latest overnight test, a phone that was plugged in and locked loaded <strong>about 27&nbsp;GB, 1,227 files, with zero failures</strong> by morning.</p>
+      <div class="callout">
+        <p><strong>Locked, iOS sets the pace, and it's a slow one.</strong>  On our test hardware a locked phone ran at roughly a twelfth of the speed it reaches with LOAD open.  It still finishes and nothing is lost.  It just takes longer.</p>
+        <p>We don't recommend leaving it unplugged and locked.  Keep the app open for the fastest run, or plug the phone in and let it work overnight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">Reliability</div>
+    <h2>Built for the only copy of your photos.</h2>
+    <div class="features">
+      <div class="feature"><h3>Hashed at both ends</h3><p>Every file gets a SHA-256 fingerprint on the phone and another on the NAS, from the bytes that actually arrived.  If they don't match, the file is never stored.</p></div>
+      <div class="feature"><h3>Resumes where it stopped</h3><p>Large files go in 8&nbsp;MB chunks, each with its own hash.  If the connection drops 95% of the way through a 4&nbsp;GB video, LOAD carries on from the last confirmed chunk instead of starting again.</p></div>
+      <div class="feature"><h3>Checks for duplicates first</h3><p>LOAD asks the NAS what it already has before sending any bytes.  Photos that are already in the archive are skipped, even ones another device loaded.</p></div>
+      <div class="feature"><h3>Never re-encoded</h3><p>The files in your archive are the same bytes your camera wrote.  Edited photos come across together with their originals.</p></div>
+      <div class="feature"><h3>A Live Photo stays whole</h3><p>A Live Photo is a still image plus a short video.  It only counts as safe once both parts are verified.  RAW+JPEG pairs work the same way.</p></div>
+      <div class="feature"><h3>Survives interruptions</h3><p>A Load picks up where it left off after the app is closed, iOS suspends it, or the Wi-Fi drops.  Failed uploads are retried after 5, 15, 45, 135 and then 300 seconds.</p></div>
+      <div class="feature"><h3>Won't fill your phone</h3><p>LOAD pauses before it runs your phone out of storage.  If a Load won't fit, it warns you before starting.</p></div>
+      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD reports what is safe to delete.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.</p></div>
+      <div class="feature"><h3>Hidden stays hidden</h3><p>If you hid a photo on your iPhone, LOAD never sees it, never reads it and never loads it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="generic">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Coming later · Generic mode</div>
+      <h2>Works with any NAS.<br>No install needed.</h2>
+      <p>lumento STORE gives you a complete, verified archive, but for now it only runs on Asustor.  Generic mode will let LOAD write straight to any NAS that can serve WebDAV over HTTPS, including Asustor, Synology and QNAP.  On most of them that's a setting you turn on, not an app you install.</p>
+      <p class="note">Generic mode is designed but not built yet.  It's described here as it's intended to work.</p>
+    </div>
+    <div>
+      <h3>How it works</h3>
+      <p><strong>Why WebDAV and not SMB.</strong>  WebDAV runs over HTTP, so LOAD can hand each upload to iOS's background upload service, the same one Verified mode uses.  An SMB connection runs on raw sockets inside the app, and it stops as soon as iOS suspends the app.  SMB isn't slower on a LAN.  WebDAV was chosen because it's the one that keeps going when the phone is locked.</p>
+      <p><strong>Writing a file.</strong>  Each file is uploaded under a temporary <code>.part</code> name and then moved to its final name in one step.  A half-finished upload never appears under a real filename.</p>
+      <pre><code>PUT  _lumento/2026.09/.IMG_4821.HEIC.{device}.{id}.part
+MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
+      <p><strong>Same layout as Verified mode.</strong>  Folders, filenames and dates are identical: <code>{root}/_lumento/{YYYY.MM}/</code>.  Your archive looks the same whichever mode filled it.</p>
+      <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it has sent, with its hash.  It also keeps a manifest on the NAS itself.</p>
+      <p><strong>Whole files only.</strong>  WebDAV has no standard way to put chunks back together, so a dropped upload restarts that one file from the beginning.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th></th><th>Generic (WebDAV)</th><th>Verified (with STORE)</th></tr></thead>
+        <tbody>
+          <tr><td>Needs a NAS install</td><td data-label="Generic (WebDAV)" class="yes">No, just a WebDAV setting</td><td data-label="Verified (with STORE)">Yes, one App Central package</td></tr>
+          <tr><td>Folder layout, filenames, dates</td><td data-label="Generic (WebDAV)" class="yes">Identical</td><td data-label="Verified (with STORE)" class="yes">Identical</td></tr>
+          <tr><td>Uploads keep going when locked</td><td data-label="Generic (WebDAV)" class="yes">Yes</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
+          <tr><td>Live Photos kept whole</td><td data-label="Generic (WebDAV)" class="yes">Yes</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
+          <tr><td>Resume inside a large file</td><td data-label="Generic (WebDAV)" class="no">No, the file restarts</td><td data-label="Verified (with STORE)" class="yes">Yes, from the last chunk</td></tr>
+          <tr><td>Confirms the file arrived</td><td data-label="Generic (WebDAV)" class="yes">Yes</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
+          <tr><td>Confirms it arrived byte for byte</td><td data-label="Generic (WebDAV)" class="no">No</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
+          <tr><td>Duplicate detection</td><td data-label="Generic (WebDAV)">On the phone only</td><td data-label="Verified (with STORE)" class="yes">On the NAS, across every device</td></tr>
+          <tr><td>Survives a phone wipe or reinstall</td><td data-label="Generic (WebDAV)" class="no">No</td><td data-label="Verified (with STORE)" class="yes">Yes, the NAS remembers</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Generic mode tells you what it can't check.</strong>  It will say that files arrived, but not that they arrived byte for byte, because nothing on the NAS can check that.  If you install lumento STORE later, it checks everything Generic mode already sent.  You don't upload anything again.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Private by design</div>
+      <h2>Your phone, your NAS.<br>Nothing in between.</h2>
+    </div>
+    <div>
+      <p>LOAD finds lumento STORE on your home network, pairs with it, and sends your photos there and nowhere else.  Pairing is started from the NAS, works only on your local network, and fixes the NAS's certificate so the phone only ever talks to that NAS.</p>
+      <p>There are no accounts, no analytics and no tracking.  See the <a href="privacy.html">privacy policy</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">The rest of the family</div>
+    <div class="family-strip">
+      <a href="store.html"><img src="assets/lumento-store.svg" alt=""><div><strong>lumento STORE</strong><span>The archive on your NAS</span></div></a>
+      <a href="one.html"><img src="assets/lumento.svg" alt=""><div><strong>lumento ONE</strong><span>View it in any browser</span></div></a>
+      <a href="loadmento.html"><img src="assets/loadmento.svg" alt=""><div><strong class="lm"><span class="load">load</span><span class="mento">mento</span></strong><span>The protocol between them</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. · Coming soon.</div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>
