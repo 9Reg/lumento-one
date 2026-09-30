@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="lumento — your media, your NAS, your screens. Coming soon.">
+<meta name="description" content="lumento — load your photos and videos onto your own NAS, check they arrived intact, and view them in any browser. Coming soon.">
 <title>lumento — coming soon</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -44,45 +44,45 @@
     <p class="intro">lumento is being built as a small family of focused apps.  Nothing is released yet, but this is where they are headed.</p>
 
     <div class="grid">
-      <article class="card">
+      <a class="card" href="one.html">
         <div class="card-top">
           <div class="iconbox"><img src="assets/lumento.svg" alt="lumento ONE icon"></div>
           <span class="status">Coming soon</span>
         </div>
         <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix one">ONE</span></h3>
-        <p>The media server and web viewer for the photos and videos already on your NAS.  Browse, view and play your library in a clean browser interface without moving it into somebody else's cloud.</p>
-        <div class="meta mustard">Asustor first · other NAS platforms may follow</div>
-      </article>
+        <p>The photo and video gallery for your NAS: one native app, no container stack.  Browse any share in a browser, on anything from a current laptop to a 2013 smart TV.  In a current browser it also imports a camera card straight into your archive through lumento STORE.</p>
+        <div class="meta mustard">Asustor · every browser, old and new<span class="more">Read more →</span></div>
+      </a>
 
-      <article class="card">
+      <a class="card" href="load.html">
         <div class="card-top">
           <div class="iconbox"><img src="assets/lumento-load.svg" alt="lumento LOAD icon"></div>
           <span class="status">Coming soon</span>
         </div>
         <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></h3>
-        <p>The iPhone side of the upload pair.  Send large photo and video libraries securely from your phone to your NAS, engineered to keep transfers moving without constant babysitting.</p>
-        <div class="meta teal">iPhone · reliable transfers at real scale</div>
-      </article>
+        <p>Loads your iPhone's photos and videos onto your NAS, and tells you when they're safe to delete from the phone.  Very fast while it's open, and it keeps going overnight while the phone is plugged in and locked.</p>
+        <div class="meta teal">iPhone · fire-and-forget, at real scale<span class="more">Read more →</span></div>
+      </a>
 
-      <article class="card">
+      <a class="card" href="store.html">
         <div class="card-top">
           <div class="iconbox"><img src="assets/lumento-store.svg" alt="lumento STORE icon"></div>
           <span class="status">Coming soon</span>
         </div>
         <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix store">STORE</span></h3>
-        <p>The receiving app on your Asustor NAS.  It pairs with lumento LOAD and securely receives, processes and stores uploads where they belong: on your own storage.</p>
-        <div class="meta teal">Asustor NAS · used together with lumento LOAD</div>
-      </article>
+        <p>The archive on your NAS.  Every file is checked byte for byte before it's accepted and filed by month in ordinary folders.  Nothing is ever stored twice.  Install one package, set a password, pick a folder, pair a phone.</p>
+        <div class="meta teal">Asustor NAS · works with LOAD and ONE<span class="more">Read more →</span></div>
+      </a>
 
-      <article class="card">
+      <a class="card" href="loadmento.html">
         <div class="card-top">
-          <div class="iconbox"><img src="assets/lumento-tv.svg" alt="lumento TV icon"></div>
-          <span class="status">Planned</span>
+          <div class="iconbox"><img src="assets/loadmento.svg" alt="loadmento protocol icon"></div>
+          <span class="status">The protocol</span>
         </div>
-        <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix one">TV</span></h3>
-        <p>A lightweight Apple TV companion for putting a lumento library on the big screen—including NAS platforms that don't have a native lumento STORE package.</p>
-        <div class="meta">Apple TV · concept in development</div>
-      </article>
+        <h3 class="product-name lm"><span class="load">load</span><span class="mento">mento</span></h3>
+        <p>The protocol LOAD and ONE use to talk to STORE.  It checks what the NAS already has before sending anything, sends large files in 8&nbsp;MB chunks, hashes every file at both ends, and never stores a file whose hash doesn't match.</p>
+        <div class="meta">HTTPS + JSON · written down, with test fixtures<span class="more">Read more →</span></div>
+      </a>
     </div>
   </div>
 </section>

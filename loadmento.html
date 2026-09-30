@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="loadmento — the protocol that lumento LOAD and lumento ONE use to talk to lumento STORE. It checks what the NAS already has before sending anything, uploads in chunks, verifies every file by hash, and is written down along with test fixtures.">
+<title>loadmento — the protocol</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+  <div class="icon"><img src="assets/loadmento.svg" alt="loadmento protocol icon"></div>
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1 class="lm"><span class="load">load</span><span class="mento">mento</span></h1>
+    <p class="lede">The protocol underneath the lumento family.  Its full name is the Loadmento Import Protocol, or LIP.  It's how a device sends photos and video to lumento STORE and gets back an answer it can trust: this file is on the NAS, it's byte-identical to yours, and it was already there or it's now written to disk.</p>
+    <div class="tags"><span class="pill">HTTPS + JSON</span><span class="pill">Version 1.1</span><span class="pill">Spoken by LOAD and ONE</span></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">How a Load works</div>
+      <h2>The NAS says what it needs.<br>Then the bytes move.</h2>
+      <p>Control calls are HTTPS with JSON bodies.  Uploads are the raw file bytes, sent whole or in chunks.  A session goes like this:</p>
+    </div>
+    <div>
+<pre><code>POST /sessions                     start a session
+POST /sessions/{id}/assets         announce up to 1,000 assets
+  ← upload | skip_duplicate | skip_already_received
+PUT  …/resources/{rid}             whole file, under 25 MiB
+PUT  …/resources/{rid}/chunks/{n}  8 MiB chunks, 25 MiB and up
+POST /sessions/{id}/finish
+GET  /sessions/{id}/report         the import report</code></pre>
+      <ol>
+        <li><strong>Announce before any bytes.</strong>  The device lists each file with its SHA-256.  For each one the NAS answers <em>upload</em>, <em>skip, duplicate</em> or <em>skip, already received</em>.  Files the NAS already has are not sent again.</li>
+        <li><strong>Upload.</strong>  Small files go in a single request.  Large files go in 8&nbsp;MiB chunks, each with its own hash, so one bad chunk means resending one chunk.  Chunks can safely be resent, so a device that isn't sure whether a chunk arrived just sends it again.</li>
+        <li><strong>Check and store.</strong>  The NAS hashes the bytes that actually arrived.  If they match, the file is written to disk and moved into place in one step.  If they don't, it is never stored.</li>
+        <li><strong>Deferred commits.</strong>  For a very large video, the NAS may answer “accepted, still writing” and give the final result on a later call.  A client never reports success before it has that result.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Design principles</div>
+    <h2>Small, strict and written down.</h2>
+    <div class="features">
+      <div class="feature"><h3>The server decides</h3><p>Duplicate checks, naming, where files go and name collisions are all handled by the NAS.  A client only sends bytes, a filename and what it knows about the date.</p></div>
+      <div class="feature"><h3>Not tied to one client</h3><p>The iPhone app and lumento ONE's camera-card import are both ordinary paired devices.  Nothing in the protocol assumes a particular one, so a new client, such as a command-line tool, is meant to be a small job, not a redesign.</p></div>
+      <div class="feature"><h3>Paired, not open</h3><p>Pairing starts on the NAS with a four-digit code and works only on the local network.  The device and the NAS then prove to each other who they are, tied to the NAS's certificate.  The token is never sent in the clear.</p></div>
+      <div class="feature"><h3>Errors that tell you what to do</h3><p>Errors come back as structured JSON with a stable code.  A client treats an error code it doesn't recognise as temporary, and the spec defines the retry schedule, so every client backs off the same way.</p></div>
+      <div class="feature"><h3>Upload only</h3><p>The protocol can add to the archive and report on it.  It has no way to delete anything already archived.</p></div>
+      <div class="feature"><h3>Suited to iOS background uploads</h3><p>Every upload is a plain HTTPS request with a file body, which is exactly what iOS's background upload service needs.  Uploads keep going while the phone is locked.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">For implementers</div>
+      <h2>A spec you can test against.</h2>
+    </div>
+    <div>
+      <p><strong>One source of truth.</strong>  The protocol is defined in a single document.  Every copy elsewhere is a read-only snapshot that can be checked against it.</p>
+      <p><strong>The server returns its own spec.</strong>  A running lumento STORE answers <code>GET /protocol.md</code> with the version of the protocol document built into it.  You can see exactly what the NAS in front of you implements, even if it's running an older build.</p>
+      <p><strong>Test fixtures from the real server.</strong>  The spec comes with a set of example requests and responses.  They were recorded from the server's own code, not written by hand, so you can test a client against what the server actually does.  Recording them turned up three places where the prose was wrong, and all three were fixed.</p>
+      <p><strong>Capabilities, not guesses.</strong>  <code>GET /capabilities</code> tells a client what this server supports before it starts.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Where it's used</div>
+    <div class="family-strip">
+      <a href="load.html"><img src="assets/lumento-load.svg" alt=""><div><strong>lumento LOAD</strong><span>Sends from the iPhone</span></div></a>
+      <a href="one.html"><img src="assets/lumento.svg" alt=""><div><strong>lumento ONE</strong><span>Sends from a camera card</span></div></a>
+      <a href="store.html"><img src="assets/lumento-store.svg" alt=""><div><strong>lumento STORE</strong><span>Receives and checks</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. · Coming soon.</div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="lumento STORE — the archive on your NAS. It checks every file byte for byte before accepting it, files everything in plain month folders, and never stores a duplicate. Coming soon.">
+<title>lumento STORE — coming soon</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+  <div class="icon"><img src="assets/lumento-store.svg" alt="lumento STORE icon"></div>
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix store">STORE</span></span></h1>
+    <p class="lede">The archive on your NAS.  It receives files from lumento LOAD on your iPhone and from lumento ONE's camera-card import.  It checks every file byte for byte, then files it in ordinary folders that you own.</p>
+    <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">One package, no dependencies</span><span class="pill">Local network only</span></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Setup</div>
+      <h2>Four steps.<br>No console.</h2>
+      <p>STORE is a single package from App Central.  It doesn't need Docker, a database server or any other package.  It creates and manages its own TLS certificate.</p>
+    </div>
+    <div>
+      <ol>
+        <li><strong>Install</strong> lumento STORE from App Central.</li>
+        <li><strong>Claim it.</strong>  Open its admin page and set a password.  The first password set on a fresh install owns it.  If you miss that window, restart the app from App Central to open a new one.</li>
+        <li><strong>Pick a folder.</strong>  Choose where your archive should live.  STORE never assumes a default and never needs a share with a special name.  It creates a single <code>_lumento</code> folder inside the one you pick and leaves everything else there alone.</li>
+        <li><strong>Pair a device.</strong>  Start pairing on the NAS, and your iPhone finds STORE on the local network.  Enter the four-digit code and you're done.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">What it does</div>
+    <h2>Accept it, check it, file it.<br>Never lose it.</h2>
+    <div class="features">
+      <div class="feature"><h3>Checked before it's accepted</h3><p>STORE computes its own SHA-256 fingerprint from the bytes that actually arrived.  A file whose fingerprint doesn't match is never stored.</p></div>
+      <div class="feature"><h3>Written safely to disk</h3><p>A file only counts as archived once it has been written all the way to disk and moved into its final place in one step.  After a power cut you get either the whole file or no file.</p></div>
+      <div class="feature"><h3>No duplicates, ever</h3><p>Duplicates are recognised by exact fingerprint, across every session and every paired device.  For your phone, that check happens before any bytes are sent.</p></div>
+      <div class="feature"><h3>Plain month folders</h3><p>New files go into <code>_lumento/2026.09/</code> and so on, by the date the photo was taken.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
+      <div class="feature"><h3>Destinations</h3><p>Set up named destinations, such as a folder for each child, and choose one on the phone before a Load.  The phone remembers your last choice.</p></div>
+      <div class="feature"><h3>Never moves or deletes</h3><p>Once STORE has archived a file, it never moves or deletes it.  You can reorganise the archive however you like.</p></div>
+      <div class="feature"><h3>Remembers for the phone</h3><p>The NAS keeps a record of everything it has received.  If you wipe or reinstall your iPhone, LOAD still knows what's already safe.</p></div>
+      <div class="feature"><h3>Import receipts</h3><p>Each session ends with a report from the NAS itself, not just the phone's own account of what happened.</p></div>
+      <div class="feature"><h3>Pairing that can't be guessed</h3><p>Pairing starts on the NAS, works only on your local network, and fixes the NAS's certificate on the phone.  Repeated wrong codes lock that address out, and a NAS-wide limit stops attempts from many addresses at once.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">One archive, two ways in</div>
+      <h2>Phone and camera card, same rules.</h2>
+    </div>
+    <div>
+      <p><strong>lumento LOAD</strong> on your iPhone and <strong>lumento ONE</strong>'s camera-card import in your browser both connect to STORE as paired devices.  They use the same <a href="loadmento.html">protocol</a>, so files from both are named, filed, checked and de-duplicated the same way.</p>
+      <p>STORE doesn't need lumento ONE, and ONE doesn't need STORE.  Each one works on its own.  Together, a card fresh from the camera ends up in the same archive as your phone's photos, and the screen tells you when the card is safe to format.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Where it stands</div>
+    <h2>Built, and still to come.</h2>
+    <div class="state">
+      <div class="built"><h3>Built</h3><ul><li>Checked, crash-safe archiving</li><li>Local-network pairing with abuse protection</li><li>Destinations</li><li>Disk-space checks and warnings</li><li>Import reports</li><li>Receiving imports from lumento ONE</li></ul></div>
+      <div class="next"><h3>Next</h3><ul><li>Signed import reports</li><li>Access from outside your home network</li><li>A clean uninstall that removes STORE's working files but leaves your archive in place</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>Synology and QNAP are under consideration</li><li>On any other NAS, LOAD's <a href="load.html#generic">Generic mode</a> will be the way in</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">The rest of the family</div>
+    <div class="family-strip">
+      <a href="load.html"><img src="assets/lumento-load.svg" alt=""><div><strong>lumento LOAD</strong><span>iPhone to NAS, verified</span></div></a>
+      <a href="one.html"><img src="assets/lumento.svg" alt=""><div><strong>lumento ONE</strong><span>View it in any browser</span></div></a>
+      <a href="loadmento.html"><img src="assets/loadmento.svg" alt=""><div><strong class="lm"><span class="load">load</span><span class="mento">mento</span></strong><span>The protocol between them</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. · Coming soon.</div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>

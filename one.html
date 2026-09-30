@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="lumento ONE — a photo and video gallery for your Asustor NAS. One native app, no container stack, in any browser from a current laptop to a 2013 smart TV. Coming soon.">
+<title>lumento ONE — coming soon</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+  <div class="icon"><img src="assets/lumento.svg" alt="lumento ONE icon"></div>
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix one">ONE</span></span></h1>
+    <p class="lede">A photo and video gallery for your NAS.  It's one native app from App Central, with no Docker, no Postgres and no Redis.  It reads the folders you already have and shows them in a browser.</p>
+    <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">Old and new browsers</span><span class="pill">Camera-card import with STORE</span></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">What it does</div>
+    <h2>Your library, as it already is.</h2>
+    <p class="intro">lumento ONE is meant to replace the NAS's stock photo and video gallery.  Point it at your folders and it does the rest in the background.</p>
+
+    <div class="features">
+      <div class="feature"><h3>Any share, any folder</h3><p>Use as many library folders as you like, on any share.  Your photos don't have to live in one fixed <code>/Photos</code> share.</p></div>
+      <div class="feature"><h3>Read-only on your media</h3><p>ONE only reads your originals.  It never modifies them, and it never writes thumbnails or caches into your shares.</p></div>
+      <div class="feature"><h3>Quiet background indexing</h3><p>Thumbnails and indexing run at idle priority, so they don't slow down anyone who is browsing.</p></div>
+      <div class="feature"><h3>Old home movies play</h3><p>Sony AVCHD, MiniDV and DVD-Video are converted to web video the first time you watch them.  The result is kept, so the next viewing starts straight away.  The source files are never touched.</p></div>
+      <div class="feature"><h3>HEIC and camera RAW</h3><p>Apple HEIC photos are converted to JPEG, so every browser can show them.  RAW files (.arw, .nef, .cr2, .dng) show the preview JPEG that the camera embeds in them.</p></div>
+      <div class="feature"><h3>Made for a TV remote</h3><p>The fullscreen viewer is built around a remote's arrow keys.  Left and right move through a folder, up and down move between folders.  Your phone can also act as the remote.</p></div>
+      <div class="feature"><h3>Your NAS accounts</h3><p>Sign in with the accounts your NAS already has.  There's nothing extra to set up.  Viewers can browse.  Curators can also manage library folders and settings.</p></div>
+      <div class="feature"><h3>Honest about failures</h3><p>If ONE recognises a file as media but can't display it, the file still shows up.  It keeps its name and says why it couldn't be shown.</p></div>
+      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it and sign in on your phone instead of typing a password with a remote.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Old browsers and new</div>
+      <h2>One app, two front ends.</h2>
+      <p>Browsers on smart TVs age badly.  A 2013 Samsung TV browser has no <code>fetch</code>, no CSS Grid and no ES6.  ONE doesn't drop support for it.  It serves two front ends instead.</p>
+    </div>
+    <div>
+      <h3>Legacy front end</h3>
+      <p>This one is for older browsers, such as 2013 Samsung smart TVs.  It's plain HTML with a small amount of ES5 JavaScript on top, and every control is an ordinary link.  <strong>Browsing and viewing work here and always will</strong>, including with JavaScript turned off.  This front end only gets bug fixes, not new features.</p>
+      <h3>Modern front end</h3>
+      <p>This one is for current Chrome, Safari, Firefox and Edge on a desktop, a phone or a Fire TV Stick.  <strong>New features are built here</strong>, starting with camera-card import.</p>
+      <div class="callout">
+        <p><strong>Upload needs a current browser.</strong>  Before showing the import page, ONE tests what the browser can actually do: folder picking, <code>fetch</code>, Promises, file reading and chunked reads.  It never guesses from the browser's name.  If the test fails, you get a plain explanation instead of a form that half works.  Everything else in ONE keeps working.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Works with lumento STORE</div>
+      <h2>Card in the reader.<br>Card safe to format.</h2>
+      <p>Put a camera card in your laptop's card reader, open ONE, and pick the card's folder.  ONE takes care of the rest.</p>
+    </div>
+    <div>
+      <ol>
+        <li><strong>Your browser fingerprints every file</strong> with SHA-256 on the computer the card is plugged into, and sends it to the NAS.</li>
+        <li><strong>lumento STORE takes it from there.</strong>  ONE is paired with STORE like any other device, and it uses the same <a href="loadmento.html">protocol</a> as the iPhone app.  STORE renames and files each photo by the same rules the phone uses, and handles name collisions.</li>
+        <li><strong>Never duplicated.</strong>  Import the same card twice and the second import costs some time on the network, never a second copy.  The NAS recognises each file by its hash and doesn't write it again.</li>
+        <li><strong>Originals stay exactly as they were.</strong>  STORE never re-encodes anything, so every tag in the original file is kept.</li>
+        <li><strong>It won't say the card is safe to format too early.</strong>  If the NAS is still checking a large video, the page says so and waits.</li>
+      </ol>
+      <p>Import needs lumento STORE installed and paired.  Without it, ONE still works as a complete gallery.  Neither product needs the other in order to run.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Where it stands</div>
+    <h2>Built, and still to come.</h2>
+    <div class="state">
+      <div class="built"><h3>Built</h3><ul><li>Indexing and background thumbnails</li><li>Old video formats converted as you watch</li><li>HEIC and RAW display</li><li>Remote-friendly viewer and phone remote</li><li>Sign-in with NAS accounts, QR sign-in</li><li>Camera-card import through STORE</li></ul></div>
+      <div class="next"><h3>Next</h3><ul><li>A full modern front end that each browser is routed to automatically after the capability test</li><li>A dense tiled view for scanning quickly</li><li>Marking photos and exporting the list</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>Built as static native binaries</li><li>Uses Asustor's FFmpeg package</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">The rest of the family</div>
+    <div class="family-strip">
+      <a href="load.html"><img src="assets/lumento-load.svg" alt=""><div><strong>lumento LOAD</strong><span>iPhone to NAS, verified</span></div></a>
+      <a href="store.html"><img src="assets/lumento-store.svg" alt=""><div><strong>lumento STORE</strong><span>The archive on your NAS</span></div></a>
+      <a href="loadmento.html"><img src="assets/loadmento.svg" alt=""><div><strong class="lm"><span class="load">load</span><span class="mento">mento</span></strong><span>The protocol between them</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. · Coming soon.</div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>
