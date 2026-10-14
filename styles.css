@@ -132,6 +132,13 @@ a.card:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .card .more{color:var(--ink);font-size:14px;font-weight:600;margin-left:auto}
 .card .meta{display:flex;gap:16px;align-items:baseline}
 
+/* the empty seat at the family table: same size as the others, drawn in outline */
+.card.ghost{background:transparent;border:1.5px dashed var(--border)}
+.card.ghost .iconbox svg{width:100%;height:100%;display:block;fill:none;stroke:var(--border);stroke-width:3}
+.card.ghost .status{color:var(--ink-soft)}
+.card.ghost h3 .lu,.card.ghost h3 .mento,.card.ghost h3 .suffix{color:#b9ad9f}
+.card.ghost .meta,.card.ghost .more{color:var(--ink-soft);font-weight:500}
+
 /* loadmento two-tone treatment (protocol surfaces only) */
 .lm .load{color:var(--teal)}
 .lm .mento{color:var(--ink)}
