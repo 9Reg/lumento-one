@@ -105,6 +105,7 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .teal{color:var(--teal)}
 .story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .story p{color:var(--ink-soft);font-size:17px}
+.story .pn{color:var(--teal);font-weight:600}
 .family-mark{font-size:40px;letter-spacing:-.03em;margin-bottom:6px}
 .note{border-left:3px solid var(--mustard);padding-left:20px}
 footer{padding:42px 0 60px}
