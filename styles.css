@@ -42,7 +42,7 @@ nav{height:72px;display:flex;align-items:center;justify-content:space-between}
 .wordmark .mento,.product-name .mento{color:var(--ink)}
 .product-name .suffix{color:var(--ink)}
 .product-name .suffix.one{color:var(--teal)}
-.product-name .suffix.load,.product-name .suffix.store,.product-name .suffix.keep{color:var(--teal)}
+.product-name .suffix.load,.product-name .suffix.store,.product-name .suffix.keep,.product-name .suffix.family{color:var(--teal)}
 .product-lockup{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
 .product-lockup .base{white-space:nowrap}
 .product-lockup .suffix{
@@ -105,6 +105,7 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .teal{color:var(--teal)}
 .story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .story p{color:var(--ink-soft);font-size:17px}
+.family-mark{font-size:40px;letter-spacing:-.03em;margin-bottom:6px}
 .note{border-left:3px solid var(--mustard);padding-left:20px}
 .reverse-note{border-right:3px solid var(--mustard);padding-left:20px}
 footer{padding:42px 0 60px}
