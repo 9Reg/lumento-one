@@ -72,7 +72,7 @@
       <div class="feature"><h3>A Live Photo stays whole</h3><p>A Live Photo is a still image plus a short video.  It only counts as safe once both parts are verified.  RAW+JPEG pairs work the same way.</p></div>
       <div class="feature"><h3>Survives interruptions</h3><p>A Load picks up where it left off after the app is closed, iOS suspends it, or the Wi-Fi drops.  Failed uploads are retried after 5, 15, 45, 135 and then 300 seconds.</p></div>
       <div class="feature"><h3>Won't fill your phone</h3><p>LOAD pauses before it runs your phone out of storage.  If a Load won't fit, it warns you before starting.</p></div>
-      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD reports what is safe to delete.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.</p></div>
+      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD reports what's safe to delete.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.</p></div>
       <div class="feature"><h3>Hidden stays hidden</h3><p>If you hid a photo on your iPhone, LOAD never sees it, never reads it and never loads it.</p></div>
     </div>
   </div>
@@ -93,7 +93,7 @@
       <pre><code>PUT  _lumento/2026.09/.IMG_4821.HEIC.{device}.{id}.part
 MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
       <p><strong>Same layout as Verified mode.</strong>  Folders, filenames and dates are identical: <code>{root}/_lumento/{YYYY.MM}/</code>.  Your archive looks the same whichever mode filled it.</p>
-      <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it has sent, with its hash.  It also keeps a manifest on the NAS itself.</p>
+      <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it's sent, with its hash.  It also keeps a manifest on the NAS itself.</p>
       <p><strong>Whole files only.</strong>  WebDAV has no standard way to put chunks back together, so a dropped upload restarts that one file from the beginning.</p>
     </div>
   </div>
@@ -116,7 +116,7 @@ MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
       </table>
     </div>
     <div class="callout">
-      <p><strong>Generic mode tells you what it can't check.</strong>  It will say that files arrived, but not that they arrived byte for byte, because nothing on the NAS can check that.  If you install lumento STORE later, it checks everything Generic mode already sent.  You don't upload anything again.</p>
+      <p><strong>Generic mode tells you what it can't check.</strong>  It'll say that files arrived, but not that they arrived byte for byte, because nothing on the NAS can check that.  If you install lumento STORE later, it checks everything Generic mode already sent.  You don't upload anything again.</p>
     </div>
   </div>
 </section>

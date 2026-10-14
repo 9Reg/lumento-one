@@ -48,9 +48,9 @@ PUT  …/resources/{rid}/chunks/{n}  8 MiB chunks, 25 MiB and up
 POST /sessions/{id}/finish
 GET  /sessions/{id}/report         the import report</code></pre>
       <ol>
-        <li><strong>Announce before any bytes.</strong>  The device lists each file with its SHA-256.  For each one the NAS answers <em>upload</em>, <em>skip, duplicate</em> or <em>skip, already received</em>.  Files the NAS already has are not sent again.</li>
+        <li><strong>Announce before any bytes.</strong>  The device lists each file with its SHA-256.  For each one the NAS answers <em>upload</em>, <em>skip, duplicate</em> or <em>skip, already received</em>.  Files the NAS already has aren't sent again.</li>
         <li><strong>Upload.</strong>  Small files go in a single request.  Large files go in 8&nbsp;MiB chunks, each with its own hash, so one bad chunk means resending one chunk.  Chunks can safely be resent, so a device that isn't sure whether a chunk arrived just sends it again.</li>
-        <li><strong>Check and store.</strong>  The NAS hashes the bytes that actually arrived.  If they match, the file is written to disk and moved into place in one step.  If they don't, it is never stored.</li>
+        <li><strong>Check and store.</strong>  The NAS hashes the bytes that actually arrived.  If they match, the file is written to disk and moved into place in one step.  If they don't, it's never stored.</li>
         <li><strong>Deferred commits.</strong>  For a very large video, the NAS may answer “accepted, still writing” and give the final result on a later call.  A client never reports success before it has that result.</li>
       </ol>
     </div>
