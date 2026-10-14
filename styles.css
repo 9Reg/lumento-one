@@ -103,7 +103,6 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .card p{margin:0;color:var(--ink-soft);max-width:480px}
 .meta{margin-top:auto;padding-top:25px;font-size:13px;font-weight:500}
 .teal{color:var(--teal)}
-.mustard{color:#b77b18}
 .story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .story p{color:var(--ink-soft);font-size:17px}
 .note{border-left:3px solid var(--mustard);padding-left:20px}
