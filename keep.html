@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="lumento KEEP — quiet bit-rot detection for your NAS. It only reads your files, and when one has gone bad it tells you which, and where a good copy may be. Coming soon.">
+<title>lumento KEEP — coming soon</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+  <div class="icon"><img src="assets/lumento-keep.svg" alt="lumento KEEP icon"></div>
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix keep">KEEP</span></span></h1>
+    <p class="lede">Do not lose it.  KEEP watches your NAS for silent file damage, the kind that no one notices until the photo won't open.  It only reads.  When a file has gone bad, it tells you which one and where a good copy may be.</p>
+    <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">Read-only, always</span><span class="pill">Admin page on your NAS</span></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">The promise</div>
+      <h2>It changes nothing you value.</h2>
+    </div>
+    <div>
+      <p><strong>KEEP only reads your files, and the Linux kernel stops it from writing to them.</strong>  It never repairs, never copies over a file and never writes into a share.  The only things it writes are its own index, its own pages and its own log lines.</p>
+      <p>That is a deliberate limit.  A tool that fixes files can also break them.  KEEP finds the problem and you decide what to do, in ADM, with your own hands.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">What it does</div>
+    <h2>Notice it early.<br>Know where to look.</h2>
+    <div class="features">
+      <div class="feature"><h3>Finds silent damage</h3><p>A file can change on disk with no error and no warning.  KEEP keeps a SHA-256 fingerprint of each file and checks it again later.  If the bytes changed and nothing you did explains it, KEEP flags the file.</p></div>
+      <div class="feature"><h3>Tells an edit from damage</h3><p>If you edit a photo, that is not damage.  KEEP looks at the file in pieces to tell the two apart.  It never stops to ask you.</p></div>
+      <div class="feature"><h3>Names the file</h3><p>You get the file's name and what is wrong with it: damaged, unreadable or missing.  You don't get a vague warning that something somewhere is off.</p></div>
+      <div class="feature"><h3>Points to a good copy</h3><p>KEEP says where an intact copy may be, such as a snapshot or a backup.  You restore it yourself in ADM.</p></div>
+      <div class="feature"><h3>Checks your safety net</h3><p>Backups can fail without a word.  KEEP also looks at your backup jobs, your snapshots, your disk scrubs and your RAID state, and tells you when one of them isn't doing its job.</p></div>
+      <div class="feature"><h3>Speaks through ADM</h3><p>Notices go to ADM's own System log, where you already look.  An admin page shows what KEEP has found, and you can acknowledge a finding there.</p></div>
+      <div class="feature"><h3>Reads encrypted shares</h3><p>Encryption protects a drive that is carried away.  It doesn't protect against rot.  KEEP reads encrypted shares too, so they are not left out.</p></div>
+      <div class="feature"><h3>Light on the NAS</h3><p>It runs at idle priority, pauses while the RAID syncs or scrubs, and works within a nightly limit on how much it reads.</p></div>
+      <div class="feature"><h3>Honest about its limits</h3><p>Some file systems already checksum your data and some, like ext4, don't.  KEEP says which you have, and says plainly when it can't promise something.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">How it works</div>
+      <h2>Index, compare,<br>tell you.</h2>
+      <p>Your NAS may already catch some damage.  KEEP adds the part it can't: a second, independent record of what each file should contain.</p>
+    </div>
+    <div>
+      <ol>
+        <li><strong>Install</strong> lumento KEEP from App Central and set a password on its admin page.</li>
+        <li><strong>Let it index.</strong>  Each night it reads your files and records a fingerprint for each.  It throttles itself, so the NAS stays usable.</li>
+        <li><strong>It compares.</strong>  On the next pass, a file whose contents changed with no matching edit is flagged.  A file that is now unreadable or missing is flagged too.</li>
+        <li><strong>You hear about it.</strong>  KEEP writes to ADM's System log and shows the finding on its admin page, with where a good copy may be.</li>
+        <li><strong>You restore.</strong>  Use ADM to bring back the good copy.  KEEP never does it for you.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Where it stands</div>
+    <h2>Being built.  Not released.</h2>
+    <div class="state">
+      <div class="built"><h3>Built</h3><ul><li>A read-only walk of the share, with the kernel as the guard</li><li>Fingerprints and the index</li><li>Sorting edits from damage</li><li>Checks on scrubs, snapshots and disk state</li><li>Notices in ADM's System log</li><li>The admin page</li><li>The App Central package scripts</li></ul></div>
+      <div class="next"><h3>Next</h3><ul><li>A first install and real-world testing on a NAS</li><li>A check of your backup-job notification settings</li><li>Covering every share and every attached backup</li><li>An optional check that finds which disk of a mirror holds the bad copy</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>The core is built to be the same on any NAS</li><li>Other brands are not planned yet</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">The rest of the family</div>
+    <div class="family-strip">
+      <a href="load.html"><img src="assets/lumento-load.svg" alt=""><div><strong>lumento LOAD</strong><span>iPhone to NAS, verified</span></div></a>
+      <a href="one.html"><img src="assets/lumento.svg" alt=""><div><strong>lumento ONE</strong><span>View it in any browser</span></div></a>
+      <a href="store.html"><img src="assets/lumento-store.svg" alt=""><div><strong>lumento STORE</strong><span>The archive on your NAS</span></div></a>
+      <a href="loadmento.html"><img src="assets/loadmento.svg" alt=""><div><strong class="lm"><span class="load">load</span><span class="mento">mento</span></strong><span>The protocol between them</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. · Coming soon.</div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>
