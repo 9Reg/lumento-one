@@ -107,7 +107,6 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .story p{color:var(--ink-soft);font-size:17px}
 .family-mark{font-size:40px;letter-spacing:-.03em;margin-bottom:6px}
 .note{border-left:3px solid var(--mustard);padding-left:20px}
-.reverse-note{border-right:3px solid var(--mustard);padding-left:20px}
 footer{padding:42px 0 60px}
 .foot-links{display:flex;gap:18px}
 .foot-links a{color:var(--ink-soft);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
