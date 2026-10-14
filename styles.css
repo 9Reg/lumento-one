@@ -42,7 +42,7 @@ nav{height:72px;display:flex;align-items:center;justify-content:space-between}
 .wordmark .mento,.product-name .mento{color:var(--ink)}
 .product-name .suffix{color:var(--ink)}
 .product-name .suffix.one{color:var(--teal)}
-.product-name .suffix.load,.product-name .suffix.store,.product-name .suffix.keep{color:var(--teal)}
+.product-name .suffix.load,.product-name .suffix.store,.product-name .suffix.keep,.product-name .suffix.family{color:var(--teal)}
 .product-lockup{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
 .product-lockup .base{white-space:nowrap}
 .product-lockup .suffix{
@@ -103,11 +103,11 @@ h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin
 .card p{margin:0;color:var(--ink-soft);max-width:480px}
 .meta{margin-top:auto;padding-top:25px;font-size:13px;font-weight:500}
 .teal{color:var(--teal)}
-.mustard{color:#b77b18}
 .story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
 .story p{color:var(--ink-soft);font-size:17px}
+.story .pn{color:var(--teal);font-weight:600}
+.family-mark{font-size:40px;letter-spacing:-.03em;margin-bottom:6px}
 .note{border-left:3px solid var(--mustard);padding-left:20px}
-.reverse-note{border-right:3px solid var(--mustard);padding-left:20px}
 footer{padding:42px 0 60px}
 .foot-links{display:flex;gap:18px}
 .foot-links a{color:var(--ink-soft);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
@@ -117,7 +117,7 @@ footer{padding:42px 0 60px}
 .legal h4{font-size:15px;margin:26px 0 6px;font-weight:600}
 .legal p{margin:0 0 10px;color:var(--ink-soft);font-size:15px;overflow-wrap:anywhere}
 .legal a{color:var(--ink)}
-.foot{display:flex;justify-content:space-between;gap:20px;color:var(--ink-soft);font-size:13px}
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;color:var(--ink-soft);font-size:13px}
 
 .footer-brand {
   display: flex;
@@ -131,6 +131,13 @@ a.card:hover,a.card:focus-visible{border-color:var(--teal);transform:translateY(
 a.card:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .card .more{color:var(--ink);font-size:14px;font-weight:600;margin-left:auto}
 .card .meta{display:flex;gap:16px;align-items:baseline}
+
+/* the empty seat at the family table: same size as the others, drawn in outline */
+.card.ghost{background:transparent;border:1.5px dashed var(--border)}
+.card.ghost .iconbox svg{width:100%;height:100%;display:block;fill:none;stroke:var(--border);stroke-width:3}
+.card.ghost .status{color:var(--ink-soft)}
+.card.ghost h3 .lu,.card.ghost h3 .mento,.card.ghost h3 .suffix{color:#b9ad9f}
+.card.ghost .meta,.card.ghost .more{color:var(--ink-soft);font-weight:500}
 
 /* loadmento two-tone treatment (protocol surfaces only) */
 .lm .load{color:var(--teal)}
