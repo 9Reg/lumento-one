@@ -42,7 +42,7 @@ nav{height:72px;display:flex;align-items:center;justify-content:space-between}
 .wordmark .mento,.product-name .mento{color:var(--ink)}
 .product-name .suffix{color:var(--ink)}
 .product-name .suffix.one{color:var(--teal)}
-.product-name .suffix.load,.product-name .suffix.store{color:var(--teal)}
+.product-name .suffix.load,.product-name .suffix.store,.product-name .suffix.keep{color:var(--teal)}
 .product-lockup{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
 .product-lockup .base{white-space:nowrap}
 .product-lockup .suffix{
@@ -86,6 +86,7 @@ h1 .product-name .suffix{font-weight:500}
 h2{font-size:clamp(36px,5vw,56px);letter-spacing:-.045em;line-height:1.05;margin:14px 0 18px;font-weight:500}
 .intro{font-size:18px;color:var(--ink-soft);max-width:740px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:46px}
+.grid .card:last-child:nth-child(odd){grid-column:1/-1;min-height:0}
 .card{
   background:var(--white);border:1px solid var(--border);border-radius:24px;padding:30px;
   min-height:270px;display:flex;flex-direction:column;
@@ -186,7 +187,7 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .state ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:15px}
 .state li{margin-bottom:6px}
 
-.family-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.family-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
 .family-strip a{display:flex;gap:14px;align-items:center;background:var(--white);border:1px solid var(--border);border-radius:18px;padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color .15s}
 .family-strip a:hover{border-color:var(--teal)}
 .family-strip img{width:46px;height:46px;border-radius:12px;flex:0 0 auto}
@@ -195,11 +196,15 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 
 
 
+@media(max-width:1000px){
+  .family-strip{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:800px){
   .legal{grid-template-columns:1fr;gap:20px}
   .hero{grid-template-columns:1fr;padding-top:65px;gap:20px}
   .hero-art{min-height:360px}
   .grid,.story{grid-template-columns:1fr}
+  .grid .card:last-child:nth-child(odd){grid-column:auto}
   .tile.one{right:12%}.tile.load{left:4%}.tile.store{right:3%}
   .p-hero{grid-template-columns:1fr;gap:28px;padding-top:48px}
   .p-hero .icon{width:120px;height:120px;border-radius:28px}
