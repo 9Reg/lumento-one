@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app.">
-<title>Privacy — lumento LOAD</title>
+<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app, and lumento KEEP, the NAS app.">
+<title>Privacy — lumento LOAD and KEEP</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -69,6 +69,37 @@
         <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>. The website operator and legal details are in the <a href="impressum.html">Impressum</a>.</p>
 
         <p>Effective 30 September 2026.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="kicker">Privacy policy</div>
+    <h2>lumento KEEP</h2>
+    <p class="intro">KEEP runs on your own NAS and only reads your files. It has no accounts, no analytics, no advertising and no tracking. It makes one kind of outside request: it asks this website for updated advice. This section applies from the first KEEP release that does so.</p>
+
+    <div class="legal">
+      <section>
+        <h3>What KEEP fetches, and what it sends</h3>
+
+        <h4>The advice update</h4>
+        <p>At most once a week, and when you press "Check now", KEEP fetches <code>https://lumento.one/keep/rules/v1/rules.json</code> and <code>rules.json.sig</code> over HTTPS. These files hold the advice KEEP shows you. The signature lets KEEP check that the file really comes from lumento before it uses it.</p>
+
+        <h4>What the request contains</h4>
+        <p>It is an ordinary web request. It sends your NAS's IP address, which this website's host, GitHub Pages, sees as it does for any visitor, a <code>User-Agent: lumento-KEEP/&lt;version&gt;</code> header that names KEEP and its version, and an <code>If-None-Match</code> header so an unchanged file isn't downloaded again. It sends no box name, no serial number, no share, no file name and no measurement of your NAS.</p>
+      </section>
+
+      <section>
+        <h3>Your choice</h3>
+        <p>The update is on by default. KEEP tells you so when you install it, and there is an off switch on KEEP's settings page. With it off, KEEP uses the advice built into the version you installed and makes no outside request.</p>
+        <p>KEEP itself sends nothing else. Its alerts go to ADM's System log; if you have set up ADM notifications, ADM sends them to you by e-mail or push.</p>
+
+        <h4>Changes</h4>
+        <p>If KEEP ever sends anything more than this, this page will say so before that version is released.</p>
+
+        <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>.</p>
       </section>
     </div>
   </div>

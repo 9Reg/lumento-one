@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The advice lumento KEEP gives about your NAS: disks, backups, file integrity and security, with the sources behind every rule.">
+<title>What KEEP teaches — lumento KEEP</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="../index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="../index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="section">
+  <div class="wrap">
+    <a class="crumb" href="../keep.html">← lumento KEEP</a>
+    <div class="kicker">Advice</div>
+    <h1>What KEEP teaches</h1>
+    <p class="intro">KEEP only reads your files, so it can't fix anything.  What it can do is tell you what to look at and why.  This page is every rule KEEP uses, in plain words, with the sources behind it.  Where experts disagree, you get each side and the one we recommend.</p>
+    <div class="advice-note">
+      <p>Rules published 2026-10-15.  Advice text by lumento (lumento.one), licensed CC BY 4.0. Sources are cited, not copied.  Licence: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>.  You may copy and adapt this text if you credit lumento.  The sources linked below are cited, not copied.  The same rules, as data, are in <a href="rules/v1/rules.json">rules.json</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="disks">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>Your disks</h2>
+    <div class="rules">
+<article class="feature" id="layout-1bay-single-disk">
+<span class="status">Worth fixing</span>
+<h3>One disk is one copy</h3>
+<p>This box has one bay, so your photos live on a single disk. If it fails, they are gone. Asustor&#x27;s own RAID chapter says a Single volume offers no data protection. Keep a backup on a USB disk, and a further copy somewhere other than your home. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>ADM: open External Backup and set up a scheduled backup to a USB disk.</li><li>Keep one more copy away from the house (a relative&#x27;s disk or a cloud bucket).</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/sites/default/files/publications/data_backup_options.pdf" rel="noopener">US-CERT (Ruggiero and Heckathorn, Carnegie Mellon), citing Peter Krogh, The DAM Book, 2nd ed., p. 207</a>, 2012. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-2bay-single-disk">
+<span class="status">Worth fixing</span>
+<h3>One disk holds everything, and a bay is empty</h3>
+<p>Only one disk holds your data, and the second bay is empty. Fill it. Experts split on how to use two disks: as a mirror, or as two separate disks where one backs up the other. For a family archive KEEP recommends the second. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>Experts differ: the options</h4><ul>
+<li><strong>Mirror the two disks (RAID1)</strong><br>For: The box keeps running when one disk dies and nobody has to do anything. ADM offers RAID1 for two drives.<br>Against: A mirror copies a deletion, an overwrite, ransomware or file-system damage to both disks at once, and both disks sit in the same box.</li>
+<li><strong>Two separate volumes, one scheduled to back up the other</strong> <span class="yes">Recommended</span><br>For: The scheduled copy runs behind, so a deletion or an encryption is not copied until the next run; snapshots on the backup volume keep older history.<br>Against: If the main disk dies you must restore, and changes since the last run are lost. Keep snapshots on both volumes.</li>
+</ul>
+<h4>What to do</h4><ol><li>Buy a second disk of the same size or larger, from a NAS-rated line.</li><li>Decide between the two layouts below before you set it up; ADM can migrate a Single volume to RAID1 later, but cannot go back down.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=352" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-2bay-raid1">
+<span class="status">Good to know</span>
+<h3>A mirror keeps the box up, not your history</h3>
+<p>RAID1 is good for uptime: one disk can die and the box keeps working. But it copies a deletion or ransomware to both disks at once. Add a backup that keeps older versions, on a device outside the array. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Set up a backup job that keeps more than one version, to a USB disk or another NAS.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-2bay-two-single">
+<span class="status">Good to know</span>
+<h3>Two separate disks: good for history, slower to recover</h3>
+<p>If one volume backs up the other, the scheduled copy runs behind, so a deletion or an encryption is not copied until the next run; snapshots on the backup volume keep older history. The cost: if the main disk dies you restore from the second one, and anything changed since its last run is lost. Keep snapshots on both volumes. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Check that the backup job between the two volumes ran recently.</li><li>Turn on a snapshot schedule on both volumes in ADM Snapshot Center (btrfs volumes only).</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=252" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-4bay-raid1-two-empty">
+<span class="status">Good to know</span>
+<h3>Two disks in a four-bay box, two bays empty</h3>
+<p>You have room to do more than a mirror. There are three common choices, and experts split on them. For a family archive KEEP recommends the first. A bigger array in the same box is still not a backup. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>Experts differ: the options</h4><ul>
+<li><strong>Use the empty bays for a separate backup volume</strong> <span class="yes">Recommended</span><br>For: A volume with its own disks protects against deletion and file-system damage that the mirror would share.<br>Against: You use half the raw space twice over, and you manage two volumes.</li>
+<li><strong>Add disks and migrate RAID1 to RAID5 or RAID6</strong><br>For: ADM can migrate online (RAID1 to RAID5 adds 1 to 14 disks, to RAID6 adds 2 to 14) and gets more usable space from the same bays.<br>Against: There is no way back down, the migration is a long heavy job on every disk, and the data is still in one box.</li>
+<li><strong>Add a hot spare</strong><br>For: ADM supports spares for RAID 1, 5, 6 and 10, and rebuilds on its own when nobody is home.<br>Against: It uses a bay, sits in the same chassis and does nothing for deletion or ransomware.</li>
+</ul>
+<h4>What to do</h4><ol><li>Whichever you choose, back up first and replace or add disks one at a time.</li><li>ADM migration is online but cannot go back down; Asustor warns that replacing several drives at once, or while the NAS is syncing, causes data loss.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=352" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-raid5-large-disks">
+<span class="status">Good to know</span>
+<h3>RAID5 on large disks</h3>
+<p>A rebuild of a big disk takes many hours, and the array has no protection left while it runs. Experts disagree on how risky RAID5 is: the middle view is that RAID5 is acceptable with a good backup and regular scrubs, and that RAID6 is the safer choice for large disks. KEEP recommends RAID6 for a family archive if you can migrate; if you stay on RAID5, keep a current backup before any rebuild. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>Experts differ: the options</h4><ul>
+<li><strong>Move to RAID6 (ADM migrates RAID5 to RAID6 by adding a disk)</strong> <span class="yes">Recommended</span><br>For: RAID6 survives any two failures, so a second problem during a long rebuild does not lose data.<br>Against: It costs a second disk of capacity, and migration is one-way.</li>
+<li><strong>Stay on RAID5 with a good backup and regular scrubs</strong><br>For: Supporters argue the unreadable-sector spec is a worst-case figure and real rebuild failures are rare.<br>Against: Critics quote Seagate not guaranteeing a full read of the entire drive twice without an unreadable sector; a degraded RAID5 has nothing left to fall back on.</li>
+</ul>
+<h4>What to do</h4><ol><li>Check your backup is current before you replace a failed disk.</li><li>If you choose to migrate to RAID6, back up first: ADM cannot go back down.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=352" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://louwrentius.com/raid-5-is-perfectly-fine-for-home-usage.html" rel="noopener">Louwrentius</a>, 2016-09-08. Checked 2026-10-15.</li>
+<li><a href="https://blog.dshr.org/2015/05/unrecoverable-read-errors.html" rel="noopener">David Rosenthal</a>, 2015-05-21. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-raid0-jbod">
+<span class="status">Serious</span>
+<h3>This volume loses data if one disk fails</h3>
+<p>A RAID0 or JBOD volume gives no protection: lose one disk and you lose the volume, or part of it. ADM cannot migrate these volumes to a safer level. The only way out is to move the data off and rebuild the volume. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Copy the data to another device first. Asustor: data must be offloaded to another storage device.</li><li>Then create a volume with RAID1, RAID5 or RAID6 and copy back.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=352" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="layout-spare-no-backup">
+<span class="status">Worth fixing</span>
+<h3>A hot spare, but a share with no backup</h3>
+<p>This box keeps a disk as a hot spare, while at least one share has no backup. ADM supports spare drives for RAID 1, 5, 6 and 10, up to two per volume. A spare protects against a dead disk only, never against a deletion, ransomware or a lost box. A backup protects against all of those, so a backup does more than a spare. Whether a hot spare, a cold spare on the shelf or RAID6 is best is a trade-off, and opinions differ; the backup comes first either way. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Set up a backup for every share first (ADM: Backup &amp; Restore).</li><li>Then decide whether to keep the bay as a spare or use it for the backup.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/College_topic?topic=251" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/online_help?id=29" rel="noopener">Asustor ADM help, Volume</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="disk-smr">
+<span class="status">Worth fixing</span>
+<h3>This disk uses shingled recording (SMR)</h3>
+<p>SMR disks rewrite whole bands, slow down on long writes. If this disk is in a RAID array, a rebuild is a heavy write. Check the exact model number against the maker&#x27;s list; the suffix alone is not enough. NAS-rated CMR lines include WD Red Plus, Seagate IronWolf and Toshiba N300. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Look up the exact model on the maker&#x27;s CMR/SMR list.</li><li>Plan to replace it with a CMR disk, one disk at a time, after a backup.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">Western Digital</a>, 2020-04-22. Checked 2026-10-15.</li>
+<li><a href="https://www.seagate.com/products/cmr-smr-list/" rel="noopener">Seagate</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://blocksandfiles.com/2020/04/29/toshiba-consumer-disk-drives-smr-list/" rel="noopener">Blocks and Files</a>, 2020-04-29. Checked 2026-10-15.</li>
+<li><a href="https://www.storagereview.com/news/wd-red-smr-updates" rel="noopener">StorageReview</a>, 2020-06-24. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="disk-smr-unknown">
+<span class="status">Good to know</span>
+<h3>KEEP does not know whether this disk is SMR</h3>
+<p>This model is not in KEEP&#x27;s list of checked SMR models. That does not mean it is CMR, and being on Asustor&#x27;s compatibility list does not either: that list had SMR models (as of 2020). Look the exact model up on the maker&#x27;s page.</p>
+<h4>What to do</h4><ol><li>Find the model number in ADM Storage Manager and look it up on the maker&#x27;s CMR/SMR list.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/service/hd?id=hd" rel="noopener">Asustor drive compatibility page</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://nascompares.com/answer/nas-supported-smr-hard-drives-hdd" rel="noopener">NASCompares</a>, 2020-05-05. Checked 2026-10-15.</li>
+<li><a href="https://www.seagate.com/products/cmr-smr-list/" rel="noopener">Seagate</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="health">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>Disk health</h2>
+    <div class="rules">
+<article class="feature" id="smart-pending-sectors">
+<span class="status">Serious</span>
+<h3>A disk reports sectors it cannot read</h3>
+<p>SMART counts of pending (197) or offline uncorrectable (198) sectors above zero mean the disk could not read some data. Google&#x27;s study found a drive was 16 times more likely to fail within 60 days after its first pending-sector event (Google counts these its own way, so treat the figure as a guide). For irreplaceable photos the safe rule is: copy them elsewhere today and replace the disk. A green SMART &#x27;PASSED&#x27; does not contradict this; the overall verdict is a late signal. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Make sure a current copy exists off this disk.</li><li>Replace the disk, one disk at a time.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/" rel="noopener">Backblaze</a>, 2016-10-06. Checked 2026-10-15.</li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/disk_failures.pdf" rel="noopener">Google, Failure Trends in a Large Disk Drive Population (FAST)</a>, 2007. Checked 2026-10-15.</li>
+<li><a href="https://linux.die.net/man/8/smartctl" rel="noopener">smartctl man page</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="smart-other-counters">
+<span class="status">Worth fixing</span>
+<h3>A disk shows early warning counters</h3>
+<p>Reallocated sectors (5), reported uncorrectable errors (187) or command timeouts (188) are above zero. In Backblaze&#x27;s data about three in four failed drives had shown at least one of the five counters 5, 187, 188, 197 and 198 first, while about 4 in 100 working drives had. A rise matters more than the level. Back up now and watch the disk. On some drives counter 188 packs several values, so it is a weaker sign.</p>
+<h4>What to do</h4><ol><li>Check your backups are current.</li><li>Watch whether the counter rises at the next check; plan to replace the disk if it does.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/" rel="noopener">Backblaze</a>, 2016-10-06. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="disk-age">
+<span class="status">Good to know</span>
+<h3>A disk has run for more than five years</h3>
+<p>This disk has more than 43,800 power-on hours (about five years). Age alone is a weak sign: Backblaze&#x27;s 2025 data show failure rates differ widely between models. Failures rise until about year seven. Treat this as a prompt to budget for a replacement and to check backups, not as a prediction. The five-year mark is KEEP&#x27;s planning choice, not a published limit.</p>
+<h4>What to do</h4><ol><li>Budget for a replacement disk.</li><li>Replace sooner if any SMART warning appears.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.backblaze.com/blog/backblaze-drive-stats-for-2025/" rel="noopener">Backblaze (differences between models)</a>, 2026-02-12. Checked 2026-10-15.</li>
+<li><a href="https://blocksandfiles.com/2025/10/20/the-end-of-the-disk-drive-bathtub-curve/" rel="noopener">Blocks and Files</a>, 2025-10-20. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="disk-never-full-scan">
+<span class="status">Good to know</span>
+<h3>No full disk test on record</h3>
+<p>A full surface test reads every sector, including parts of the disk your scrubs never touch. The box has no record of one for this disk. In ADM it is Storage Manager, Drive, Disk Doctor, S.M.A.R.T., Full scan. Asustor&#x27;s help documents scheduling only for Seagate IronWolf Health Management, so run this one by hand.</p>
+<h4>What to do</h4><ol><li>ADM: Storage Manager, Drive, Disk Doctor, S.M.A.R.T., Full scan, for each disk.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=30" rel="noopener">Asustor ADM 5 help, Disk Doctor</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="disk-no-recent-full-scan">
+<span class="status">Good to know</span>
+<h3>No full disk test for over a year</h3>
+<p>A full surface test reads every sector, including parts of the disk your scrubs never touch. In ADM it is Storage Manager, Drive, Disk Doctor, S.M.A.R.T., Full scan. Asustor&#x27;s help documents scheduling only for Seagate IronWolf Health Management, so run this one by hand. Once a year is KEEP&#x27;s minimum, not a standard.</p>
+<h4>What to do</h4><ol><li>ADM: Storage Manager, Drive, Disk Doctor, S.M.A.R.T., Full scan, for each disk.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=30" rel="noopener">Asustor ADM 5 help, Disk Doctor</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="integrity">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>File integrity</h2>
+    <div class="rules">
+<article class="feature" id="scrub-stale">
+<span class="status">Worth fixing</span>
+<h3>No scrub for more than 45 days</h3>
+<p>A scrub reads everything and checks it, so a bad sector is found while a good copy still exists. The btrfs documentation recommends about a month. ADM added btrfs scrubbing in ADM 3.4.0. Note that Asustor&#x27;s help names RAID scrubbing for RAID 5 and RAID 6 only, so do not expect it on a RAID1 volume. The 45 days is KEEP&#x27;s own limit.</p>
+<h4>What to do</h4><ol><li>In ADM Storage Manager, look in your volume&#x27;s options for a scrub and start one.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html" rel="noopener">btrfs documentation</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/service/release_notes_5253" rel="noopener">Asustor ADM 3.4.0 release notes</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/online_help?id=29" rel="noopener">Asustor ADM help, Volume</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="scrub-uncorrectable">
+<span class="status">Critical</span>
+<h3>The last scrub found damaged data it could not repair</h3>
+<p>A btrfs scrub found data that does not match its checksum, and btrfs had no good copy to repair it from. KEEP names the damaged files and, where it can, a place a good copy may be. KEEP does not repair anything; restore the named files from a backup in ADM. Do not run an md repair: on RAID1 it overwrites one copy with the other without knowing which is right. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Open KEEP&#x27;s list of damaged files.</li><li>Restore each from a backup, then run another scrub.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html" rel="noopener">btrfs documentation</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://man7.org/linux/man-pages/man4/md.4.html" rel="noopener">Linux man-pages, md(4)</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="scrub-corrected">
+<span class="status">Worth fixing</span>
+<h3>The last scrub found damaged data and fixed it</h3>
+<p>A btrfs scrub found data that did not match its checksum and btrfs fixed it from another copy. Nothing is lost, but a disk may be going bad. Check each disk&#x27;s S.M.A.R.T. counters in ADM and make sure your backups are current. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>ADM: Storage Manager, Drive, Disk Doctor, S.M.A.R.T., and read the counters of each disk.</li><li>Check that your backups are current, then run another scrub.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html" rel="noopener">btrfs documentation</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://man7.org/linux/man-pages/man4/md.4.html" rel="noopener">Linux man-pages, md(4)</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="scrub-never">
+<span class="status">Worth fixing</span>
+<h3>This volume has no record of a scrub</h3>
+<p>A scrub reads everything and checks it, so a bad sector is found while a good copy still exists. The box has no record that this volume was ever scrubbed. The btrfs documentation recommends about a month. Note that Asustor&#x27;s help names RAID scrubbing for RAID 5 and RAID 6 only, so do not expect it on a RAID1 volume.</p>
+<h4>What to do</h4><ol><li>In ADM Storage Manager, look in your volume&#x27;s options for a scrub and start one.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html" rel="noopener">btrfs documentation</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/service/release_notes_5253" rel="noopener">Asustor ADM 3.4.0 release notes</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/online_help?id=29" rel="noopener">Asustor ADM help, Volume</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="btrfs-on-raid-detect">
+<span class="status">Good to know</span>
+<h3>A checksum error may be found but not always repaired</h3>
+<p>btrfs notices a damaged file when it reads or scrubs it. Whether ADM can fix such a file from the other disk of the array is not documented by Asustor, and KEEP has not measured it. So KEEP does not promise a repair: it names the bad file and a place a good copy may be, and the dependable fix is a second copy outside the array. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Keep a backup that is checked now and then; KEEP can compare the two copies.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html" rel="noopener">btrfs documentation</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://man7.org/linux/man-pages/man4/md.4.html" rel="noopener">Linux man-pages, md(4)</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/adm/adm4_0" rel="noopener">Asustor ADM 4.0 page (marketing; names no mechanism)</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="volume-ext4">
+<span class="status">Good to know</span>
+<h3>An ext4 volume has no snapshots and no data checksums</h3>
+<p>ADM snapshots need a btrfs volume, and ext4 cannot be converted without wiping it. ext4 also keeps no checksum of file data, so a damaged file can be returned without any warning. Without snapshots, nothing on the box undoes a deletion; RAID does not either. Plan to move the photos to a btrfs volume, and keep a backup meanwhile. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Back up the volume, then create a btrfs volume and copy the data over.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=252" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="backup">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>Backups</h2>
+    <div class="rules">
+<article class="feature" id="snapshots-off">
+<span class="status">Worth fixing</span>
+<h3>No snapshot schedule on a btrfs volume</h3>
+<p>Scheduled snapshots let you undo a deletion or an encryption quickly. They live on the same disks, so they are undo, not backup. ADM keeps at most 256 snapshots and removes the oldest unlocked one at that limit; above 95% used it deletes unlocked snapshots. Locking a snapshot only stops automatic removal: it does not make it ransomware-proof, and ADM has no immutable snapshot.</p>
+<h4>What to do</h4><ol><li>ADM: Snapshot Center, add a schedule for the volume.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=73" rel="noopener">Asustor ADM 5 help, Snapshot Center</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=252" rel="noopener">Asustor College</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="snapshots-off-backup-dest">
+<span class="status">Good to know</span>
+<h3>The backup destination has no snapshots of its own</h3>
+<p>If someone gets your admin login, they can delete what the NAS can reach. A snapshot schedule on the backup volume, on another device, protected by a different login, gives a second line. ADM snapshots cannot be made immutable.</p>
+<h4>What to do</h4><ol><li>Turn on Snapshot Center on the backup destination volume, and use a different account for the backup job.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=73" rel="noopener">Asustor ADM 5 help, Snapshot Center</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="backup-share-unbacked">
+<span class="status">Worth fixing</span>
+<h3>A share has no backup job</h3>
+<p>A share with no backup job is one deletion, one fire or one ransomware attack from total loss. Asustor&#x27;s 2022 DeadBolt advisories list making regular backups, and keeping them current, among six measures. CISA asks for offline, encrypted backups of critical data. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>ADM: create a backup job that covers the share.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/security/security_advisory_detail?id=9" rel="noopener">Asustor security advisory AS-2022-008</a>, 2022-06-14. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="backup-failing">
+<span class="status">Serious</span>
+<h3>A backup has been failing or has not succeeded lately</h3>
+<p>A job can run and still fail, and a failing job protects nothing. The thing to watch is the date of the last success, not whether the job ran. Check the job&#x27;s log in ADM and fix the cause; KEEP shows the days since the last good run. Thirty days and two failures in a row are KEEP&#x27;s limits.</p>
+<h4>What to do</h4><ol><li>ADM: open the backup job&#x27;s log and fix the error, then run it once by hand.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.backblaze.com/blog/?p=102089" rel="noopener">Backblaze</a>, 2021-07-21. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="backup-no-offsite">
+<span class="status">Worth fixing</span>
+<h3>KEEP sees no off-site backup job</h3>
+<p>Keep three copies, on two kinds of storage, with one copy away from home. Fire, flood or theft takes everything in the building, including a backup disk beside the NAS. The rule is Peter Krogh&#x27;s, popularised by US-CERT in 2012. A cloud bucket or a relative&#x27;s NAS counts. If you rotate a USB disk kept away from home, that is your off-site copy; KEEP cannot see it. Reach a second NAS over a VPN and turn on Remote Sync&#x27;s encrypted (SSH) transfer; never forward its ports to the internet. RAID is not a backup: it protects against one dead disk only, so a copy off the box is still needed.</p>
+<h4>What to do</h4><ol><li>Set up a backup to a cloud destination or a second NAS, or rotate a USB disk and keep one away from home.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.cisa.gov/sites/default/files/publications/data_backup_options.pdf" rel="noopener">US-CERT (Ruggiero and Heckathorn, Carnegie Mellon), citing Peter Krogh, The DAM Book, 2nd ed., p. 207</a>, 2012. Checked 2026-10-15.</li>
+<li><a href="https://www.backblaze.com/blog/?p=102089" rel="noopener">Backblaze</a>, 2021-07-21. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="backup-no-versions">
+<span class="status">Worth fixing</span>
+<h3>A backup keeps only the latest copy</h3>
+<p>A sync or a mirror copies a deletion or an encrypted file to the other side. Backblaze: if ransomware hits and your data syncs afterwards, all the synced files are corrupted. A real backup keeps older versions. ADM&#x27;s Internal Backup has a multiple-versions option; the Remote Sync and External Backup help pages document none, so protect those destinations with snapshots on the receiving volume.</p>
+<h4>What to do</h4><ol><li>Turn on multiple versions in the job if it has the option, or keep snapshots on the destination.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.backblaze.com/blog/the-case-for-backup-over-sync/" rel="noopener">Backblaze</a>, 2021-12-23. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=48" rel="noopener">Asustor ADM 5 help, External Backup</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=44" rel="noopener">Asustor ADM 5 help, Remote Sync</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="notify-email-off">
+<span class="status">Worth fixing</span>
+<h3>No e-mail alerts are set up</h3>
+<p>Without alerts, a failed backup or a failing disk can go unseen for weeks. In ADM set an e-mail address that someone actually reads, then check that a message arrives.</p>
+<h4>What to do</h4><ol><li>ADM: Settings, Notification, add an e-mail address.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=8" rel="noopener">Asustor ADM 5 help, Notification</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="power">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>Power</h2>
+    <div class="rules">
+<article class="feature" id="ups-missing">
+<span class="status">Worth fixing</span>
+<h3>No UPS is set up in ADM</h3>
+<p>A sudden power cut can stop the box finishing its writes and can leave a volume damaged or an array needing a long resync. A UPS gives the NAS time to shut down cleanly. Connect its USB cable to the NAS and set ADM to shut down on power failure. Size the UPS so the load is around 80% of its capacity at most, and plug it straight into the wall, never through a surge strip.</p>
+<h4>What to do</h4><ol><li>ADM: External Devices, UPS, choose the shutdown behaviour.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=56" rel="noopener">Asustor ADM 5 help, UPS</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.se.com/be/en/faqs/FAQ000268376" rel="noopener">Schneider Electric / APC FAQ</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.se.com/ca/en/faqs/FA158852/" rel="noopener">Schneider Electric / APC FAQ</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="security">
+  <div class="wrap">
+    <div class="kicker">Advice</div>
+    <h2>Security</h2>
+    <div class="rules">
+<article class="feature" id="adm-version-advisories">
+<span class="status">Good to know</span>
+<h3>Check your ADM version against Asustor&#x27;s advisories</h3>
+<p>KEEP shows the ADM version installed and the advisories it knows about on the date of this advice file (see the adm_advisories table). It cannot know of an advisory newer than that file, so it never says you are up to date. In October 2026 Asustor published AS-2026-022 (rated Important by Asustor, CVSS 4.0 score 9.2, unauthenticated file read), fixed in ADM 5.1.4.RM62 and 4.3.3.RY62 or above. Always read Asustor&#x27;s own list.</p>
+<h4>What to do</h4><ol><li>Open https://www.asustor.com/security/security_advisory and compare your ADM version.</li><li>Make a backup before you update.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/security/security_advisory_detail?id=71" rel="noopener">Asustor security advisory AS-2026-022</a>, 2026-10-07. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/security/security_advisory_detail?id=51" rel="noopener">Asustor security advisory AS-2026-002</a>, 2026-01-26. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/security/security_advisory?lan=eng" rel="noopener">Asustor security advisories</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="admin-account-enabled">
+<span class="status">Worth fixing</span>
+<h3>The built-in admin account is switched on</h3>
+<p>Everyone knows the name admin, so an attacker only has to guess the password. Asustor has advised since 2019 to create your own administrator and deactivate the default one, and repeats it in its 2025 ransomware course. Note that the RESET button restores admin&#x27;s password; Asustor does not document how it works once admin is disabled.</p>
+<h4>What to do</h4><ol><li>ADM: Access Control, create a new administrator with another name, sign in with it, then edit admin and tick Disable this account.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=353" rel="noopener">Asustor College, Mitigating Ransomware Risks</a>, 2025-11-10. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/news/news_detail?id=22692" rel="noopener">Asustor announcement</a>, 2019-07-15. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="admin-without-2step">
+<span class="status">Worth fixing</span>
+<h3>An administrator has no 2-step verification</h3>
+<p>Two-step verification is switched on by each user in their own Settings, with an authenticator app. An administrator can only turn it off for others, not require it, so each administrator must do it. Write down what to do if the phone is lost: another administrator can turn off 2-step for you (Asustor KB 27). 2-step codes need the NAS clock to be right, so keep NTP on (Asustor College 122).</p>
+<h4>What to do</h4><ol><li>Each administrator: ADM Settings, tick Enable 2-step verification and scan the code with an authenticator app.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://support.asustor.com/knowledgebase.php?article=27" rel="noopener">Asustor knowledge base, 2-step verification</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/en/online/College_topic?topic=122" rel="noopener">Asustor College, 2-step verification</a>, 2024-06-12. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="ezconnect-on">
+<span class="status">Worth fixing</span>
+<h3>EZ-Connect is on</h3>
+<p>EZ-Connect lets you reach the box from outside your home without opening a router port. It is contested: it is convenient, but it puts the login page within reach of the internet. A VPN into your home network does the same job with less exposure.</p>
+<h4>Experts differ: the options</h4><ul>
+<li><strong>Keep EZ-Connect on</strong><br>For: It is convenient and needs no open router port; it connects directly where it can and falls back to an Asustor relay with limited bandwidth.<br>Against: During DeadBolt (February 2022) Asustor switched it off and, as reported by GovInfoSecurity and The Hacker News, told users to disable it; AS-2026-001 fixed a NAT-traversal certificate flaw.</li>
+<li><strong>Turn it off and use a VPN</strong> <span class="yes">Recommended</span><br>For: Nothing of the box is reachable from outside except the VPN.<br>Against: You must set up and maintain the VPN, and it is harder for family to use.</li>
+</ul>
+<h4>What to do</h4><ol><li>ADM: Settings, EZ-Connect, turn it off unless you need it.</li><li>For remote access use a VPN (router VPN, or Asustor&#x27;s VPN Server app).</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://thehackernews.com/2022/02/warning-deadbolt-ransomware-targeting.html" rel="noopener">The Hacker News</a>, 2022-02-24. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=13" rel="noopener">Asustor ADM 5 help, EZ-Connect</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.bitdefender.com/blog/hotforsecurity/asustor-nas-owners-hit-by-deadbolt-ransomware-attack/" rel="noopener">Bitdefender</a>, 2022-02. Checked 2026-10-15.</li>
+<li><a href="https://www.storagenewsletter.com/2026/02/23/three-security-advisories-from-asustor/" rel="noopener">StorageNewsletter, on AS-2026-001</a>, 2026-02-23. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="upnp-on">
+<span class="status">Worth fixing</span>
+<h3>EZ-Router (UPnP) is on</h3>
+<p>UPnP lets a device ask the router to open ports without anyone approving, so the box may be reachable from the internet unnoticed. CISA advises disabling UPnP unless you have a specific need. Never forward ports to the NAS.</p>
+<h4>What to do</h4><ol><li>ADM: Settings, Manual Connect, EZ-Router, leave it unused.</li><li>Turn UPnP off in the router and remove old port forwards.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=69" rel="noopener">Asustor ADM 5 help, EZ-Router</a>, undated. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/news-events/news/home-network-security" rel="noopener">CISA, Home Network Security</a>, 2021-02-01. Checked 2026-10-15.</li>
+<li><a href="https://www.qnap.com/en/how-to/faq/con_show.php?cid=1681" rel="noopener">QNAP FAQ</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="ssh-on">
+<span class="status">Good to know</span>
+<h3>SSH is on</h3>
+<p>Asustor&#x27;s DeadBolt advisories list turning off Terminal/SSH and SFTP services and other services you do not use. CISA says to disable ports and protocols you do not use. Leave it on only while you need it (for example for support), and turn it off afterwards. Note that SFTP is needed for EZ-Connect.</p>
+<h4>What to do</h4><ol><li>ADM: Services, Terminal, switch it off when not in use.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.asustor.com/en/security/security_advisory_detail?id=9" rel="noopener">Asustor security advisory AS-2022-008</a>, 2022-06-14. Checked 2026-10-15.</li>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=17" rel="noopener">Asustor ADM 5 help, Services</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+<article class="feature" id="smb1-on">
+<span class="status">Worth fixing</span>
+<h3>The old SMB 1 file-sharing protocol is allowed</h3>
+<p>CISA&#x27;s ransomware guide says to disable SMB version 1 and use version 3. In ADM Services, set the lowest SMB version to SMB 2 or SMB 3.</p>
+<h4>What to do</h4><ol><li>ADM: Services, SMB, set the lowest SMB version to SMB 2 or 3.</li></ol>
+<h4>Sources</h4><ul>
+<li><a href="https://www.cisa.gov/stopransomware/ransomware-guide" rel="noopener">CISA</a>, 2023-09. Checked 2026-10-15.</li>
+<li><a href="https://www.asustor.com/online/online_help_V5?id=17" rel="noopener">Asustor ADM 5 help, Services</a>, undated. Checked 2026-10-15.</li>
+</ul>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="tables">
+  <div class="wrap">
+    <div class="kicker">Reference tables</div>
+    <h2>Drives and ADM versions</h2>
+    <h3>Drives that use shingled recording (SMR)</h3>
+    <p class="intro">Matched by exact model number only. A model not listed here is &#x27;unknown&#x27;, never assumed CMR.</p>
+    <div class="table-wrap"><table class="compare"><thead><tr><th>Model</th><th>Drive</th><th>Size</th><th>Type</th><th>Source</th></tr></thead><tbody><tr><td data-label="Model">WD20EFAX</td><td data-label="Drive">Western Digital WD Red</td><td data-label="Size">2 TB</td><td data-label="Type">SMR</td><td data-label="Source"><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">source</a></td></tr><tr><td data-label="Model">WD30EFAX</td><td data-label="Drive">Western Digital WD Red</td><td data-label="Size">3 TB</td><td data-label="Type">SMR</td><td data-label="Source"><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">source</a></td></tr><tr><td data-label="Model">WD40EFAX</td><td data-label="Drive">Western Digital WD Red</td><td data-label="Size">4 TB</td><td data-label="Type">SMR</td><td data-label="Source"><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">source</a></td></tr><tr><td data-label="Model">WD60EFAX</td><td data-label="Drive">Western Digital WD Red</td><td data-label="Size">6 TB</td><td data-label="Type">SMR</td><td data-label="Source"><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">source</a></td></tr><tr><td data-label="Model">WD80EFAX</td><td data-label="Drive">Western Digital WD Red</td><td data-label="Size">8 TB</td><td data-label="Type">CMR</td><td data-label="Source"><a href="https://blog.westerndigital.com/wd-red-nas-drives/" rel="noopener">source</a>, <a href="https://datacenterdisk.com/wd-red" rel="noopener">source</a></td></tr></tbody></table></div>
+    <h3>SMR families not matched by model</h3>
+    <p class="intro">These are published by capacity, not by model number, so KEEP does not match them. They are shown here only. Check your drive's exact model with its maker.</p>
+    <div class="table-wrap"><table class="compare"><thead><tr><th>Maker</th><th>Family</th><th>SMR sizes</th><th>Source</th><th>Checked</th></tr></thead><tbody><tr><td data-label="Maker">Seagate</td><td data-label="Family">BarraCuda 3.5 inch</td><td data-label="SMR sizes">4 TB, 8 TB</td><td data-label="Source"><a href="https://www.seagate.com/products/cmr-smr-list/" rel="noopener">source</a></td><td data-label="Checked">2026-10-15</td></tr><tr><td data-label="Maker">Seagate</td><td data-label="Family">BarraCuda 2.5 inch</td><td data-label="SMR sizes">2 TB, 4 TB</td><td data-label="Source"><a href="https://www.seagate.com/products/cmr-smr-list/" rel="noopener">source</a></td><td data-label="Checked">2026-10-15</td></tr><tr><td data-label="Maker">Toshiba</td><td data-label="Family">P300</td><td data-label="SMR sizes">4 TB, 6 TB</td><td data-label="Source"><a href="https://blocksandfiles.com/2020/04/29/toshiba-consumer-disk-drives-smr-list/" rel="noopener">source</a></td><td data-label="Checked">2026-10-15</td></tr><tr><td data-label="Maker">Seagate</td><td data-label="Family">IronWolf and IronWolf Pro</td><td data-label="SMR sizes">cmr only</td><td data-label="Source"><a href="https://www.seagate.com/products/cmr-smr-list/" rel="noopener">source</a></td><td data-label="Checked">2026-10-15</td></tr></tbody></table></div>
+    <h3>ADM security advisories</h3>
+    <p class="intro">Advisories up to 2026-10-15. Newer ones are not listed here: see <a href="https://www.asustor.com/security/security_advisory" rel="noopener">Asustor's advisory list</a>.</p>
+    <div class="table-wrap"><table class="compare"><thead><tr><th>Advisory</th><th>Date</th><th>CVE</th><th>Score</th><th>Summary</th><th>Affected</th><th>Fixed in</th></tr></thead><tbody><tr><td data-label="Advisory"><a href="https://www.asustor.com/en/security/security_advisory_detail?id=71" rel="noopener">AS-2026-022</a></td><td data-label="Date">2026-10-07</td><td data-label="CVE">CVE-2026-105324</td><td data-label="Score">9.2 (CVSS 4.0)</td><td data-label="Summary">Unauthenticated arbitrary file read</td><td data-label="Affected">4.1.0 to 4.3.3.RWC1; 5.0.0 to 5.1.4.RL21</td><td data-label="Fixed in">5.1.4.RM62 or above; 4.3.3.RY62 or above</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/en/security/security_advisory_detail?id=51" rel="noopener">AS-2026-002</a></td><td data-label="Date">2026-01-26</td><td data-label="CVE">CVE-2026-24936</td><td data-label="Score">9.5 (CVSS 4.0)</td><td data-label="Summary">Unauthenticated write of arbitrary data to any file; needs the Active Directory domain-join feature. Superseded as a floor by AS-2026-022</td><td data-label="Affected">4.1.0 to 4.3.3.ROF1; 5.0.0 to 5.1.1.RCI1</td><td data-label="Fixed in">5.1.2.RE51; 4.3.3.RR42</td></tr><tr><td data-label="Advisory"><a href="https://www.storagenewsletter.com/2026/02/23/three-security-advisories-from-asustor/" rel="noopener">AS-2026-001</a></td><td data-label="Date">not stated</td><td data-label="CVE">CVE-2026-24932 to CVE-2026-24935</td><td data-label="Score">not scored</td><td data-label="Summary">Four certificate-validation flaws (DDNS hostname, API HTTPS, DDNS WAN-IP query, NAT-traversal signalling). Seen through StorageNewsletter (2026-02-23), not Asustor&#x27;s page</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">see advisory</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/security/security_advisory?lan=eng" rel="noopener">AS-2025-007</a></td><td data-label="Date">2025-07-17</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">EZ Sync Manager</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">see advisory</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/security/security_advisory?lan=eng" rel="noopener">AS-2025-006</a></td><td data-label="Date">2025-07-17</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">ADM and Text Editor</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">see advisory</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/security/security_advisory?lan=eng" rel="noopener">AS-2024-005</a></td><td data-label="Date">2024-08-07</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">Docker Engine</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">see advisory</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/security/security_advisory?lan=eng" rel="noopener">AS-2024-004</a></td><td data-label="Date">2024-07-17</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">OpenSSH</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">see advisory</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/en/security/security_advisory_detail?id=9" rel="noopener">AS-2022-008</a></td><td data-label="Date">2022-06-14</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">DeadBolt ransomware</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">4.0.5.RUE3 or above; 3.5.9.RUE3 or above</td></tr><tr><td data-label="Advisory"><a href="https://www.asustor.com/en/security/security_advisory_detail?id=3" rel="noopener">AS-2022-002</a></td><td data-label="Date">2022-03-28</td><td data-label="CVE">none listed</td><td data-label="Score">not scored</td><td data-label="Summary">DeadBolt ransomware</td><td data-label="Affected">see advisory</td><td data-label="Fixed in">4.0.4.RQO2 or above; 3.5.9.RQO2 or above</td></tr></tbody></table></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="../index.html">Home</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../impressum.html">Impressum</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
