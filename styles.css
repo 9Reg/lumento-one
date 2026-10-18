@@ -239,3 +239,14 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
   .compare td:first-child{color:var(--ink);font-weight:600;padding-bottom:6px}
   .compare td[data-label]::before{content:attr(data-label) ": ";font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
 }
+
+/* KEEP advice page (keep/advice.html, generated) */
+.rules{display:grid;gap:18px;margin-top:36px;max-width:820px}
+.rules .feature p,.rules .feature li{overflow-wrap:anywhere}
+.rules .feature ul,.rules .feature ol{margin:0 0 12px;padding-left:20px;color:var(--ink-soft);font-size:15px}
+.rules .feature li{margin-bottom:6px}
+.rules .feature h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:16px 0 6px;font-weight:600;color:var(--ink-soft)}
+.feature a,.advice-note a,.compare a{color:var(--ink)}
+.rules .feature .status{display:inline-block;margin-bottom:10px;color:var(--ink-soft)}
+.rules .feature p+p{margin-top:8px}
+.advice-note p{color:var(--ink-soft);font-size:15px;max-width:740px;overflow-wrap:anywhere}
