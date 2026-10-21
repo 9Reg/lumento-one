@@ -119,7 +119,30 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section alt" id="phone-sign-in">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Signing in on a phone</div>
+      <h2>Why your phone says "not private".</h2>
+      <p>When you scan the TV's sign-in code, your phone moves from <code>http://…:20904</code> to <code>https://…:20907</code> before it asks for your password.  That's a security measure.  Over plain <code>http</code>, anyone on the same Wi-Fi could read your password as it crosses the network.  Over <code>https</code> it's encrypted.</p>
+    </div>
+    <div>
+      <h3>The warning is expected</h3>
+      <p>Your phone will then say the connection isn't private.  It isn't a fault.  ONE encrypts the connection with a certificate it makes for your NAS itself, and your phone has no way to check who made it, so it asks you.  If this is your own NAS at home, continue:</p>
+      <ul>
+        <li><strong>iPhone (Safari):</strong> tap <strong>Show Details</strong>, then <strong>visit this website</strong>, then <strong>Visit Website</strong>.</li>
+        <li><strong>Android (Chrome):</strong> tap <strong>Advanced</strong>, then <strong>Proceed to … (unsafe)</strong>.</li>
+      </ul>
+      <p>Your phone remembers the choice.  You'll see the warning again only when ONE has to make a new certificate: about every two years, or when the NAS gets a new network address.</p>
+      <h3>If the page stays blank</h3>
+      <p>Close it and scan the TV's code again.  Safari sometimes remembers your choice but doesn't load the page that first time.</p>
+      <h3>To get rid of the warning for good</h3>
+      <p>Give the NAS a proper certificate in ADM, for example from Let's Encrypt, under ADM's certificate settings.  ONE notices it within a minute and uses it instead of its own.  Such a certificate names a domain (say <code>nas.example.com</code>), not an IP address, so open ONE on the TV by that name too.  The phone follows the address the TV used.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap">
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
@@ -131,7 +154,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section alt">
   <div class="wrap">
     <div class="kicker">The rest of the family</div>
     <div class="family-strip">
