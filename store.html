@@ -27,7 +27,7 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix store">STORE</span></span></h1>
-    <p class="lede">The archive on your NAS.  It receives files from lumento LOAD on your iPhone and from lumento ONE's camera-card import.  It checks every file byte for byte, then files it in ordinary folders that you own.</p>
+    <p class="lede">The archive on your NAS.  It receives files from lumento LOAD on your iPhone and from camera cards read in your browser.  It checks every file byte for byte, then files it in ordinary folders that you own.</p>
     <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">One package, no dependencies</span><span class="pill">Pairs on your local network</span></div>
   </div>
 </section>
@@ -42,9 +42,9 @@
     <div>
       <ol>
         <li><strong>Install</strong> lumento STORE from App Central.</li>
-        <li><strong>Claim it.</strong>  Open its admin page and set a password.  The first password set on a fresh install owns it.  If you miss that window, restart the app from App Central to open a new one.</li>
+        <li><strong>Claim it.</strong>  Open its admin page and set a password.  The first password set in the five minutes after a fresh install owns it.  If you miss that window, restart the app from App Central to open a new one.</li>
         <li><strong>Pick a folder.</strong>  Choose where your archive should live.  STORE never assumes a default and never needs a share with a special name.  It creates a single <code>_lumento</code> folder inside the one you pick and leaves everything else there alone.</li>
-        <li><strong>Pair a device.</strong>  Start pairing on the NAS, and your iPhone finds STORE on the local network.  Enter the four-digit code and you're done.</li>
+        <li><strong>Pair a device.</strong>  Start pairing on the NAS, and your iPhone finds STORE on the local network.  Enter the six-digit code and you're done.</li>
       </ol>
     </div>
   </div>
@@ -56,14 +56,17 @@
     <h2>Accept it, check it, file it.<br>Never lose it.</h2>
     <div class="features">
       <div class="feature"><h3>Checked before it's accepted</h3><p>STORE computes its own SHA-256 fingerprint from the bytes that actually arrived.  A file whose fingerprint doesn't match is never stored.</p></div>
-      <div class="feature"><h3>Written safely to disk</h3><p>A file only counts as archived once it's been written all the way to disk and moved into its final place in one step.  After a power cut you get either the whole file or no file.</p></div>
+      <div class="feature"><h3>Written safely to disk</h3><p>A file only counts as archived once it's been written all the way to disk and moved into its final place in one step, and its folder entry is on disk too.  After a power cut you get either the whole file or no file.</p></div>
       <div class="feature"><h3>No duplicates, ever</h3><p>Duplicates are recognised by exact fingerprint, across every session and every paired device.  For your phone, that check happens before any bytes are sent.</p></div>
-      <div class="feature"><h3>Plain month folders</h3><p>New files go into <code>_lumento/2026.09/</code> and so on, by the date the photo was taken.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
+      <div class="feature"><h3>Plain month folders</h3><p>New files go into <code>_lumento/2026.09/</code> and so on, by the date the photo or video was taken.  A video is dated from its own bytes: an iPhone video by its own clock and time zone, a camcorder clip by the camera's own clock.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
       <div class="feature"><h3>Destinations</h3><p>Set up named destinations, such as a folder for each child, and choose one on the phone before a Load.  The phone remembers your last choice.</p></div>
       <div class="feature"><h3>Never moves or deletes</h3><p>Once STORE has archived a file, it never moves or deletes it.  You can reorganise the archive however you like.</p></div>
       <div class="feature"><h3>Remembers for the phone</h3><p>The NAS keeps a record of everything it's received.  If you wipe or reinstall your iPhone, LOAD still knows what's already safe.</p></div>
-      <div class="feature"><h3>Import receipts</h3><p>Each session ends with a report from the NAS itself, not just the phone's own account of what happened.</p></div>
-      <div class="feature"><h3>Pairing that can't be guessed</h3><p>Pairing starts on the NAS, works only on your local network, and fixes the NAS's certificate on the phone.  Repeated wrong codes lock that address out, and a NAS-wide limit stops attempts from many addresses at once.</p></div>
+      <div class="feature"><h3>Import receipts</h3><p>Each session ends with a report from the NAS itself, not just the phone's own account of what happened.  Ask for it again later and the NAS rebuilds it from its own records.</p></div>
+      <div class="feature"><h3>Pairing that can't be guessed</h3><p>Pairing starts on the NAS and works only on your local network.  The six-digit code never crosses the network, and each code works for one try.  The phone fixes the NAS's certificate as part of the exchange.  Repeated failures lock that address out, and a NAS-wide limit stops attempts from many addresses at once.  Unpair a device on the NAS, or forget the NAS on the phone, and it stops at once.</p></div>
+      <div class="feature"><h3>Camera-card import, built in</h3><p>Open STORE's admin page and read a camera card straight into your archive from your browser.  The browser fingerprints every file before sending it, so STORE checks each one against a fingerprint it didn't make.  RAW+JPEG pairs stay together, and a card you've already imported isn't copied twice.</p></div>
+      <div class="feature"><h3>Pull the card, carry on</h3><p>If the card comes out mid-import, STORE waits 18 minutes for it.  Put it back and the import carries on.  If you don't, the run ends and says plainly that it's partial.</p></div>
+      <div class="feature"><h3>A full disk loses nothing</h3><p>If the NAS fills up, STORE keeps every file it has, tells the phone to wait, and carries on once there's room again.</p></div>
     </div>
   </div>
 </section>
@@ -75,8 +78,8 @@
       <h2>Phone and camera card, same rules.</h2>
     </div>
     <div>
-      <p><strong>lumento LOAD</strong> on your iPhone and <strong>lumento ONE</strong>'s camera-card import in your browser both connect to STORE as paired devices.  They use the same <a href="loadmento.html">protocol</a>, so files from both are named, filed, checked and de-duplicated the same way.</p>
-      <p>STORE doesn't need lumento ONE, and ONE doesn't need STORE.  Each one works on its own.  Together, a card fresh from the camera ends up in the same archive as your phone's photos, and the screen tells you when the card is safe to format.</p>
+      <p><strong>lumento LOAD</strong> on your iPhone and the <strong>camera-card import</strong> in your browser both send files to STORE.  The import page is part of STORE, and lumento ONE shows it to your household too.  Both use the same <a href="loadmento.html">protocol</a>, so files from both are named, filed, checked and de-duplicated the same way.</p>
+      <p>STORE doesn't need lumento ONE: import a card from STORE's own admin page.  ONE doesn't need STORE to show your photos, but its card import is STORE's page.  Together, a card fresh from the camera ends up in the same archive as your phone's photos, and when the run is done the screen tells you whether everything on the card is on the NAS.</p>
     </div>
   </div>
 </section>
@@ -86,7 +89,7 @@
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
     <div class="state">
-      <div class="built"><h3>Built</h3><ul><li>Checked, crash-safe archiving</li><li>Local-network pairing with abuse protection</li><li>Destinations</li><li>Disk-space checks and warnings</li><li>Import reports</li><li>Receiving imports from lumento ONE</li></ul></div>
+      <div class="built"><h3>Built</h3><ul><li>Checked, crash-safe archiving</li><li>Local-network pairing with abuse protection</li><li>Destinations</li><li>Disk-space checks: a full disk loses nothing</li><li>Import reports</li><li>Camera-card import, with resume after a pulled card</li><li>Videos dated from their own bytes</li></ul></div>
       <div class="next"><h3>Next</h3><ul><li>Signed import reports</li><li>Access from outside your home network</li><li>A clean uninstall that removes STORE's working files but leaves your archive in place</li></ul></div>
       <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>Synology and QNAP are under consideration</li><li>On any other NAS, LOAD's <a href="load.html#generic">Generic mode</a> will be the way in</li></ul></div>
     </div>

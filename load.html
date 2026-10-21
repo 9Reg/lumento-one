@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="lumento LOAD — loads your iPhone's photos and videos onto your own NAS, checks every byte arrived, and tells you when it's safe to delete them from the phone. Coming soon.">
+<meta name="description" content="lumento LOAD — loads your iPhone's photos and videos onto your own NAS, checks every byte arrived, and tells you which ones are verified on your NAS. Coming soon.">
 <title>lumento LOAD — coming soon</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -27,15 +27,15 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></span></h1>
-    <p class="lede">LOAD has one job: get the photos and videos on your iPhone safely onto your own NAS, and then tell you, with a number you can check, when it's safe to delete them from the phone.</p>
-    <div class="tags"><span class="pill">iPhone · iOS 18 and later</span><span class="pill">Fire-and-forget, at real scale</span><span class="pill">No cloud</span></div>
+    <p class="lede">LOAD has one job: get the photos and videos on your iPhone safely onto your own NAS, and then tell you, with a number you can check, which ones are verified and on your NAS.</p>
+    <div class="tags"><span class="pill">iPhone · iOS 18 and later</span><span class="pill">Keeps going when locked</span><span class="pill">No cloud</span></div>
   </div>
 </section>
 
 <section class="section alt">
   <div class="wrap">
     <div class="kicker">The one promise</div>
-    <h2>“1,204 of 1,204 assets verified.<br>Safe to delete from iPhone.”</h2>
+    <h2>“1,204 of 1,204 assets verified and on your NAS.”</h2>
     <p class="intro">LOAD never says “uploaded” or “sync complete”.  It says “verified”, and it means the bytes on your NAS were checked against the bytes that left your phone.  Everything on this page exists to make that sentence true.</p>
   </div>
 </section>
@@ -44,17 +44,17 @@
   <div class="wrap split">
     <div>
       <div class="kicker">Speed and stamina</div>
-      <h2>Very fast when it's open.<br>Keeps going overnight.</h2>
-      <p>You can use LOAD two ways, and it's built for both.</p>
+      <h2>27&nbsp;GB in 37 minutes.<br>With the phone locked.</h2>
+      <p>You can use LOAD two ways, and it's fast both ways.</p>
     </div>
     <div>
+      <h3>Lock it and walk away</h3>
+      <p>Tap Load, plug the phone in and lock it.  Uploads run through iOS's own background upload service, so they keep going with the screen locked and even after the app has been closed.  In our test, a locked phone loaded <strong>26.9&nbsp;GB, 1,228 photos and videos, in 37 minutes, with zero failures</strong>.  Every file was hash-checked on the NAS.</p>
       <h3>With the app open</h3>
-      <p>LOAD goes as fast as it can.  It adjusts how many files it sends at once to suit your phone's temperature and battery.  In our testing, large videos went across at <strong>tens of megabytes a second</strong>.</p>
-      <h3>Plugged in at night</h3>
-      <p>Start a Load in the evening, plug the phone in and lock it.  Uploads run through iOS's own background upload service, so they keep going with the screen locked and even after the app has been closed.  In our latest overnight test, a phone that was plugged in and locked loaded <strong>about 27&nbsp;GB, 1,227 files, with zero failures</strong> by morning.</p>
+      <p>Faster still.  LOAD adjusts how many files it sends at once to suit your phone's temperature and battery.  With LOAD open, the same 27&nbsp;GB loaded in <strong>under 10 minutes</strong>, and large videos went across at up to <strong>78&nbsp;MB a second</strong>.</p>
       <div class="callout">
-        <p><strong>Locked, iOS sets the pace, and it's a slow one.</strong>  On our test hardware a locked phone ran at roughly a twelfth of the speed it reaches with LOAD open.  It still finishes and nothing is lost.  It just takes longer.</p>
-        <p>We don't recommend leaving it unplugged and locked.  Keep the app open for the fastest run, or plug the phone in and let it work overnight.</p>
+        <p><strong>Your results may vary.</strong>  These are our numbers, on an iPhone&nbsp;16, two Wi-Fi&nbsp;6 routers and an Asustor NAS.  We also tried LOAD on an iPhone&nbsp;XR, 12, 14 and 15&nbsp;Pro, and they were nearly as fast.  The older the phone, the slower the run.  Your speed depends on your Wi-Fi, your router, your NAS and your phone.  When the phone is locked, iOS decides how much time LOAD gets, so a locked Load takes longer than one with the app open.</p>
+        <p>For the fastest run, keep LOAD open.  If you lock the phone, plug it in.</p>
       </div>
     </div>
   </div>
@@ -67,12 +67,15 @@
     <div class="features">
       <div class="feature"><h3>Hashed at both ends</h3><p>Every file gets a SHA-256 fingerprint on the phone and another on the NAS, from the bytes that actually arrived.  If they don't match, the file is never stored.</p></div>
       <div class="feature"><h3>Resumes where it stopped</h3><p>Large files go in 8&nbsp;MB chunks, each with its own hash.  If the connection drops 95% of the way through a 4&nbsp;GB video, LOAD carries on from the last confirmed chunk instead of starting again.</p></div>
-      <div class="feature"><h3>Checks for duplicates first</h3><p>LOAD asks the NAS what it already has before sending any bytes.  Photos that are already in the archive are skipped, even ones another device loaded.</p></div>
+      <div class="feature"><h3>Checks for duplicates first</h3><p>LOAD asks the NAS what it already has before sending any bytes.  Photos that are already in the archive are skipped, even ones another device loaded.  Run a second Load straight after the first and nothing is sent again: in our test, 1,224 photos and videos settled in 9 seconds.</p></div>
       <div class="feature"><h3>Never re-encoded</h3><p>The files in your archive are the same bytes your camera wrote.  Edited photos come across together with their originals.</p></div>
-      <div class="feature"><h3>A Live Photo stays whole</h3><p>A Live Photo is a still image plus a short video.  It only counts as safe once both parts are verified.  RAW+JPEG pairs work the same way.</p></div>
-      <div class="feature"><h3>Survives interruptions</h3><p>A Load picks up where it left off after the app is closed, iOS suspends it, or the Wi-Fi drops.  Failed uploads are retried after 5, 15, 45, 135 and then 300 seconds.</p></div>
-      <div class="feature"><h3>Won't fill your phone</h3><p>LOAD pauses before it runs your phone out of storage.  If a Load won't fit, it warns you before starting.</p></div>
-      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD reports what's safe to delete.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.</p></div>
+      <div class="feature"><h3>A Live Photo stays whole</h3><p>A Live Photo is a still image plus a short video.  It only counts as archived once both parts are verified.  RAW+JPEG pairs, edited photos and edited Live Photos work the same way: every part arrives, and nothing counts until every part is verified.</p></div>
+      <div class="feature"><h3>Survives interruptions</h3><p>A Load picks up where it left off after the app is closed, iOS suspends it, or the Wi-Fi drops.  Failed uploads are retried after about 5, 15, 45, 135 and 300 seconds, and after that LOAD keeps trying, more slowly, for up to 48 hours.  If your NAS goes away for a few minutes, LOAD waits for it instead of using up every file's retries.</p></div>
+      <div class="feature"><h3>Won't fill your phone</h3><p>LOAD pauses before it runs your phone out of storage, and sends the smallest files first so progress keeps coming.  If a Load won't fit, it warns you before starting.  If your NAS fills up, LOAD says so, keeps everything already verified, and carries on by itself once there's room.</p></div>
+      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD shows you what's verified on your NAS, and checks each photo against the NAS again right before it offers to delete it.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.  Anything it holds back comes with a reason.</p></div>
+      <div class="feature"><h3>Nightly backup</h3><p>Turn on "Back up new photos while charging" and LOAD sends your new photos while the phone charges overnight.  Anything that didn't make it is tried again the next night.  iOS picks the exact time, so LOAD can't promise one.</p></div>
+      <div class="feature"><h3>Every frame of a burst</h3><p>A burst of twenty is twenty photos, not one.  LOAD doesn't pick favourites.  Load your whole library, or just one album.</p></div>
+      <div class="feature"><h3>Pick the folder</h3><p>Send a Load to your default folder, or to one your NAS admin set up, such as a folder for each child.  LOAD remembers your last choice.</p></div>
       <div class="feature"><h3>Hidden stays hidden</h3><p>If you hid a photo on your iPhone, LOAD never sees it, never reads it and never loads it.</p></div>
     </div>
   </div>
@@ -128,7 +131,7 @@ MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
       <h2>Your phone, your NAS.<br>Nothing in between.</h2>
     </div>
     <div>
-      <p>LOAD finds lumento STORE on your home network, pairs with it, and sends your photos there and nowhere else.  Pairing is started from the NAS, works only on your local network, and fixes the NAS's certificate so the phone only ever talks to that NAS.</p>
+      <p>LOAD finds lumento STORE on your home network, pairs with it, and sends your photos there and nowhere else.  Pairing is started from the NAS with a six-digit code that never crosses the network, works only on your local network, and fixes the NAS's certificate so the phone only ever talks to that NAS.  "Forget This Server" on the phone removes the phone from the NAS too.</p>
       <p>There are no accounts, no analytics and no tracking.  See the <a href="privacy.html">privacy policy</a>.</p>
     </div>
   </div>

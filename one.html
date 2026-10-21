@@ -41,13 +41,15 @@
     <div class="features">
       <div class="feature"><h3>Any share, any folder</h3><p>Use as many library folders as you like, on any share.  Your photos don't have to live in one fixed <code>/Photos</code> share.</p></div>
       <div class="feature"><h3>Read-only on your media</h3><p>ONE only reads your originals.  It never modifies them, and it never writes thumbnails or caches into your shares.</p></div>
-      <div class="feature"><h3>Quiet background indexing</h3><p>Thumbnails and indexing run at idle priority, so they don't slow down anyone who's browsing.</p></div>
-      <div class="feature"><h3>Old home movies play</h3><p>Sony AVCHD, MiniDV and DVD-Video are converted to web video the first time you watch them.  The result is kept, so the next viewing starts straight away.  The source files are never touched.</p></div>
+      <div class="feature"><h3>Quiet background indexing</h3><p>ONE indexes your folders and draws thumbnails in the background.  Video and HEIC conversion run at idle priority, so they don't slow down anyone who's browsing.  Updating ONE keeps the thumbnails it has already drawn.</p></div>
+      <div class="feature"><h3>Old home movies play</h3><p>Sony AVCHD, MiniDV and DVD-Video are converted to web video the first time you watch them.  The result is kept in a cache on the NAS, so the next viewing starts straight away.  The source files are never touched.</p></div>
       <div class="feature"><h3>HEIC and camera RAW</h3><p>Apple HEIC photos are converted to JPEG, so every browser can show them.  RAW files (.arw, .nef, .cr2, .dng) show the preview JPEG that the camera embeds in them.</p></div>
       <div class="feature"><h3>Made for a TV remote</h3><p>The fullscreen viewer is built around a remote's arrow keys.  Left and right move through a folder, up and down move between folders.  Your phone can also act as the remote.</p></div>
-      <div class="feature"><h3>Your NAS accounts</h3><p>Sign in with the accounts your NAS already has.  There's nothing extra to set up.  Viewers can browse.  Curators can also manage library folders and settings.</p></div>
+      <div class="feature"><h3>Your NAS accounts</h3><p>Sign in with the accounts your NAS already has.  There's nothing extra to set up.  Each person sees only the folders ADM lets them read.  Viewers can browse.  Curators can also manage library folders and settings.</p></div>
       <div class="feature"><h3>Honest about failures</h3><p>If ONE recognises a file as media but can't display it, the file still shows up.  It keeps its name and says why it couldn't be shown.</p></div>
-      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it and sign in on your phone instead of typing a password with a remote.</p></div>
+      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it and sign in on your phone instead of typing a password with a remote.  It works only on your home network, and the TV gets viewer rights only.</p></div>
+      <div class="feature"><h3>Projects</h3><p>Mark photos and videos for a project with the remote or your phone.  Each project has its own page listing everything marked for it, and its photos download from your home network as one zip, after a preview that shows exactly what the zip holds.</p></div>
+      <div class="feature"><h3>Careful with sign-ins</h3><p>Sign-ins pause after three wrong passwords.  ONE gives up root before it opens its data, and its video and photo converters run in a sandbox.  Sign-ins are stored only as fingerprints, so a copy of ONE's database can't be used to sign in.</p></div>
     </div>
   </div>
 </section>
@@ -56,15 +58,16 @@
   <div class="wrap">
     <div class="kicker">Supported formats</div>
     <h2>Old formats, really supported.</h2>
-    <p class="intro">The camcorder formats below were tested against real footage, not just a reading of the format specs.  ONE converts them to ordinary web video the first time you watch them and keeps the result, so the next viewing starts instantly.  Your original files are never changed.</p>
+    <p class="intro">The camcorder formats below were tested against real footage, not just a reading of the format specs.  ONE converts them to ordinary web video the first time you watch them and keeps the result in its cache (50 GB and 30 days by default, both adjustable), so the next viewing starts instantly.  Your original files are never changed.</p>
     <div class="table-wrap">
       <table class="compare">
         <thead><tr><th>Format</th><th>Files</th><th>What ONE does</th></tr></thead>
         <tbody>
-          <tr><td>Sony AVCHD camcorders</td><td data-label="Files"><code>.mts</code> <code>.m2ts</code></td><td data-label="What ONE does">Deinterlaced and converted to H.264 video with AAC audio</td></tr>
+          <tr><td>Sony AVCHD camcorders</td><td data-label="Files"><code>.mts</code> <code>.m2ts</code></td><td data-label="What ONE does">Deinterlaced and converted to H.264 video with AAC audio.  A long take the camcorder split across several files plays as one video</td></tr>
           <tr><td>MiniDV tapes, digitised</td><td data-label="Files"><code>.avi</code> (DV)</td><td data-label="What ONE does">Deinterlaced, converted, and the picture's aspect ratio corrected so people don't look squashed</td></tr>
           <tr><td>DVD-Video discs</td><td data-label="Files"><code>VIDEO_TS</code> folders</td><td data-label="What ONE does">The disc's separate files are joined into one video you can play, then deinterlaced, converted and the aspect ratio corrected</td></tr>
-          <tr><td>Other video</td><td data-label="Files"><code>.mp4</code> <code>.m4v</code> <code>.mov</code> <code>.mkv</code> <code>.wmv</code> <code>.mpg</code> <code>.mpeg</code></td><td data-label="What ONE does">Converted to H.264 the first time you watch, then kept</td></tr>
+          <tr><td>Other video</td><td data-label="Files"><code>.mp4</code> <code>.m4v</code> <code>.mov</code> <code>.mkv</code> <code>.wmv</code> <code>.mpg</code> <code>.mpeg</code></td><td data-label="What ONE does">Sent as they are when your browser can play them.  Otherwise converted to H.264 the first time you watch, then kept</td></tr>
+          <tr><td>4K and HDR phone video</td><td data-label="Files">HDR10, 4K, 60 fps</td><td data-label="What ONE does">HDR colours are kept, not washed out.  Video above 30 frames a second plays at 30, so it converts sooner</td></tr>
           <tr><td>Apple photos</td><td data-label="Files"><code>.heic</code> <code>.heif</code></td><td data-label="What ONE does">Converted to JPEG, so every browser can show them</td></tr>
           <tr><td>FlashPix (1990s Kodak and similar)</td><td data-label="Files"><code>.fpx</code></td><td data-label="What ONE does">Converted to JPEG with <a href="https://github.com/9Reg/fpx-convert">fpx-convert</a>, a FlashPix converter we wrote for lumento and publish under the AGPLv3</td></tr>
           <tr><td>Camera RAW</td><td data-label="Files"><code>.arw</code> <code>.nef</code> <code>.cr2</code> <code>.dng</code></td><td data-label="What ONE does">Shown using the preview JPEG the camera embeds in the file</td></tr>
@@ -74,6 +77,7 @@
     </div>
     <div class="callout">
       <p><strong>Every video's sound is levelled too,</strong> so a quiet camcorder recording plays at a sensible volume next to a loud one.</p>
+      <p><strong>Intel models convert on the graphics chip.</strong>  On an AS6704T, camcorder clips convert about 2.5 times faster than on the processor alone.  If the graphics chip can't do it, ONE converts the slow way instead.</p>
       <p><strong>Canon <code>.cr3</code> files show up but can't be displayed yet.</strong>  They appear as named tiles that say why.  They'll start displaying, with no re-indexing, once a CR3 decoder is added.</p>
       <p><strong>ARM models (Drivestor series).</strong> These models have no video hardware lumento can use, so any video that has to be converted (camcorder AVCHD footage, and phone videos your browser can't play as they are) is converted by the processor alone, and slowly. The first time you play such a video, expect to wait about one and a half to three times its length before it starts: a 10-minute camcorder clip can take 15 to 30 minutes, and a 4K phone video much longer. After that first time it plays at once. Photos, and videos your browser plays directly, are not affected. These figures are estimates; lumento has not yet been measured on a Drivestor.</p>
     </div>
@@ -91,9 +95,9 @@
       <h3>Legacy front end</h3>
       <p>This one is for older browsers, such as 2013 Samsung smart TVs.  It's plain HTML with a small amount of ES5 JavaScript on top, and every control is an ordinary link.  <strong>Browsing and viewing work here and always will</strong>, including with JavaScript turned off.  This front end only gets bug fixes, not new features.</p>
       <h3>Modern front end</h3>
-      <p>This one is for current Chrome, Safari, Firefox and Edge on a desktop, a phone or a Fire TV Stick.  <strong>New features are built here</strong>, starting with camera-card import.</p>
+      <p>This one is for current Chrome, Safari, Firefox and Edge on a desktop or a phone, and for a Fire TV Stick, where the remote's Rewind and Fast Forward step through photos.  Current browsers get it automatically.  <strong>New features are built here</strong>: a dense tiled view, projects and camera-card import.</p>
       <div class="callout">
-        <p><strong>Upload needs a current browser.</strong>  Before showing the import page, ONE tests what the browser can actually do: folder picking, <code>fetch</code>, Promises, file reading and chunked reads.  It never guesses from the browser's name.  If the test fails, you get a plain explanation instead of a form that half works.  Everything else in ONE keeps working.</p>
+        <p><strong>Card import needs a current browser.</strong>  Before it shows the import form, the import page tests what the browser can actually do: folder picking, <code>fetch</code>, Promises, file reading and chunked reads.  It never guesses from the browser's name.  If the test fails, you get a plain explanation instead of a form that half works.  Everything else in ONE keeps working.</p>
       </div>
     </div>
   </div>
@@ -103,16 +107,16 @@
   <div class="wrap split">
     <div>
       <div class="kicker">Works with lumento STORE</div>
-      <h2>Card in the reader.<br>Card safe to format.</h2>
-      <p>Put a camera card in your laptop's card reader, open ONE, and pick the card's folder.  ONE takes care of the rest.</p>
+      <h2>Card in the reader.<br>Every file on the NAS.</h2>
+      <p>Put a camera card in your laptop's card reader, open ONE, and pick the card's folder.  The import page is lumento STORE's, and ONE shows it to your household.</p>
     </div>
     <div>
       <ol>
         <li><strong>Your browser fingerprints every file</strong> with SHA-256 on the computer the card is plugged into, and sends it to the NAS.</li>
-        <li><strong>lumento STORE takes it from there.</strong>  ONE is paired with STORE like any other device, and it uses the same <a href="loadmento.html">protocol</a> as the iPhone app.  STORE renames and files each photo by the same rules the phone uses, and handles name collisions.</li>
+        <li><strong>lumento STORE takes it from there.</strong>  ONE pairs with STORE using a code from STORE's admin page, and the import uses the same <a href="loadmento.html">protocol</a> as the iPhone app.  STORE renames and files each photo by the same rules the phone uses, and handles name collisions.</li>
         <li><strong>Never duplicated.</strong>  Import the same card twice and the second import costs some time on the network, never a second copy.  The NAS recognises each file by its hash and doesn't write it again.</li>
         <li><strong>Originals stay exactly as they were.</strong>  STORE never re-encodes anything, so every tag in the original file is kept.</li>
-        <li><strong>It won't say the card is safe to format too early.</strong>  If the NAS is still checking a large video, the page says so and waits.</li>
+        <li><strong>It tells you when everything on your card is on the NAS,</strong> and not before.  If the NAS is still checking a large video, the page says so and waits.</li>
       </ol>
       <p>Import needs lumento STORE installed and paired.  Without it, ONE still works as a complete gallery.  Neither product needs the other in order to run.</p>
     </div>
@@ -147,9 +151,12 @@
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
     <div class="state">
-      <div class="built"><h3>Built</h3><ul><li>Indexing and background thumbnails</li><li>Old video formats converted as you watch</li><li>HEIC and RAW display</li><li>Remote-friendly viewer and phone remote</li><li>Sign-in with NAS accounts, QR sign-in</li><li>Camera-card import through STORE</li></ul></div>
-      <div class="next"><h3>Next</h3><ul><li>A full modern front end that each browser is routed to automatically after the capability test</li><li>A dense tiled view for scanning quickly</li><li>Marking photos and exporting the list</li></ul></div>
-      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>Built as static native binaries</li><li>Uses Asustor's FFmpeg package</li></ul></div>
+      <div class="built"><h3>Built</h3><ul><li>Indexing and background thumbnails</li><li>Old video formats converted as you watch, on the graphics chip on Intel models</li><li>HEIC and RAW display</li><li>Remote-friendly viewer and phone remote</li><li>Sign-in with NAS accounts, QR sign-in</li><li>Modern front end, chosen automatically</li><li>Dense tiled view</li><li>Projects, with a zip of their photos</li><li>Camera-card import through STORE</li></ul></div>
+      <div class="next"><h3>Next</h3><ul><li>Release in App Central</li><li>Measured on an ARM (Drivestor) model</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM 5.1 or later, x86-64 and ARM</li><li>Native binaries, no Docker</li><li>Brings its own FFmpeg</li></ul></div>
+    </div>
+    <div class="callout">
+      <p><strong>Free, and it unlocks nothing.</strong>  Every feature is already yours.  If ONE earns its place on your NAS, a tip keeps it going: <a href="https://ko-fi.com/lumento">buy me a coffee on Ko-fi</a>.</p>
     </div>
   </div>
 </section>

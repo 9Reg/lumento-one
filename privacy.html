@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app, and lumento KEEP, the NAS app.">
-<title>Privacy — lumento LOAD and KEEP</title>
+<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app, and lumento KEEP and ONE, the NAS apps.">
+<title>Privacy — lumento LOAD, KEEP and ONE</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -39,19 +39,19 @@
         <p>LOAD looks for lumento STORE on your network so it can pair with it. It doesn't scan for or talk to anything else.</p>
 
         <h4>Pairing details</h4>
-        <p>When you pair, LOAD tells your STORE this iPhone's name, its iOS version and an identifier that iOS gives this developer's apps on this device. This lets your STORE recognise the phone. If you type a name under the pairing code, that goes to your STORE too, and you can change or clear it in Settings.</p>
+        <p>When you pair, LOAD tells your STORE this iPhone's name, its iOS version and a random identifier that LOAD makes on this phone.  It isn't tied to your Apple ID or to any other app. This lets your STORE recognise the phone. If you type a name under the pairing code, that goes to your STORE too, and you can change or clear it in Settings.</p>
 
         <h4>Notifications</h4>
         <p>LOAD's notifications are created on your iPhone. LOAD doesn't register for push notifications, and no notification server is involved.</p>
 
         <h4>On your iPhone</h4>
-        <p>LOAD keeps its pairing credentials and your STORE's certificate fingerprint in the iOS Keychain, set never to sync to iCloud, and a record of upload progress in a local database. These stay on the phone. "Forget This Server" in Settings removes the pairing, and deleting the app removes the rest.</p>
+        <p>LOAD keeps its pairing credentials and your STORE's certificate fingerprint in the iOS Keychain, set never to sync to iCloud, and a record of upload progress in a local database. These stay on the phone. "Forget This Server" in Settings removes the pairing and tells your STORE to remove this phone.  Deleting the app removes the upload record.  The random identifier stays in the iOS Keychain, so your STORE sees the same phone if you reinstall LOAD.</p>
       </section>
 
       <section>
         <h3>What I receive</h3>
         <p>Nothing. The connection runs directly between your iPhone and your NAS. It's encrypted, and LOAD checks it against the certificate your STORE presented when you paired. I have no copy of your photos, your pairing details or anything else, and no way to get one.</p>
-        <p>LOAD contains no third-party analytics, advertising or tracking code. Its one outside library, GRDB, is a database that runs entirely on your iPhone.</p>
+        <p>LOAD contains no third-party analytics, advertising or tracking code. It uses two outside libraries, and both run entirely on your iPhone: GRDB, a database, and <a href="https://github.com/9Reg/spake2p">spake2p</a>, lumento's own pairing library.</p>
 
         <h4>Apple</h4>
         <p>Apple distributes LOAD through the App Store and processes data under its own privacy policy. If you've chosen in iOS Settings to share analytics with app developers, Apple may give me anonymous crash reports and usage statistics. You can turn this off under Settings → Privacy &amp; Security → Analytics &amp; Improvements.</p>
@@ -78,7 +78,7 @@
   <div class="wrap">
     <div class="kicker">Privacy policy</div>
     <h2>lumento KEEP</h2>
-    <p class="intro">KEEP runs on your own NAS and only reads your files. It has no accounts, no analytics, no advertising and no tracking. It makes one kind of outside request: it asks this website for updated advice. This section applies from the first KEEP release that does so.</p>
+    <p class="intro">KEEP runs on your own NAS and only reads your files. It has no accounts, no analytics, no advertising and no tracking. It makes one kind of outside request: it asks this website for updated advice.</p>
 
     <div class="legal">
       <section>
@@ -100,6 +100,54 @@
         <p>If KEEP ever sends anything more than this, this page will say so before that version is released.</p>
 
         <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>.</p>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">Privacy policy</div>
+    <h2>lumento ONE</h2>
+    <p class="intro">ONE runs on your own NAS and shows your photos and videos in your browser. It makes no requests to the internet. It has no accounts of its own, no analytics, no advertising and no tracking.</p>
+
+    <div class="legal">
+      <section>
+        <h3>What ONE keeps, and where</h3>
+
+        <h4>On your NAS</h4>
+        <p>ONE only reads your photos and videos. It never changes them and never writes into your shares. In its own data folder on the NAS it keeps an index of your library (folder and file names, dates, sizes and the metadata it reads from the files), thumbnails and converted copies, your projects and marks, and a log. Uninstalling ONE deletes all of it. Upgrading keeps it.</p>
+
+        <h4>Sign-ins</h4>
+        <p>You sign in with the accounts your NAS already has. ONE doesn't store your password: ADM checks it. ONE keeps your sign-ins and the devices you've signed in on, and stores the sign-ins only as fingerprints, so a copy of its database can't be used to sign in.</p>
+
+        <h4>In your browser</h4>
+        <p>ONE sets cookies that keep you signed in and remember choices made on that device, such as the classic or modern view. They're sent only to your NAS.</p>
+
+        <h4>Who can see your library</h4>
+        <p>Each person sees only the folders ADM lets them read. Who that is depends on how you've set up accounts on your NAS.</p>
+      </section>
+
+      <section>
+        <h3>What ONE sends, and to whom</h3>
+
+        <h4>lumento STORE, on your network</h4>
+        <p>If you pair ONE with lumento STORE for camera-card import, ONE tells your STORE a name for this NAS, such as "lumento on AS6704T", its ADM version and a random identifier that ONE makes. Cards you import go from your browser, through ONE, to your STORE. All of this stays on your own network.</p>
+
+        <h4>Links</h4>
+        <p>ONE's About page links to this website and to Ko-fi. Your browser opens them only when you click them, and from then on those sites' own policies apply.</p>
+
+        <h4>What I receive</h4>
+        <p>Nothing. I have no copy of your photos, your accounts or anything else, and no way to get one.</p>
+
+        <h4>Asustor</h4>
+        <p>Asustor distributes ONE through App Central and processes data under its own privacy policy.</p>
+
+        <h4>Changes</h4>
+        <p>If ONE ever starts sending data anywhere other than your own NAS and network, this page will say so before that version is released.</p>
+
+        <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>.</p>
+
+        <p>Effective 21 October 2026.</p>
       </section>
     </div>
   </div>

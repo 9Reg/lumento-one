@@ -60,8 +60,8 @@
           <span class="status">Coming soon</span>
         </div>
         <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></h3>
-        <p>Loads your iPhone's photos and videos onto your NAS, and tells you when they're safe to delete from the phone.  Very fast while it's open, and it keeps going overnight while the phone is plugged in and locked.</p>
-        <div class="meta teal">iPhone · fire-and-forget, at real scale<span class="more">Read more →</span></div>
+        <p>Loads your iPhone's photos and videos onto your NAS, and tells you which ones are verified and on your NAS.  Fast with the app open, and fast with the phone locked: 27&nbsp;GB in 37 minutes in our tests.</p>
+        <div class="meta teal">iPhone · keeps going when locked<span class="more">Read more →</span></div>
       </a>
 
       <a class="card" href="store.html">
@@ -80,7 +80,7 @@
           <span class="status">Coming soon</span>
         </div>
         <h3 class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix keep">KEEP</span></h3>
-        <p>Don't lose your memories.  KEEP watches your NAS for silent file damage.  It only reads your files, never repairs or writes.  When a file has gone bad, it names it and says where a good copy may be.</p>
+        <p>Don't lose your memories.  KEEP watches your NAS for silent file damage.  It only reads your files, never repairs or writes.  When a file has gone bad, it names it, finds the copy in your backup and checks that the copy is good.</p>
         <div class="meta teal">Asustor NAS · maybe others too<span class="more">Read more →</span></div>
       </a>
 
@@ -120,7 +120,7 @@
       <p><span class="pn">LOAD</span> brings your photos and videos in.<br><span class="pn">STORE</span> secures them.<br><span class="pn">ONE</span> shows them.<br><span class="pn">KEEP</span> watches for damage.</p>
       <p>Each one works on its own, and together they cover the whole journey from your phone to the screen in your living room.</p>
       <p>Your NAS, your folders, organized as you wish.  Your memories as you remember them, as you recorded them.  Old and new, from FlashPix to old camcorders, from HEIC to 4K.  Ready to view however you like, archived with confidence.</p>
-      <p>Think of it as infrastructure.  It's yours and yours alone, or shared with your family.  Use <span class="pn">LOAD</span> to get your photos to your NAS all at once, or overnight on a schedule.  Never lose a photo when your phone dies.  <span class="pn">STORE</span> tells <span class="pn">LOAD</span> when a photo or video is durable and you can safely delete it.  <span class="pn">KEEP</span> helps prevent bit rot.  <span class="pn">ONE</span> ties it all together in a media viewer.  None of them need <span class="pn">ONE</span>, but together they're <span class="pn">ONE</span> lumento <span class="pn">FAMILY</span>.</p>
+      <p>Think of it as infrastructure.  It's yours and yours alone, or shared with your family.  Use <span class="pn">LOAD</span> to get your photos to your NAS all at once, or every night while your phone charges.  Never lose a photo when your phone dies.  <span class="pn">STORE</span> tells <span class="pn">LOAD</span> when a photo or video is verified and durable on your NAS.  <span class="pn">KEEP</span> helps prevent bit rot.  <span class="pn">ONE</span> ties it all together in a media viewer.  None of them need <span class="pn">ONE</span>, but together they're <span class="pn">ONE</span> lumento <span class="pn">FAMILY</span>.</p>
       <p>Keep your media server.  <span class="pn">LOAD</span> your memories.  <span class="pn">KEEP</span> them safe.  <span class="pn">STORE</span> them forever.</p>
     </div>
   </div>
@@ -138,6 +138,18 @@
       <h2>Your files, not your phone's state.</h2>
       <p>Edit a photo or trim a video and both versions come across — the edit and the original.  Shoot RAW and both halves of the pair come across.  What does not come across is Apple's private edit recipe, the data that lets the Photos app re-open an edit and change it again.</p>
       <p class="reverse-note">That is iPhone state, not a memory.  If you want to keep re-editing it, keep it on the phone.  If you want the full iOS experience on every device you own, that is what iCloud is for.  This is a NAS.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="open-source">
+  <div class="wrap">
+    <div class="kicker">Given back</div>
+    <h2>Two pieces, open to everyone.</h2>
+    <p class="intro">The lumento apps stay closed, but two parts of them were written to be useful beyond lumento.  9Reg publishes both as open source, for anyone to use.</p>
+    <div class="features">
+      <div class="feature"><h3><a href="https://github.com/9Reg/spake2p">spake2p</a></h3><p>SPAKE2+ (RFC 9383) for Rust, Go and Swift.  It lets two devices that share a short code, such as a six-digit pairing code, agree on a key that nobody listening can guess.  LOAD and STORE pair with it.  MIT or Apache 2.0.</p></div>
+      <div class="feature"><h3><a href="https://github.com/9Reg/fpx-convert">fpx-convert</a></h3><p>Converts FlashPix (<code>.fpx</code>) photos, the 1990s Kodak format, into PNG or JPEG that any browser can show, keeping the camera model and capture date.  ONE uses it.  AGPLv3.</p></div>
     </div>
   </div>
 </section>
