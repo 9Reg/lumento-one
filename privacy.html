@@ -39,19 +39,19 @@
         <p>LOAD looks for lumento STORE on your network so it can pair with it. It doesn't scan for or talk to anything else.</p>
 
         <h4>Pairing details</h4>
-        <p>When you pair, LOAD tells your STORE this iPhone's name, its iOS version and an identifier that iOS gives this developer's apps on this device. This lets your STORE recognise the phone. If you type a name under the pairing code, that goes to your STORE too, and you can change or clear it in Settings.</p>
+        <p>When you pair, LOAD tells your STORE this iPhone's name, its iOS version and a random identifier that LOAD makes on this phone.  It isn't tied to your Apple ID or to any other app. This lets your STORE recognise the phone. If you type a name under the pairing code, that goes to your STORE too, and you can change or clear it in Settings.</p>
 
         <h4>Notifications</h4>
         <p>LOAD's notifications are created on your iPhone. LOAD doesn't register for push notifications, and no notification server is involved.</p>
 
         <h4>On your iPhone</h4>
-        <p>LOAD keeps its pairing credentials and your STORE's certificate fingerprint in the iOS Keychain, set never to sync to iCloud, and a record of upload progress in a local database. These stay on the phone. "Forget This Server" in Settings removes the pairing, and deleting the app removes the rest.</p>
+        <p>LOAD keeps its pairing credentials and your STORE's certificate fingerprint in the iOS Keychain, set never to sync to iCloud, and a record of upload progress in a local database. These stay on the phone. "Forget This Server" in Settings removes the pairing and tells your STORE to remove this phone.  Deleting the app removes the upload record.  The random identifier stays in the iOS Keychain, so your STORE sees the same phone if you reinstall LOAD.</p>
       </section>
 
       <section>
         <h3>What I receive</h3>
         <p>Nothing. The connection runs directly between your iPhone and your NAS. It's encrypted, and LOAD checks it against the certificate your STORE presented when you paired. I have no copy of your photos, your pairing details or anything else, and no way to get one.</p>
-        <p>LOAD contains no third-party analytics, advertising or tracking code. Its one outside library, GRDB, is a database that runs entirely on your iPhone.</p>
+        <p>LOAD contains no third-party analytics, advertising or tracking code. It uses two outside libraries, and both run entirely on your iPhone: GRDB, a database, and spake2p, lumento's own pairing library.</p>
 
         <h4>Apple</h4>
         <p>Apple distributes LOAD through the App Store and processes data under its own privacy policy. If you've chosen in iOS Settings to share analytics with app developers, Apple may give me anonymous crash reports and usage statistics. You can turn this off under Settings → Privacy &amp; Security → Analytics &amp; Improvements.</p>
