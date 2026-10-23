@@ -185,6 +185,7 @@ def main():
     <h1>What KEEP teaches</h1>
     <p class="intro">KEEP only reads your files, so it can't fix anything.  What it can do is tell you what to look at and why.  This page is every rule KEEP uses, in plain words, with the sources behind it.  Where experts disagree, you get each side and the one we recommend.</p>
     <div class="advice-note">
+      <p><strong>Information, not advice.</strong>  These cards collect publicly available best practice; each links to its sources, and those sources are the authority. They are general and don't know your situation. KEEP changes nothing on your NAS: whatever you decide, you do in ADM, after checking Asustor's own help.</p>
       <p>Rules published %(published)s.  %(attribution)s  Licence: <a href="%(licence_url)s" rel="noopener">%(licence)s</a>.  You may copy and adapt this text if you credit lumento.  The sources linked below are cited, not copied.  The same rules, as data, are in <a href="rules/v1/rules.json">rules.json</a>.</p>
     </div>
   </div>

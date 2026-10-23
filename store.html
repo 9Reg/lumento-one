@@ -27,8 +27,8 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix store">STORE</span></span></h1>
-    <p class="lede">The archive on your NAS.  It receives files from lumento LOAD on your iPhone and from camera cards read in your browser.  It checks every file byte for byte, then files it in ordinary folders that you own.</p>
-    <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">One package, no dependencies</span><span class="pill">Pairs on your local network</span></div>
+    <p class="lede">The archive on your NAS.  It takes in photos and videos from lumento LOAD on your iPhone and from camera cards read on your computer.  It checks every file byte for byte, names it by when it was taken, and files it in ordinary month folders, in a place you choose.</p>
+    <div class="tags"><span class="pill">Free</span><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">One package, no dependencies</span><span class="pill">Pairs on your local network</span></div>
   </div>
 </section>
 
@@ -53,20 +53,20 @@
 <section class="section">
   <div class="wrap">
     <div class="kicker">What it does</div>
-    <h2>Accept it, check it, file it.<br>Never lose it.</h2>
+    <h2>Accept it, check it, file it.<br>Then leave it alone.</h2>
     <div class="features">
       <div class="feature"><h3>Checked before it's accepted</h3><p>STORE computes its own SHA-256 fingerprint from the bytes that actually arrived.  A file whose fingerprint doesn't match is never stored.</p></div>
+      <div class="feature"><h3>Camera-card import, built in</h3><p>Open STORE's admin page and read a camera card straight into your archive from your browser.  The browser fingerprints every file before sending it, so STORE checks each one against a fingerprint it didn't make.  RAW+JPEG pairs stay together, and a card you've already imported isn't copied twice.  In our test, a 10&nbsp;GB card went from a MacBook's card reader to the NAS in 3 minutes over Wi-Fi&nbsp;6.  Your speed depends on your card reader, your network and your NAS.</p></div>
+      <div class="feature"><h3>Named by when it was taken</h3><p>Each file is renamed by the moment it was taken, like <code>2026.09.14 18.03.52.120.HEIC</code>, and filed in <code>_lumento/2026.09/</code> and so on.  A video is dated from its own bytes: an iPhone video by its own clock and time zone, a camcorder clip by the camera's own clock.  When STORE can't read a date, the name says it's an estimate.  The original name stays in the import report.  You choose the date style in STORE's settings.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
+      <div class="feature"><h3>Nothing stored twice</h3><p>A file the archive already holds is recognised by its exact fingerprint, whichever paired device sends it, and isn't written again.  For your phone, that check happens before any bytes are sent.</p></div>
       <div class="feature"><h3>Written safely to disk</h3><p>A file only counts as archived once it's been written all the way to disk and moved into its final place in one step, and its folder entry is on disk too.  After a power cut you get either the whole file or no file.</p></div>
-      <div class="feature"><h3>No duplicates, ever</h3><p>Duplicates are recognised by exact fingerprint, across every session and every paired device.  For your phone, that check happens before any bytes are sent.</p></div>
-      <div class="feature"><h3>Plain month folders</h3><p>New files go into <code>_lumento/2026.09/</code> and so on, by the date the photo or video was taken.  A video is dated from its own bytes: an iPhone video by its own clock and time zone, a camcorder clip by the camera's own clock.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
       <div class="feature"><h3>Destinations</h3><p>Set up named destinations, such as a folder for each child, and choose one on the phone before a Load.  The phone remembers your last choice.</p></div>
       <div class="feature"><h3>Never moves or deletes</h3><p>Once STORE has archived a file, it never moves or deletes it.  You can reorganise the archive however you like.</p></div>
-      <div class="feature"><h3>Remembers for the phone</h3><p>The NAS keeps a record of everything it's received.  If you wipe or reinstall your iPhone, LOAD still knows what's already safe.</p></div>
-      <div class="feature"><h3>Import receipts</h3><p>Each session ends with a report from the NAS itself, not just the phone's own account of what happened.  Ask for it again later and the NAS rebuilds it from its own records.</p></div>
-      <div class="feature"><h3>Pairing that can't be guessed</h3><p>Pairing starts on the NAS and works only on your local network.  The six-digit code never crosses the network, and each code works for one try.  The phone fixes the NAS's certificate as part of the exchange.  Repeated failures lock that address out, and a NAS-wide limit stops attempts from many addresses at once.  Unpair a device on the NAS, or forget the NAS on the phone, and it stops at once.</p></div>
-      <div class="feature"><h3>Camera-card import, built in</h3><p>Open STORE's admin page and read a camera card straight into your archive from your browser.  The browser fingerprints every file before sending it, so STORE checks each one against a fingerprint it didn't make.  RAW+JPEG pairs stay together, and a card you've already imported isn't copied twice.</p></div>
+      <div class="feature"><h3>Remembers for the phone</h3><p>The NAS keeps a record of what it's received and checks new files against the archive by fingerprint.  Reinstall LOAD, or bring a new iPhone, and photos already in the archive aren't sent again.</p></div>
+      <div class="feature"><h3>Import receipts</h3><p>Each session ends with a report from the NAS itself, built from its own records, not just the phone's account of what happened.  It lists each file's new name beside the old one.</p></div>
       <div class="feature"><h3>Pull the card, carry on</h3><p>If the card comes out mid-import, STORE waits 18 minutes for it.  Put it back and the import carries on.  If you don't, the run ends and says plainly that it's partial.</p></div>
       <div class="feature"><h3>A full disk loses nothing</h3><p>If the NAS fills up, STORE keeps every file it has, tells the phone to wait, and carries on once there's room again.</p></div>
+      <div class="feature"><h3>Pairing that can't be guessed</h3><p>Pairing starts on the NAS and works only on your local network.  The six-digit code never crosses the network, and each code works for one try.  The phone fixes the NAS's certificate as part of the exchange.  Repeated failures lock that address out, and a NAS-wide limit stops attempts from many addresses at once.  Unpair a device on the NAS, or forget the NAS on the phone, and it stops at once.</p></div>
     </div>
   </div>
 </section>
@@ -89,9 +89,9 @@
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
     <div class="state">
-      <div class="built"><h3>Built</h3><ul><li>Checked, crash-safe archiving</li><li>Local-network pairing with abuse protection</li><li>Destinations</li><li>Disk-space checks: a full disk loses nothing</li><li>Import reports</li><li>Camera-card import, with resume after a pulled card</li><li>Videos dated from their own bytes</li></ul></div>
+      <div class="built"><h3>Built</h3><ul><li>Checked, crash-safe archiving</li><li>Local-network pairing with abuse protection</li><li>Destinations</li><li>Disk-space checks: a full disk loses nothing</li><li>Import reports</li><li>Camera-card import, with resume after a pulled card</li><li>Videos dated from their own bytes</li><li>Files renamed by when they were taken</li></ul></div>
       <div class="next"><h3>Next</h3><ul><li>Signed import reports</li><li>Access from outside your home network</li><li>A clean uninstall that removes STORE's working files but leaves your archive in place</li></ul></div>
-      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 and ARM</li><li>Synology and QNAP are under consideration</li><li>On any other NAS, LOAD's <a href="load.html#generic">Generic mode</a> will be the way in</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM 5.1 or later, x86-64 and ARM</li><li>Synology and QNAP are under consideration</li><li>On any other NAS, LOAD's <a href="load.html#generic">Generic mode</a> will be the way in</li></ul></div>
     </div>
   </div>
 </section>

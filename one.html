@@ -27,8 +27,8 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix one">ONE</span></span></h1>
-    <p class="lede">A photo and video gallery for your NAS.  It's one native app from App Central, with no Docker, no Postgres and no Redis.  It reads the folders you already have and shows them in a browser.</p>
-    <div class="tags"><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">Old and new browsers</span><span class="pill">Camera-card import with STORE</span></div>
+    <p class="lede">A photo and video gallery for your NAS, in any folder you choose.  It shows your library in a browser without opening the share over SMB, plays old camcorder and log footage properly, and reads camera cards into your archive through lumento STORE.  One native app from App Central, with no Docker, no Postgres and no Redis.</p>
+    <div class="tags"><span class="pill">Free</span><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">Old and new browsers</span><span class="pill">Camera-card import with STORE</span></div>
   </div>
 </section>
 
@@ -39,16 +39,19 @@
     <p class="intro">lumento ONE is meant to replace the NAS's stock photo and video gallery.  Point it at your folders and it does the rest in the background.</p>
 
     <div class="features">
-      <div class="feature"><h3>Any share, any folder</h3><p>Use as many library folders as you like, on any share.  Your photos don't have to live in one fixed <code>/Photos</code> share.</p></div>
+      <div class="feature"><h3>Any share, any folder</h3><p>Use as many library folders as you like, on any share.  The NAS's stock gallery wants everything in one fixed <code>/Photos</code> share.  ONE shows your photos where you keep them.</p></div>
+      <div class="feature"><h3>Quicker than the share</h3><p>Browsing photos over SMB means downloading each file just to see it.  ONE draws the thumbnails ahead of time on the NAS, so a folder opens as a grid of pictures instead of a wait for every file, on a laptop, a phone or the TV.</p></div>
+      <div class="feature"><h3>Camera cards, straight in</h3><p>Pick a card's folder in your browser and lumento STORE checks and files every photo and clip into your archive.  ONE is the screen for STORE's card import.  <a href="#card-import">How it works</a>.</p></div>
+      <div class="feature"><h3>Old home movies play</h3><p>Sony AVCHD, MiniDV and DVD-Video are deinterlaced, their shape corrected and their sound levelled the first time you watch them.  The result is kept in a cache on the NAS, so the next viewing starts straight away.  The source files are never touched.</p></div>
+      <div class="feature"><h3>Log footage in normal colours</h3><p>A camera's log mode records a flat, grey picture meant for grading.  ONE shows it in normal colours.  Sony S-Log is recognised by itself.  For Canon, Panasonic, Nikon, Fujifilm, Leica, DJI and Apple Log, a curator picks the profile once per clip.</p></div>
+      <div class="feature"><h3>Projects, like a calendar</h3><p>ONE was built to pick a year's photos for a printed calendar from the couch.  Mark photos and videos for a project with the remote or your phone.  Each project has its own page, and its photos download from your home network as one zip, after a preview that shows exactly what the zip holds.</p></div>
+      <div class="feature"><h3>Made for a TV remote</h3><p>The fullscreen viewer is built around a remote's arrow keys.  Left and right move through a folder, up and down move between folders.  Your phone can also act as the remote.</p></div>
+      <div class="feature"><h3>HEIC and camera RAW</h3><p>Apple HEIC photos are converted to JPEG for browsers that can't show HEIC.  RAW files (.arw, .nef, .cr2, .dng) show the preview JPEG that the camera embeds in them.</p></div>
       <div class="feature"><h3>Read-only on your media</h3><p>ONE only reads your originals.  It never modifies them, and it never writes thumbnails or caches into your shares.</p></div>
       <div class="feature"><h3>Quiet background indexing</h3><p>ONE indexes your folders and draws thumbnails in the background.  Video and HEIC conversion run at idle priority, so they don't slow down anyone who's browsing.  Updating ONE keeps the thumbnails it has already drawn.</p></div>
-      <div class="feature"><h3>Old home movies play</h3><p>Sony AVCHD, MiniDV and DVD-Video are converted to web video the first time you watch them.  The result is kept in a cache on the NAS, so the next viewing starts straight away.  The source files are never touched.</p></div>
-      <div class="feature"><h3>HEIC and camera RAW</h3><p>Apple HEIC photos are converted to JPEG, so every browser can show them.  RAW files (.arw, .nef, .cr2, .dng) show the preview JPEG that the camera embeds in them.</p></div>
-      <div class="feature"><h3>Made for a TV remote</h3><p>The fullscreen viewer is built around a remote's arrow keys.  Left and right move through a folder, up and down move between folders.  Your phone can also act as the remote.</p></div>
       <div class="feature"><h3>Your NAS accounts</h3><p>Sign in with the accounts your NAS already has.  There's nothing extra to set up.  Each person sees only the folders ADM lets them read.  Viewers can browse.  Curators can also manage library folders and settings.</p></div>
+      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it, check that the short code on your phone matches the one on the TV, and sign in there instead of typing a password with a remote.  It works only on your home network, and the TV gets viewer rights only.</p></div>
       <div class="feature"><h3>Honest about failures</h3><p>If ONE recognises a file as media but can't display it, the file still shows up.  It keeps its name and says why it couldn't be shown.</p></div>
-      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it and sign in on your phone instead of typing a password with a remote.  It works only on your home network, and the TV gets viewer rights only.</p></div>
-      <div class="feature"><h3>Projects</h3><p>Mark photos and videos for a project with the remote or your phone.  Each project has its own page listing everything marked for it, and its photos download from your home network as one zip, after a preview that shows exactly what the zip holds.</p></div>
       <div class="feature"><h3>Careful with sign-ins</h3><p>Sign-ins pause after three wrong passwords.  ONE gives up root before it opens its data, and its video and photo converters run in a sandbox.  Sign-ins are stored only as fingerprints, so a copy of ONE's database can't be used to sign in.</p></div>
     </div>
   </div>
@@ -63,12 +66,14 @@
       <table class="compare">
         <thead><tr><th>Format</th><th>Files</th><th>What ONE does</th></tr></thead>
         <tbody>
-          <tr><td>Sony AVCHD camcorders</td><td data-label="Files"><code>.mts</code> <code>.m2ts</code></td><td data-label="What ONE does">Deinterlaced and converted to H.264 video with AAC audio.  A long take the camcorder split across several files plays as one video</td></tr>
-          <tr><td>MiniDV tapes, digitised</td><td data-label="Files"><code>.avi</code> (DV)</td><td data-label="What ONE does">Deinterlaced, converted, and the picture's aspect ratio corrected so people don't look squashed</td></tr>
-          <tr><td>DVD-Video discs</td><td data-label="Files"><code>VIDEO_TS</code> folders</td><td data-label="What ONE does">The disc's separate files are joined into one video you can play, then deinterlaced, converted and the aspect ratio corrected</td></tr>
-          <tr><td>Other video</td><td data-label="Files"><code>.mp4</code> <code>.m4v</code> <code>.mov</code> <code>.mkv</code> <code>.wmv</code> <code>.mpg</code> <code>.mpeg</code></td><td data-label="What ONE does">Sent as they are when your browser can play them.  Otherwise converted to H.264 the first time you watch, then kept</td></tr>
-          <tr><td>4K and HDR phone video</td><td data-label="Files">HDR10, 4K, 60 fps</td><td data-label="What ONE does">HDR colours are kept, not washed out.  Video above 30 frames a second plays at 30, so it converts sooner</td></tr>
-          <tr><td>Apple photos</td><td data-label="Files"><code>.heic</code> <code>.heif</code></td><td data-label="What ONE does">Converted to JPEG, so every browser can show them</td></tr>
+          <tr><td>Sony AVCHD camcorders</td><td data-label="Files"><code>.mts</code> <code>.m2ts</code></td><td data-label="What ONE does">Deinterlaced and converted to H.264 video with AAC audio, sound levelled.  A long take the camcorder split across several files plays as one video</td></tr>
+          <tr><td>MiniDV tapes, digitised</td><td data-label="Files"><code>.avi</code> (DV)</td><td data-label="What ONE does">Deinterlaced, converted, sound levelled, and the picture's aspect ratio corrected so people don't look squashed</td></tr>
+          <tr><td>DVD-Video discs</td><td data-label="Files"><code>VIDEO_TS</code> folders</td><td data-label="What ONE does">The disc's separate files are joined into one video you can play, then deinterlaced, converted, sound levelled and the aspect ratio corrected.  5.1 sound is mixed down to stereo</td></tr>
+          <tr><td>Phone and camera video</td><td data-label="Files"><code>.mp4</code> <code>.m4v</code> <code>.mov</code></td><td data-label="What ONE does">Played as they are when your browser can.  Otherwise converted to H.264 at up to 1080p the first time you watch, then kept.  Sound stays as it was recorded</td></tr>
+          <tr><td>Other video</td><td data-label="Files"><code>.mkv</code> <code>.wmv</code> <code>.mpg</code> <code>.mpeg</code> <code>.avi</code></td><td data-label="What ONE does">Converted to H.264 the first time you watch, then kept</td></tr>
+          <tr><td>4K and HDR video</td><td data-label="Files">HDR10, HLG, 4K, 60 fps</td><td data-label="What ONE does">HLG plays as it is.  HDR10 is tone-mapped for an ordinary screen, so it isn't washed out.  A converted video plays at no more than 30 frames a second (60 at 30, 50 at 25), so it converts sooner</td></tr>
+          <tr><td>Log footage</td><td data-label="Files">S-Log2, S-Log3, C-Log2, C-Log3, V-Log, N-Log, F-Log, F-Log2, L-Log, Apple Log, D-Log</td><td data-label="What ONE does">Converted to normal colours as you watch.  Sony log is recognised from the clip itself.  For the others, a curator picks the profile on the clip</td></tr>
+          <tr><td>Apple photos</td><td data-label="Files"><code>.heic</code> <code>.heif</code></td><td data-label="What ONE does">Converted to JPEG for browsers that can't show HEIC</td></tr>
           <tr><td>FlashPix (1990s Kodak and similar)</td><td data-label="Files"><code>.fpx</code></td><td data-label="What ONE does">Converted to JPEG with <a href="https://github.com/9Reg/fpx-convert">fpx-convert</a>, a FlashPix converter we wrote for lumento and publish under the AGPLv3</td></tr>
           <tr><td>Camera RAW</td><td data-label="Files"><code>.arw</code> <code>.nef</code> <code>.cr2</code> <code>.dng</code></td><td data-label="What ONE does">Shown using the preview JPEG the camera embeds in the file</td></tr>
           <tr><td>Everyday photos</td><td data-label="Files"><code>.jpg</code> <code>.jpeg</code> <code>.png</code></td><td data-label="What ONE does">Shown as they are</td></tr>
@@ -76,10 +81,10 @@
       </table>
     </div>
     <div class="callout">
-      <p><strong>Every video's sound is levelled too,</strong> so a quiet camcorder recording plays at a sensible volume next to a loud one.</p>
+      <p><strong>Camcorder sound is levelled.</strong>  AVCHD, MiniDV and DVD recordings have their loudness evened out, so a quiet camcorder recording plays at a sensible volume next to a loud one.  Today's phones and cameras record at a sensible level, so their sound is left exactly as recorded.</p>
       <p><strong>Intel models convert on the graphics chip.</strong>  On an AS6704T, camcorder clips convert about 2.5 times faster than on the processor alone.  If the graphics chip can't do it, ONE converts the slow way instead.</p>
       <p><strong>Canon <code>.cr3</code> files show up but can't be displayed yet.</strong>  They appear as named tiles that say why.  They'll start displaying, with no re-indexing, once a CR3 decoder is added.</p>
-      <p><strong>ARM models (Drivestor series).</strong> These models have no video hardware lumento can use, so any video that has to be converted (camcorder AVCHD footage, and phone videos your browser can't play as they are) is converted by the processor alone, and slowly. The first time you play such a video, expect to wait about one and a half to three times its length before it starts: a 10-minute camcorder clip can take 15 to 30 minutes, and a 4K phone video much longer. After that first time it plays at once. Photos, and videos your browser plays directly, are not affected. These figures are estimates; lumento has not yet been measured on a Drivestor.</p>
+      <p><strong>ARM models (Drivestor series).</strong> These models have no video hardware lumento can use, so any video that has to be converted (camcorder AVCHD footage, and phone videos your browser can't play as they are) is converted by the processor alone, and slowly. The first time you play such a video, expect to wait about two to four times its length before it starts: a 10-minute camcorder clip can take 20 to 40 minutes, and a 4K phone video much longer. After that first time it plays at once. Photos, and videos your browser plays directly, are not affected. These figures are estimates; lumento has not yet been measured on a Drivestor.</p>
     </div>
   </div>
 </section>
@@ -103,7 +108,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="card-import">
   <div class="wrap split">
     <div>
       <div class="kicker">Works with lumento STORE</div>
@@ -152,7 +157,7 @@
     <div class="kicker">Where it stands</div>
     <h2>Built, and still to come.</h2>
     <div class="state">
-      <div class="built"><h3>Built</h3><ul><li>Indexing and background thumbnails</li><li>Old video formats converted as you watch, on the graphics chip on Intel models</li><li>HEIC and RAW display</li><li>Remote-friendly viewer and phone remote</li><li>Sign-in with NAS accounts, QR sign-in</li><li>Modern front end, chosen automatically</li><li>Dense tiled view</li><li>Projects, with a zip of their photos</li><li>Camera-card import through STORE</li></ul></div>
+      <div class="built"><h3>Built</h3><ul><li>Indexing and background thumbnails</li><li>Old video formats converted as you watch, on the graphics chip on Intel models</li><li>HEIC and RAW display</li><li>Remote-friendly viewer and phone remote</li><li>Sign-in with NAS accounts, QR sign-in</li><li>Modern front end, chosen automatically</li><li>Dense tiled view</li><li>Projects, with a zip of their photos</li><li>Camera-card import through STORE</li><li>Log footage shown in normal colours</li></ul></div>
       <div class="next"><h3>Next</h3><ul><li>Release in App Central</li><li>Measured on an ARM (Drivestor) model</li></ul></div>
       <div><h3>Platform</h3><ul><li>Asustor ADM 5.1 or later, x86-64 and ARM</li><li>Native binaries, no Docker</li><li>Brings its own FFmpeg</li></ul></div>
     </div>
