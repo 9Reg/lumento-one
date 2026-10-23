@@ -50,7 +50,7 @@
       <div class="feature"><h3>Read-only on your media</h3><p>ONE only reads your originals.  It never modifies them, and it never writes thumbnails or caches into your shares.  Rotate a photo or set a clip's log profile, and ONE keeps that in its own database and applies it as it shows the file.  The file itself stays exactly as it was.</p></div>
       <div class="feature"><h3>Quiet background indexing</h3><p>ONE indexes your folders and draws thumbnails in the background.  Video and HEIC conversion run at idle priority, so they don't slow down anyone who's browsing.  Updating ONE keeps the thumbnails it has already drawn.</p></div>
       <div class="feature"><h3>Your NAS accounts</h3><p>Sign in with the accounts your NAS already has.  There's nothing extra to set up.  Each person sees only the folders ADM lets them read.  Viewers can browse.  Curators can also manage library folders and settings.</p></div>
-      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it, check that the short code on your phone matches the one on the TV, and sign in there instead of typing a password with a remote.  It works only on your home network, and the TV gets viewer rights only.</p></div>
+      <div class="feature"><h3>Sign in from your phone</h3><p>On a TV, the sign-in page shows a QR code.  Scan it, check that the short code on your phone matches the one on the TV, and sign in there instead of typing a password with a remote.  It works only on your home network, and the TV gets viewer rights only.  <a href="one-faq.html#phone-sign-in">Why your phone says "not private"</a>.</p></div>
       <div class="feature"><h3>Honest about failures</h3><p>If ONE recognises a file as media but can't display it, the file still shows up.  It keeps its name and says why it couldn't be shown.</p></div>
       <div class="feature"><h3>Careful with sign-ins</h3><p>Sign-ins pause after three wrong passwords.  ONE gives up root before it opens its data, and its video and photo converters run in a sandbox.  Sign-ins are stored only as fingerprints, so a copy of ONE's database can't be used to sign in.</p></div>
     </div>
@@ -84,7 +84,8 @@
       <p><strong>Camcorder sound is levelled.</strong>  AVCHD, MiniDV and DVD recordings have their loudness evened out, so a quiet camcorder recording plays at a sensible volume next to a loud one.  Today's phones and cameras record at a sensible level, so their sound is left exactly as recorded.</p>
       <p><strong>Intel models convert on the graphics chip.</strong>  On an AS6704T, camcorder clips convert about 2.5 times faster than on the processor alone.  If the graphics chip can't do it, ONE converts the slow way instead.</p>
       <p><strong>Canon <code>.cr3</code> files show up but can't be displayed yet.</strong>  They appear as named tiles that say why.  They'll start displaying, with no re-indexing, once a CR3 decoder is added.</p>
-      <p><strong>ARM models (Drivestor series).</strong> These models have no video hardware lumento can use, so any video that has to be converted (camcorder AVCHD footage, and phone videos your browser can't play as they are) is converted by the processor alone, and slowly. The first time you play such a video, expect to wait about two to four times its length before it starts: a 10-minute camcorder clip can take 20 to 40 minutes, and a 4K phone video much longer. After that first time it plays at once. Photos, and videos your browser plays directly, are not affected. These figures are estimates; lumento has not yet been measured on a Drivestor.</p>
+      <p><strong>ARM models (Drivestor series) convert slowly.</strong>  They have no video hardware lumento can use, so a video that has to be converted waits for the processor alone: the first watch can take two to four times the clip's length (an estimate; lumento hasn't been measured on a Drivestor yet).  After that it plays at once.  <a href="one-faq.html#arm">The details are in the FAQ.</a></p>
+      <p><strong>Questions?</strong>  Playback, formats, ARM models or signing in on a phone: see the <a href="one-faq.html">ONE FAQ</a>.</p>
     </div>
   </div>
 </section>
@@ -125,29 +126,6 @@
         <li><strong>It tells you when everything on your card is on the NAS,</strong> and not before.  If the NAS is still checking a large video, the page says so and waits.</li>
       </ol>
       <p>Import needs lumento STORE installed and paired.  Without it, ONE still works as a complete gallery.  Neither product needs the other in order to run.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="phone-sign-in">
-  <div class="wrap split">
-    <div>
-      <div class="kicker">Signing in on a phone</div>
-      <h2>Why your phone says "not private".</h2>
-      <p>When you scan the TV's sign-in code, your phone moves from <code>http://…:20904</code> to <code>https://…:20907</code> before it asks for your password.  That's a security measure.  Over plain <code>http</code>, anyone on the same Wi-Fi could read your password as it crosses the network.  Over <code>https</code> it's encrypted.</p>
-    </div>
-    <div>
-      <h3>The warning is expected</h3>
-      <p>Your phone will then say the connection isn't private.  It isn't a fault.  ONE encrypts the connection with a certificate it makes for your NAS itself, and your phone has no way to check who made it, so it asks you.  If this is your own NAS at home, continue:</p>
-      <ul>
-        <li><strong>iPhone (Safari):</strong> tap <strong>Show Details</strong>, then <strong>visit this website</strong>, then <strong>Visit Website</strong>.</li>
-        <li><strong>Android (Chrome):</strong> tap <strong>Advanced</strong>, then <strong>Proceed to … (unsafe)</strong>.</li>
-      </ul>
-      <p>Your phone remembers the choice.  You'll see the warning again only when ONE has to make a new certificate: about every two years, or when the NAS gets a new network address.</p>
-      <h3>If the page stays blank</h3>
-      <p>Close it and scan the TV's code again.  Safari sometimes remembers your choice but doesn't load the page that first time.</p>
-      <h3>To get rid of the warning for good</h3>
-      <p>Give the NAS a proper certificate in ADM, for example from Let's Encrypt, under ADM's certificate settings.  ONE notices it within a minute and uses it instead of its own.  Such a certificate names a domain (say <code>nas.example.com</code>), not an IP address, so open ONE on the TV by that name too.  The phone follows the address the TV used.</p>
     </div>
   </div>
 </section>
