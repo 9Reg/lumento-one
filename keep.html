@@ -27,8 +27,8 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix keep">KEEP</span></span></h1>
-    <p class="lede">Don't lose your memories.  KEEP watches your photos for silent file damage, the kind that no one notices until the photo won't open.  It only reads.  When a file has gone bad, it tells you which one, finds the copy in your backup and checks that the copy is still good.</p>
-    <div class="tags"><span class="pill">Asustor · x86-64</span><span class="pill">Read-only, always</span><span class="pill">Admin page on your NAS</span></div>
+    <p class="lede">An eye on your NAS, in plain words.  KEEP tells you when a backup has failed or leaves a share out, checks the safety features most people never look at, and watches your photos for bit rot: silent damage no one notices until the photo won't open.  It only reads.  When a file has gone bad, it tells you which one, finds the copy in your backup and checks that the copy is still good.</p>
+    <div class="tags"><span class="pill">Free</span><span class="pill">Asustor · x86-64 and ARM</span><span class="pill">Read-only, always</span><span class="pill">Admin page on your NAS</span></div>
   </div>
 </section>
 
@@ -50,11 +50,13 @@
     <div class="kicker">What it does</div>
     <h2>Notice it early.<br>Know where to look.</h2>
     <div class="features">
-      <div class="feature"><h3>Finds silent damage</h3><p>A file can change on disk with no error and no warning.  KEEP keeps a SHA-256 fingerprint of each file and checks it again later.  If the bytes changed and nothing you did explains it, KEEP flags the file.</p></div>
-      <div class="feature"><h3>Tells an edit from damage</h3><p>If you edit a photo, that isn't damage.  KEEP looks at the file in pieces to tell the two apart, reads it a second time before it raises the alarm, and knows a file you've only moved.  It never stops to ask you.</p></div>
+      <div class="feature"><h3>Checks your backups</h3><p>Backups can fail without a word.  KEEP reads your backup jobs, local, USB and remote, and tells you when one fails, stalls, is overdue or has never finished, and why, such as a USB disk that refuses some file names.  It lists shares no backup covers, and you can mark the ones that don't need one.</p></div>
+      <div class="feature"><h3>Spots a weak backup</h3><p>A backup can run every night and still let you down.  KEEP warns when a backup keeps only one copy, so a damaged photo can overwrite the good one, when its disk can't catch damage itself, and when its encrypted destination is locked.</p></div>
+      <div class="feature"><h3>Checks the NAS's own safety features</h3><p>Snapshots that are missing, stale or writable.  Scrubs and RAID checks that never run or found errors.  A mirror running on one disk.  KEEP reads them all and says what to do in ADM.</p></div>
+      <div class="feature"><h3>Finds silent damage</h3><p>A file can change on disk with no error and no warning.  KEEP keeps a SHA-256 fingerprint of each file and checks it again later.  If the bytes changed and nothing you did explains it, KEEP flags the file.  It also catches damage a file system's own checksums can miss, such as a file written wrong by failing memory.</p></div>
+      <div class="feature"><h3>Tells an edit from damage</h3><p>If you edit a photo, that isn't damage.  KEEP looks at the file in pieces to tell the two apart, reads it a second time before it raises the alarm, and knows a file you've only moved.  It never stops to ask you.  One limit: damage at the very start of a file that also looks edited reads as an edit.</p></div>
       <div class="feature"><h3>Names the file</h3><p>You get the file's name and what's wrong with it: damaged, unreadable or missing.  You don't get a vague warning that something somewhere is off.</p></div>
       <div class="feature"><h3>Proves the good copy is good</h3><p>KEEP finds the damaged file's copy in your backup, reads it and checks it against the fingerprint, so you know the copy is intact before you restore it.  It never touches the copy.  You restore it yourself in ADM.</p></div>
-      <div class="feature"><h3>Checks your safety net</h3><p>Backups can fail without a word.  KEEP reads your backup jobs, local, USB and remote, and tells you when one fails, stalls, is overdue or has never finished, and why.  It lists shares no backup covers, and checks your snapshots, scrubs, RAID checks and degraded arrays.</p></div>
       <div class="feature"><h3>Speaks through ADM</h3><p>Notices go to ADM's own System log, where you already look, once per change and never repeated.  KEEP also checks that ADM will email you when something fails.  Its admin page shows each finding as a card, sorted by how urgent it is, with what to do in ADM.</p></div>
       <div class="feature"><h3>Stays out of your backups' way</h3><p>When you set it up, KEEP suggests a nightly reading window that misses your backups and scrubs, and it reads nothing until you pick one.  If a backup runs anyway, KEEP pauses and says so.</p></div>
       <div class="feature"><h3>Light on the NAS</h3><p>It runs at idle priority, pauses while the RAID syncs or scrubs, only reads inside your nightly window, and can stop after a limit you choose.  Upgrades keep its data, and it comes back by itself after a reboot.</p></div>
@@ -87,9 +89,9 @@
     <div class="kicker">Where it stands</div>
     <h2>Tested on a real NAS.  Not yet released.</h2>
     <div class="state">
-      <div class="built"><h3>Built</h3><ul><li>A read-only walk of the share, with the kernel as the guard</li><li>Fingerprints and the index</li><li>Sorting edits from damage</li><li>Proving the backup copy is good</li><li>Backup jobs, local, USB and remote: failed, stalled, overdue or never run</li><li>Shares no backup covers</li><li>Checks on scrubs, snapshots, RAID and disk state</li><li>A check that ADM will email you when something fails</li><li>Notices in ADM's System log</li><li>The admin page</li><li>Installed and tested on a real Asustor NAS: the write self-test, upgrades and reboots</li></ul></div>
-      <div class="next"><h3>Next</h3><ul><li>Watching every share, not just Photos, including encrypted ones</li><li>Advice updates from lumento.one, with an off switch</li><li>Testing on an ARM NAS</li><li>An optional check that finds which disk of a mirror holds the bad copy</li></ul></div>
-      <div><h3>Platform</h3><ul><li>Asustor ADM, x86-64 (an ARM build exists, not yet tested)</li><li>The core is built to be the same on any NAS</li><li>Synology, QNAP and TrueNAS are under consideration</li></ul></div>
+      <div class="built"><h3>Built</h3><ul><li>A read-only walk of the share, with the kernel as the guard</li><li>Fingerprints and the index</li><li>Sorting edits from damage</li><li>Proving the backup copy is good</li><li>Backup jobs, local, USB and remote: failed, stalled, overdue or never run</li><li>Shares no backup covers</li><li>Weak backups: one copy only, a disk that can't catch damage, a locked destination</li><li>Checks on scrubs, snapshots, RAID and file system error counts</li><li>A check that ADM will email you when something fails</li><li>Notices in ADM's System log</li><li>The admin page</li><li>Installed and tested on a real Asustor NAS: the write self-test, upgrades and reboots</li></ul></div>
+      <div class="next"><h3>Next</h3><ul><li>Watching every share, not just Photos, including encrypted ones</li><li>Advice updates from lumento.one, with an off switch</li><li>An optional check that finds which disk of a mirror holds the bad copy</li></ul></div>
+      <div><h3>Platform</h3><ul><li>Asustor ADM 5.1 or later, x86-64 and ARM</li><li>The core is built to be the same on any NAS</li><li>Synology, QNAP and TrueNAS are under consideration</li></ul></div>
     </div>
   </div>
 </section>

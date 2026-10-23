@@ -27,8 +27,8 @@
   <div>
     <a class="crumb" href="index.html#family">← The lumento family</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></span></h1>
-    <p class="lede">LOAD has one job: get the photos and videos on your iPhone safely onto your own NAS, and then tell you, with a number you can check, which ones are verified and on your NAS.</p>
-    <div class="tags"><span class="pill">iPhone · iOS 18 and later</span><span class="pill">Keeps going when locked</span><span class="pill">No cloud</span></div>
+    <p class="lede">LOAD has one job: get every photo and video off your iPhone and onto your own NAS, byte for byte, without fighting SMB or AirDrop, and then tell you, with a number you can check, which ones are verified and on your NAS.  Thousands at once, or each night while it charges.</p>
+    <div class="tags"><span class="pill">Free</span><span class="pill">iPhone · iOS 18 and later</span><span class="pill">Keeps going when locked</span><span class="pill">No cloud</span></div>
   </div>
 </section>
 
@@ -53,7 +53,7 @@
       <h3>With the app open</h3>
       <p>Faster still.  LOAD adjusts how many files it sends at once to suit your phone's temperature and battery.  With LOAD open, the same 27&nbsp;GB loaded in <strong>under 10 minutes</strong>, and large videos went across at up to <strong>78&nbsp;MB a second</strong>.</p>
       <div class="callout">
-        <p><strong>Your results may vary.</strong>  These are our numbers, on an iPhone&nbsp;16, two Wi-Fi&nbsp;6 routers and an Asustor NAS.  We also tried LOAD on an iPhone&nbsp;XR, 12, 14 and 15&nbsp;Pro, and they were nearly as fast.  The older the phone, the slower the run.  Your speed depends on your Wi-Fi, your router, your NAS and your phone.  When the phone is locked, iOS decides how much time LOAD gets, so a locked Load takes longer than one with the app open.</p>
+        <p><strong>Your results may vary.</strong>  These are our numbers, on an iPhone&nbsp;16, two Wi-Fi&nbsp;6 routers and an Asustor NAS.  We also ran LOAD on an iPhone&nbsp;XR, 12, 14 and 15&nbsp;Pro, and they looked nearly as fast, though we didn't time them.  The older the phone, the slower the run.  Your speed depends on your Wi-Fi, your router, your NAS and your phone.  When the phone is locked, iOS decides how much time LOAD gets, so a locked Load takes longer than one with the app open.</p>
         <p>For the fastest run, keep LOAD open.  If you lock the phone, plug it in.</p>
       </div>
     </div>
@@ -65,18 +65,20 @@
     <div class="kicker">Reliability</div>
     <h2>Built for the only copy of your photos.</h2>
     <div class="features">
+      <div class="feature"><h3>Overnight, while it charges</h3><p>Turn on "Back up new photos while charging" and LOAD sends what's new since your last Load while the phone charges overnight: new photos, and photos you've edited since.  It covers what you loaded last, your whole library or one album.  Anything that didn't make it is tried again the next night, and the switch shows when new photos last reached the NAS.  iOS picks the exact time, so LOAD can't promise one.</p></div>
+      <div class="feature"><h3>Named by when you took it</h3><p>On the NAS, each file is named by the moment it was taken, like <code>2026.10.19 20.42.21.000.HEIC</code>, in a folder for its month, so your archive sorts itself.  A video is dated from its own clock and time zone.  The name your iPhone gave it stays in the import report.</p></div>
       <div class="feature"><h3>Hashed at both ends</h3><p>Every file gets a SHA-256 fingerprint on the phone and another on the NAS, from the bytes that actually arrived.  If they don't match, the file is never stored.</p></div>
       <div class="feature"><h3>Resumes where it stopped</h3><p>Large files go in 8&nbsp;MB chunks, each with its own hash.  If the connection drops 95% of the way through a 4&nbsp;GB video, LOAD carries on from the last confirmed chunk instead of starting again.</p></div>
       <div class="feature"><h3>Checks for duplicates first</h3><p>LOAD asks the NAS what it already has before sending any bytes.  Photos that are already in the archive are skipped, even ones another device loaded.  Run a second Load straight after the first and nothing is sent again: in our test, 1,224 photos and videos settled in 9 seconds.</p></div>
-      <div class="feature"><h3>Never re-encoded</h3><p>The files in your archive are the same bytes your camera wrote.  Edited photos come across together with their originals.</p></div>
+      <div class="feature"><h3>Never re-encoded</h3><p>The files in your archive are the same bytes your camera wrote, so the date, place, camera and lens details inside each one come with it.  Edited photos come across together with their originals.</p></div>
       <div class="feature"><h3>A Live Photo stays whole</h3><p>A Live Photo is a still image plus a short video.  It only counts as archived once both parts are verified.  RAW+JPEG pairs, edited photos and edited Live Photos work the same way: every part arrives, and nothing counts until every part is verified.</p></div>
       <div class="feature"><h3>Survives interruptions</h3><p>A Load picks up where it left off after the app is closed, iOS suspends it, or the Wi-Fi drops.  Failed uploads are retried after about 5, 15, 45, 135 and 300 seconds, and after that LOAD keeps trying, more slowly, for up to 48 hours.  If your NAS goes away for a few minutes, LOAD waits for it instead of using up every file's retries.</p></div>
       <div class="feature"><h3>Won't fill your phone</h3><p>LOAD pauses before it runs your phone out of storage, and sends the smallest files first so progress keeps coming.  If a Load won't fit, it warns you before starting.  If your NAS fills up, LOAD says so, keeps everything already verified, and carries on by itself once there's room.</p></div>
-      <div class="feature"><h3>Deletes only when you say so</h3><p>LOAD shows you what's verified on your NAS, and checks each photo against the NAS again right before it offers to delete it.  It only deletes when you ask it to, one batch at a time, and you confirm each batch.  Anything it holds back comes with a reason.</p></div>
-      <div class="feature"><h3>Nightly backup</h3><p>Turn on "Back up new photos while charging" and LOAD sends your new photos while the phone charges overnight.  Anything that didn't make it is tried again the next night.  iOS picks the exact time, so LOAD can't promise one.</p></div>
-      <div class="feature"><h3>Every frame of a burst</h3><p>A burst of twenty is twenty photos, not one.  LOAD doesn't pick favourites.  Load your whole library, or just one album.</p></div>
+      <div class="feature"><h3>Your phone, your call</h3><p>LOAD shows you what's verified on your NAS.  It never removes anything from your phone by itself.  What stays on your phone is up to you, and if you ask LOAD to remove photos, it checks each one against the NAS again first, asks you batch by batch, and tells you why it held any back.</p></div>
+      <div class="feature"><h3>Every frame of a burst</h3><p>A burst of twenty is twenty photos, not one.  LOAD doesn't pick favourites.  Load your whole library, or just one of your own albums.</p></div>
       <div class="feature"><h3>Pick the folder</h3><p>Send a Load to your default folder, or to one your NAS admin set up, such as a folder for each child.  LOAD remembers your last choice.</p></div>
       <div class="feature"><h3>Hidden stays hidden</h3><p>If you hid a photo on your iPhone, LOAD never sees it, never reads it and never loads it.</p></div>
+      <div class="feature"><h3>Made for photos on the phone</h3><p>LOAD is fastest when your photos are stored on the iPhone itself.  With iCloud Photos on, it works too: it tells you before a Load when some originals have to come down from iCloud first.  LOAD needs access to your whole photo library, and says so if you've only allowed some photos.</p></div>
     </div>
   </div>
 </section>
@@ -84,19 +86,20 @@
 <section class="section" id="generic">
   <div class="wrap split">
     <div>
-      <div class="kicker">Coming later · Generic mode</div>
+      <div class="kicker">Coming before release · Generic mode</div>
       <h2>Works with any NAS.<br>No install needed.</h2>
-      <p>lumento STORE gives you a complete, verified archive, but for now it only runs on Asustor.  Generic mode will let LOAD write straight to any NAS that can serve WebDAV over HTTPS, including Asustor, Synology and QNAP.  On most of them that's a setting you turn on, not an app you install.</p>
-      <p class="note">Generic mode is designed but not built yet.  It's described here as it's intended to work.</p>
+      <p>Generic mode is for you if you'd rather not install lumento STORE, or your NAS can't run it: for now STORE runs only on Asustor.  It lets LOAD write straight to any NAS that can serve WebDAV over HTTPS, including Asustor, Synology and QNAP.  On most of them that's a setting you turn on, not an app you install.</p>
+      <p class="note">Generic mode is designed and being built.  LOAD won't be released without it.  It's described here as it's intended to work.</p>
     </div>
     <div>
       <h3>How it works</h3>
       <p><strong>Why WebDAV and not SMB.</strong>  WebDAV runs over HTTP, so LOAD can hand each upload to iOS's background upload service, the same one Verified mode uses.  An SMB connection runs on raw sockets inside the app, and it stops as soon as iOS suspends the app.  SMB isn't slower on a LAN.  WebDAV was chosen because it's the one that keeps going when the phone is locked.</p>
       <p><strong>Writing a file.</strong>  Each file is uploaded under a temporary <code>.part</code> name and then moved to its final name in one step.  A half-finished upload never appears under a real filename.</p>
-      <pre><code>PUT  _lumento/2026.09/.IMG_4821.HEIC.{device}.{id}.part
-MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
-      <p><strong>Same layout as Verified mode.</strong>  Folders, filenames and dates are identical: <code>{root}/_lumento/{YYYY.MM}/</code>.  Your archive looks the same whichever mode filled it.</p>
-      <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it's sent, with its hash.  It also keeps a manifest on the NAS itself.</p>
+      <pre><code>PUT  _lumento/2026.09/.2026.09.14 18.03.52.120.HEIC.{device}.{id}.part
+MOVE → _lumento/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></pre>
+      <p><strong>Same layout as Verified mode.</strong>  LOAD names and files each photo by the same rules STORE uses: <code>{root}/_lumento/{YYYY.MM}/</code>, named by when it was taken.  Your archive looks the same whichever mode filled it.</p>
+      <p><strong>Checked after it lands.</strong>  LOAD fingerprints every file in small blocks as it sends it.  Once the file is in place, it asks the NAS for its size and reads back a few blocks at random to compare, and does it again with fresh blocks before it would ever offer to remove a photo from your phone.</p>
+      <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it's sent, with its hash, and a copy of that list on the NAS itself, so a reinstalled app still knows what it sent.  If you load photos it already copied, it asks before sending them again.</p>
       <p><strong>Whole files only.</strong>  WebDAV has no standard way to put chunks back together, so a dropped upload restarts that one file from the beginning.</p>
     </div>
   </div>
@@ -112,14 +115,16 @@ MOVE → _lumento/2026.09/IMG_4821.HEIC   (Overwrite: F)</code></pre>
           <tr><td>Live Photos kept whole</td><td data-label="Generic (WebDAV)" class="yes">Yes</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
           <tr><td>Resume inside a large file</td><td data-label="Generic (WebDAV)" class="no">No, the file restarts</td><td data-label="Verified (with STORE)" class="yes">Yes, from the last chunk</td></tr>
           <tr><td>Confirms the file arrived</td><td data-label="Generic (WebDAV)" class="yes">Yes</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
-          <tr><td>Confirms it arrived byte for byte</td><td data-label="Generic (WebDAV)" class="no">No</td><td data-label="Verified (with STORE)" class="yes">Yes</td></tr>
+          <tr><td>Confirms it arrived byte for byte</td><td data-label="Generic (WebDAV)">Spot checks: size and random blocks read back</td><td data-label="Verified (with STORE)" class="yes">Yes, every byte</td></tr>
           <tr><td>Duplicate detection</td><td data-label="Generic (WebDAV)">On the phone only</td><td data-label="Verified (with STORE)" class="yes">On the NAS, across every device</td></tr>
-          <tr><td>Survives a phone wipe or reinstall</td><td data-label="Generic (WebDAV)" class="no">No</td><td data-label="Verified (with STORE)" class="yes">Yes, the NAS remembers</td></tr>
+          <tr><td>Survives an app reinstall</td><td data-label="Generic (WebDAV)" class="yes">Yes, from its list on the NAS</td><td data-label="Verified (with STORE)" class="yes">Yes, the NAS remembers</td></tr>
+          <tr><td>Knows what a new phone already sent</td><td data-label="Generic (WebDAV)" class="no">No</td><td data-label="Verified (with STORE)" class="yes">Yes, the NAS checks by fingerprint</td></tr>
         </tbody>
       </table>
     </div>
     <div class="callout">
-      <p><strong>Generic mode tells you what it can't check.</strong>  It'll say that files arrived, but not that they arrived byte for byte, because nothing on the NAS can check that.  If you install lumento STORE later, it checks everything Generic mode already sent.  You don't upload anything again.</p>
+      <p><strong>Generic mode tells you what it can't check.</strong>  It'll say that files arrived and passed its spot checks, but not that every byte was checked, because nothing on the NAS can do that.</p>
+      <p><strong>Try it before you have a NAS.</strong>  LOAD also ships with a demo mode, so you can walk through every screen on your own iPhone with no NAS at all.</p>
     </div>
   </div>
 </section>
