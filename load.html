@@ -98,7 +98,7 @@
       <pre><code>PUT  _lumento/2026.09/.2026.09.14 18.03.52.120.HEIC.{device}.{id}.part
 MOVE → _lumento/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></pre>
       <p><strong>Same layout as Verified mode.</strong>  LOAD names and files each photo by the same rules STORE uses: <code>{root}/_lumento/{YYYY.MM}/</code>, named by when it was taken.  Your archive looks the same whichever mode filled it.</p>
-      <p><strong>Checked after it lands.</strong>  LOAD fingerprints every file in small blocks as it sends it.  Once the file is in place, it asks the NAS for its size and reads back a few blocks at random to compare, and does it again with fresh blocks before it would ever offer to remove a photo from your phone.</p>
+      <p><strong>Checked after it lands.</strong>  LOAD fingerprints every file in small blocks as it sends it.  Once the file is in place, it asks the NAS for its size and reads back a few blocks at random to compare.  LOAD judges it once, when the file arrives; nothing re-checks it later.</p>
       <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it's sent, with its hash, and a copy of that list on the NAS itself, so a reinstalled app still knows what it sent.  If you load photos it already copied, it asks before sending them again.</p>
       <p><strong>Whole files only.</strong>  WebDAV has no standard way to put chunks back together, so a dropped upload restarts that one file from the beginning.</p>
     </div>
@@ -125,7 +125,7 @@ MOVE → _lumento/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></
     <div class="callout">
       <p><strong>Generic mode tells you what it can't check.</strong>  It'll say that files arrived and passed its spot checks, but not that every byte was checked, because nothing on the NAS can do that.</p>
       <p><strong>Try it before you have a NAS.</strong>  LOAD also ships with a demo mode, so you can walk through every screen on your own iPhone with no NAS at all.</p>
-      <p><strong>Questions?</strong>  Why your NAS shows more files than your album: see the <a href="load-faq.html">LOAD FAQ</a>.</p>
+      <p><strong>Questions?</strong>  See the <a href="load-faq.html">LOAD FAQ</a>.</p>
     </div>
   </div>
 </section>
@@ -137,7 +137,7 @@ MOVE → _lumento/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></
       <h2>Your phone, your NAS.<br>Nothing in between.</h2>
     </div>
     <div>
-      <p>LOAD finds lumento STORE on your home network, pairs with it, and sends your photos there and nowhere else.  Pairing is started from the NAS with a six-digit code that never crosses the network, works only on your local network, and fixes the NAS's certificate so the phone only ever talks to that NAS.  "Forget This Server" on the phone removes the phone from the NAS too.</p>
+      <p>LOAD finds lumento STORE on your home network, pairs with it, and sends your photos there and nowhere else.  Pairing is started from the NAS with a six-digit code that never crosses the network, works only on your local network, and fixes the NAS's certificate so the phone only ever talks to that NAS.  "Forget lumento STORE" on the phone removes the phone from the NAS too, when the NAS can be reached.</p>
       <p>There are no accounts, no analytics and no tracking.  See the <a href="privacy.html">privacy policy</a>.</p>
     </div>
   </div>

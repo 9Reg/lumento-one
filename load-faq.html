@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Questions about lumento LOAD: why the files on your NAS outnumber the photos in your album.">
+<meta name="description" content="Questions about lumento LOAD: counting photos, names and dates on your NAS, speed, overnight backup, pairing, and removing photos from your phone.">
 <title>lumento LOAD — questions</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -27,7 +27,7 @@
   <div>
     <a class="crumb" href="load.html">← lumento LOAD</a>
     <h1><span class="product-name product-lockup"><span class="base"><span class="lu">lu</span><span class="mento">mento</span></span><span class="suffix load">LOAD</span></span> questions</h1>
-    <p class="lede">What you see on your NAS compared with what you see in Photos, in plain words.</p>
+    <p class="lede">What you see on your NAS and in the app, in plain words.</p>
   </div>
 </section>
 
@@ -35,22 +35,224 @@
   <div class="wrap split">
     <div>
       <div class="kicker">Counting your photos</div>
-      <h2>Why the NAS shows more files than your album.</h2>
-      <p>Photos on the iPhone shows one picture where there are really several files.  LOAD keeps every one of them.</p>
+      <h2>Why the numbers don't match.</h2>
+      <p>Photos and your NAS count different things, and LOAD keeps every file.</p>
     </div>
     <div>
       <h3 id="more-files">My album had 7 photos in it and on my NAS, I see 39.  Is something wrong?</h3>
       <p>No.  Nothing was duplicated and nothing was invented.  The iPhone <em>shows</em> some things as one picture that are genuinely several files, and your NAS has no way to show them stacked.  It lists the files themselves.  These are the usual ones:</p>
       <ul>
         <li><strong>A burst.</strong>  Photos shows one stack.  Behind it is every frame the camera took, often dozens of separate pictures.  LOAD sends all of them, so you can pick a better frame later.</li>
-        <li><strong>A Live Photo.</strong>  Photos shows one picture that moves when you press it.  It is a still and a short video clip, two files.</li>
-        <li><strong>An edited photo.</strong>  Photos shows the edited version.  The original is still on the phone underneath, so LOAD sends both: the original, and the edited picture beside it.  An edited Live Photo is all four: original still and clip, edited still and clip.</li>
-        <li><strong>A photo taken as RAW and JPEG.</strong>  Photos shows one picture.  It is a pair: the small JPEG and the large RAW file, which are two files.</li>
+        <li><strong>A Live Photo.</strong>  Photos shows one picture that moves when you press it.  It's a still and a short video clip: two files with the same name and different endings, like <code>.HEIC</code> and <code>.MOV</code>.</li>
+        <li><strong>An edited photo.</strong>  Photos shows the edited version.  The original is still on the phone underneath, so LOAD sends both: the original, and the edited picture beside it.  An edited Live Photo is all four: original still and clip, edited still and clip.  The editable recipe for an edit stays in Photos and isn't archived.</li>
+        <li><strong>A photo taken as RAW and JPEG.</strong>  Photos shows one picture.  It's a pair: the small JPEG and the large RAW file, which are two files.</li>
       </ul>
       <p>So an album of seven things can be a burst of a couple of dozen frames, a few Live Photos and an edit or two, and arrive as dozens of files.  The count on the NAS is the number of files, and the count in the album is the number of things Photos chooses to show you.  Neither is wrong: they count different things.</p>
+      <p>If you edit a photo after it's loaded, the next Load or the next overnight backup sends just the edit.  The original is already there.</p>
+      <p>Fewer files than your whole library is normal too.  Photos you've hidden are never read or loaded.  Only the phone's own library is loaded, so shared albums and photos synced from a computer aren't.  Load Album lists only albums you made yourself (no Favorites, Screenshots, Recents or shared albums), and the number beside an album is what a Load of it would send, with every burst frame counted.  Audio and other items that aren't photos or videos are left out, and the finish screen says how many.</p>
+      <p>In the app, "N of M verified" counts what's verified on your NAS against what the Load covers.</p>
+      <h3 id="finish-lines">What do the lines on the finish screen mean?</h3>
+      <p>Each line is a count plus what to do.  The lines are "never reached your NAS", "only partly reached", "not confirmed", "weren't offered by Photos" and "weren't photos or videos".</p>
+      <ul>
+        <li><strong>Never reached your NAS.</strong>  Those photos weren't received.  See the Import Report and run another Load.</li>
+        <li><strong>Only partly reached.</strong>  Some parts of the photo arrived, for example the still but not the clip.  It isn't counted as archived until every part is verified.</li>
+        <li><strong>Not confirmed by your NAS.</strong>  The NAS hadn't confirmed them when the Load ended.  The next Load checks again.</li>
+        <li><strong>Weren't offered by Photos during this Load.</strong>  Photos didn't hand them over this time, and the overnight backup tries again.</li>
+        <li><strong>Weren't photos or videos.</strong>  Audio and other items LOAD leaves alone.  It's a note, not a problem.</li>
+      </ul>
+      <h3 id="identical">What does "identical to another item in your library" or "already on your NAS from before" mean?</h3>
+      <p><strong>Identical to another item:</strong> two items in your library are byte for byte the same file, so only one copy was written to your NAS and both count as verified (shown with a blue tick).</p>
+      <p><strong>Already on your NAS from before:</strong> the NAS already held that file, from an earlier Load or another phone, so nothing was written this time.  The NAS never re-checks it; it recognises the file by the fingerprint it recorded when the file first arrived.</p>
     </div>
   </div>
 </section>
+
+<section class="section" id="loaded">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">What gets loaded</div>
+      <h2>What LOAD sends and what it leaves out.</h2>
+      <p>LOAD sends what Photos gives it, as it is.</p>
+    </div>
+    <div>
+      <h3 id="capture-modes">Does LOAD handle slo-mo, Cinematic, Portrait or ProRAW photos?</h3>
+      <p>Yes.  LOAD doesn't treat any capture mode specially: it sends the files Photos gives it, with their own file types, and puts them in your archive unchanged.  Photos, videos and Live Photos are loaded; audio items aren't.  If a photo has parts LOAD can't archive, the finish screen says so.</p>
+      <h3 id="icloud-only">How do photos that only live in iCloud change a Load?</h3>
+      <p>LOAD is fastest when your photos are stored on the iPhone.  If some originals are only in iCloud, a banner before the Load tells you how many ("N of M aren't on this iPhone yet") and that they'll be fetched from iCloud over Wi-Fi first.  The Load still works; it's slower.  The banner shows when ten or more are missing, and you can dismiss it.</p>
+      <h3 id="limited-access">LOAD says it only sees some photos.  Why does it need full access?</h3>
+      <p>"Load All" has to mean all.  If you've allowed only selected photos, LOAD won't start and tells you to go to Settings &gt; lumento LOAD &gt; Photos and choose All Photos.  The same goes for Load Album and for the overnight backup.  If access is off completely, LOAD asks you to allow it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="names">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Names and dates on the NAS</div>
+      <h2>How LOAD names and dates your files.</h2>
+      <p>A name is written once and never changes.</p>
+    </div>
+    <div>
+      <h3 id="names-dates">Why does a file have an "e" in its name, why is a video's date different from Photos, and why didn't the name change when I changed the date in Photos?</h3>
+      <p>LOAD names files from the date stored inside the file, not from Photos' date.  An "e" right after the time means no date could be read from the file, so the name uses Photos' creation date as an estimate.  That happens for things like screenshots saved as PNG, videos with no date or a UTC-only date, and files with no date at all.  Most photos, and iPhone videos, are read from inside the file and get no "e".  A video's date comes from its own clock and keeps its own time zone; a video that states no time zone is read in the phone's current time zone.</p>
+      <p>If you use Adjust Date &amp; Time in Photos, Photos changes its own date but not the file.  The NAS name keeps the original date, whether you changed it before or after the Load, and a name never changes once it's written.  (A file with no readable date inside falls back to Photos' date, adjusted if you changed it before loading.)  If your STORE admin chose the "original filename" style, names keep the camera's name and never carry an "e".</p>
+      <h3 id="capital-twins">Two files differ only by capitals (IMG_1597.HEIC and IMG_1597 (2).heic).  Is something wrong?</h3>
+      <p>No.  When a file's name would match an existing one apart from capital letters, STORE counts the name as taken, because many NAS shares ignore capitals.  The second file gets " (2)" (then " (3)"), so you'll see <code>IMG_1597.HEIC</code> and <code>IMG_1597 (2).heic</code>.  This is typical for an edited photo in "original filename" style.  Files already in your archive aren't renamed.  A file with identical bytes is recognised and not written twice.</p>
+      <h3 id="two-phones">Two phones into one NAS, or one phone into two destinations: is anything copied twice?</h3>
+      <p>No.  The NAS recognises a photo by its content across the whole archive, not per phone or per folder.  A second phone, or a second destination, gets "already archived" and nothing new is written.  In the app that shows as a blue tick, and the report says "Already archived from an earlier session (duplicate content, nothing written this time)".  Each phone is its own device, so each can carry its own name on files.</p>
+      <h3 id="loading-into">The Load screen says "Loading into X instead".  Where did my photos go?</h3>
+      <p>Into folder X, which is what the NAS used.  The folder you picked went away or the NAS didn't accept it, so the NAS put the photos in X instead.  The screen doesn't say why; check STORE's admin page, Destinations.  Before a Load, if your remembered folder has vanished, the screen says the folder isn't there any more and asks you to choose where the photos should go.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="speed">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Speed and progress</div>
+      <h2>What to expect while a Load runs.</h2>
+      <p>How fast a Load is, and what the screen is telling you.</p>
+    </div>
+    <div>
+      <h3 id="locked-phone">What can I expect when I start a Load and lock my phone?</h3>
+      <p>Plug the phone in before you lock it.  Uploads already handed to iOS keep going with the screen off, and while charging iOS wakes LOAD in the background to prepare more, so a plugged-in Load finishes on its own.  On battery, a locked phone can crawl: iOS gives background work low priority, and LOAD prepares fewer photos at once.  For the fastest Load, keep LOAD open; it keeps the screen awake while it's on screen.</p>
+      <p>If you see a "Task failed" banner on the Lock Screen, that's iOS's own banner, not a message from LOAD.</p>
+      <p>A Load that makes no progress at all for 48 hours stops by itself (the clock restarts every time a photo lands, so a long Load isn't cut off), and says what's safe: everything already verified stays on your NAS.  Start a new Load to continue.</p>
+      <h3 id="how-fast">How fast should a Load be, and how do I tell it's working and not stuck?</h3>
+      <p>Speed depends on your Wi-Fi, router, NAS and phone, and it changes with the phone's temperature and whether LOAD is open: LOAD sends more files at once when it's open and cool and fewer when the phone is warm or LOAD is in the background.</p>
+      <p>Two dials show "Processing" (reading from Photos) and "Transmitting" (sending), each in MB/s.  A dash means that part hasn't reported yet; "0.0" means it has stalled for the moment.  A very large video can hold the numbers still while the NAS verifies the last file ("Finishing up…", which can take a few minutes for very large videos).</p>
+      <p>After 30 seconds of no touching, LOAD fades its own screen so it isn't bright in your pocket.  The phone's real brightness doesn't change and the Load carries on.</p>
+      <p>If nothing has moved for a while, a banner says "Nothing has moved for N minutes" and why.  If the Load will take over 12 hours at the current speed, LOAD asks once whether to keep going (see <a href="#crashes">crashes, forced quits and cancellations</a>).</p>
+      <h3 id="second-load">Why was my second Load so quick, and why is the first Load after pairing again slow?</h3>
+      <p>Before sending anything, LOAD asks the NAS what it already has, and skips those photos by their fingerprint.  A second Load straight after the first sends nothing new.  After you pair again, LOAD clears its own history of what was sent (so it doesn't assume anything), checks every photo against your NAS once, and only sends what's missing.</p>
+      <h3 id="fully-prepared">What does "Fully prepared" mean?  Is it done?</h3>
+      <p>No.  It means LOAD has finished preparing every photo and everything left is uploading and being verified.  The line under it says "Uploads continue in the background — plugged in, they finish on their own."  The Load is done when the finish screen appears.</p>
+      <h3 id="unsaved">What's "received, unsaved" under the progress bar?</h3>
+      <p>Bytes your NAS has received but not yet written and checked.  The bar shows them as a lighter fill; they only count as done once they're verified.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="wrong">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">When something goes wrong</div>
+      <h2>If a Load stops or stalls.</h2>
+      <p>Nothing that's already verified on your NAS is lost.</p>
+    </div>
+    <div>
+      <h3 id="crashes">How does LOAD recover or deal with crashes, forced quits and cancellations?</h3>
+      <p>Nothing that's already verified on your NAS is lost, whatever stops LOAD.</p>
+      <ul>
+        <li><strong>A crash, a force-quit, or iOS closing the app:</strong> open LOAD and it picks the unfinished Load back up by itself, then sends only what's still missing.  If iOS closed it, iOS can also wake LOAD in the background to carry on without you opening it.  If it stopped in its first moments, while it was still listing your photos, there's nothing to pick up: start the Load again.</li>
+        <li><strong>Unplugging or Control Center:</strong> neither stops a Load.  Unplugged, LOAD just prepares fewer photos at once.</li>
+        <li><strong>Cancel This Load:</strong> LOAD asks first: "Nothing already uploaded is affected.  Anything that hasn't been sent yet just won't be sent by this Load."  If you confirm, that Load ends for good: LOAD tells your NAS, stops the uploads still under way and clears its temporary files.  Nothing is deleted from your NAS or your phone, and your next Load skips what's already archived.</li>
+        <li><strong>A very slow Load:</strong> if more than 12 hours are left at the current speed, LOAD asks once whether to keep going.  "Keep Going" changes nothing, and it won't ask again for that Load.  "Stop" ends the Load early and shows its report; what's landed stays, and a new Load sends the rest after preparing those files again.</li>
+      </ul>
+      <h3 id="nas-full">The NAS "doesn't have room" and LOAD is waiting.  Did I lose anything?</h3>
+      <p>No.  The banner says "lumento LOAD is waiting": everything verified so far stays on your NAS, and when space is freed on the NAS the Load continues on its own.  If you leave the app, you also get a notification after 10 minutes.  Free some space on the NAS (STORE's System section shows the free space and says phones are waiting for space).</p>
+      <h3 id="nas-unreachable">The NAS is asleep or unreachable, or the screen says "stuck on its next step".  What do I do?</h3>
+      <p>Nothing is lost.  If LOAD can't reach the NAS it keeps trying; after 30 minutes with nothing moving, a banner says "Nothing has moved for ..." and "Paused — can't reach your NAS.  Retrying."  Wake or reconnect the NAS and it continues.</p>
+      <p>"lumento LOAD is stuck on its next step" appears when planning makes no progress for a while.  It says what's verified stays on the NAS, uploads already under way carry on, and it keeps trying on its own.  A Load can be stopped and started again any time; a new Load picks up where the last one left off.</p>
+      <h3 id="notifications">What do the notifications mean ("is waiting", "is still going", "NAS is still verifying", "Import complete")?</h3>
+      <p>A Load you start sends at most two notifications to the Lock Screen: one live status and one result.</p>
+      <ul>
+        <li><strong>Still going:</strong> "N of M files · X of Y", with a note if it's stalling, can't reach the NAS, or will retry.  It's sent only while the app is in the background.</li>
+        <li><strong>Is waiting:</strong> gives the reason (NAS full, nothing moving).</li>
+        <li><strong>On a slow connection / going to take a while:</strong> the same as the <a href="#crashes">slow-Load question</a>.</li>
+        <li><strong>Import complete:</strong> how many items were archived and how many were already there.</li>
+        <li><strong>Your NAS is still verifying:</strong> everything reached the NAS and it's still checking.</li>
+        <li><strong>Needs your attention:</strong> open LOAD to see what happened.</li>
+      </ul>
+      <p>Overnight backups send these silently.</p>
+      <h3 id="phone-full">My phone is nearly full.  Is a Load OK, and does it need double my library's size?</h3>
+      <p>It doesn't need double.  LOAD keeps only a limited number of prepared files on the phone at a time, and gives each back as soon as it's verified.  Big videos that wouldn't fit are sent in pieces.</p>
+      <p>If space looks tight before a Load starts, a banner says so ("This Load may pause if this iPhone runs low on space").  If preparing the next photo would leave less than 500 MB free, LOAD pauses ("Not enough space to continue"), loses nothing, and carries on when there's room.  It can offer to remove photos that are already verified on the NAS to free space.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="overnight">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Overnight backup</div>
+      <h2>What the overnight backup does.</h2>
+      <p>It runs when iOS chooses, quietly, while the phone charges.</p>
+    </div>
+    <div>
+      <h3 id="overnight-backup">What should I expect from "Back up new photos while charging"?</h3>
+      <p>Do one Load first; the switch only backs up from that point on.  After that, when the switch is on, the phone is charging, LOAD is in the background and you've allowed full photo access, iOS runs the backup when it chooses (usually overnight).  There's no fixed time, and Background App Refresh isn't needed.  iOS can also decide not to run it for days.</p>
+      <p>It sends new photos since your last check, plus photos you've edited, within what you loaded last (your whole library or one album).  Photos that failed, were refused or weren't ready are tried again each night.</p>
+      <p>It runs quietly: anything it posts arrives without a sound or a banner, so look in Notification Center or under the switch, which says when it last checked ("Last checked ...", then "Backed up N new photos", "Nothing new", or "Couldn't reach your NAS").  If the NAS wasn't reachable it says the backup didn't finish and will try again.</p>
+      <p>Pairing again clears its starting point, so the next one checks your whole scope, and it skips what your NAS already has.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pairing">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Pairing and setup</div>
+      <h2>Pairing, setup and what carries over.</h2>
+      <p>Finding your NAS, pairing with it, and what happens when you pair again.</p>
+    </div>
+    <div>
+      <h3 id="local-network">Why does iOS ask about the local network, and what if I tapped Don't Allow?</h3>
+      <p>LOAD needs Local Network access to find your lumento STORE on your Wi-Fi.  If you tapped Don't Allow, LOAD says "Couldn't search this network" with an Open Settings button.  Go to Settings &gt; Privacy &amp; Security &gt; Local Network, switch lumento LOAD on, and make sure the iPhone is on Wi-Fi.</p>
+      <h3 id="pairing-never-finds">Pairing says "Looking for your NAS" for ever, or stops when the phone sleeps.  What do I check?</h3>
+      <p>After about 12 seconds with nothing found it shows "Still looking for your lumento STORE…" and a "Not seeing your lumento STORE?" help.  Check that the iPhone and the NAS are on the same Wi-Fi or network, that Local Network is allowed, and that STORE is running.</p>
+      <p>Searching stops when the app goes to the background and starts again when you open it, so keep the screen on while pairing.</p>
+      <h3 id="code-failed">The pairing code failed and is gone.  Why can't I retype it?</h3>
+      <p>Each code works for one try and for five minutes, so a wrong or mistyped code is used up.  On the NAS, generate a new code; the old one stops working at once.  This is on purpose, so a code can't be guessed.  Pairing only works on your home network.</p>
+      <h3 id="forget-store">What does "Forget lumento STORE" do?  Are my photos affected?</h3>
+      <p>No photo is touched, on the phone or on the NAS.  It asks the NAS to remove this phone (waiting up to 8 seconds), then deletes the pairing on the phone and ends any Load in progress.  You'll need a new code to use LOAD again.  If the NAS can't be reached, the phone says "Forgotten on this phone" and tells you to remove this iPhone on STORE's admin page too.</p>
+      <h3 id="pair-again">LOAD asked me to pair again, or I reinstalled the app or STORE, or I have a new iPhone.  Will everything upload again?</h3>
+      <p>LOAD will check everything again, but only sends what's missing.  Pairing again clears the phone's own record of what was sent, shows "Storage Has Changed", and asks you to run Load All to re-check against what's on the NAS now.  The NAS recognises photos by their content, so ones it holds are skipped and counted "already archived".  A new iPhone is a new device on the NAS, with the same skip.</p>
+      <p>LOAD drops to the pairing screen by itself if the phone has no pairing, the NAS name was forgotten, or the NAS says the phone is no longer paired.  A different certificate doesn't drop it: the status bar says "lumento STORE answered with a different identity" with a "Pair again" button.</p>
+      <h3 id="ticks-vanished">The ticks in the Audit tab disappeared, or it says "waiting to be re-checked".  Why?</h3>
+      <p>A tick means the photo is verified on your NAS under the NAS's current archive.  If the NAS got a new archive (STORE reinstalled onto an empty folder, or a restored or wiped NAS), LOAD stops vouching for those photos: "Your NAS has a new archive, so lumento LOAD has stopped vouching for these until it confirms them there.  Your next Load All does that on its own."  A blue tick is a duplicate of another item (one copy written).</p>
+      <h3 id="account-demo">Do I need an account?  Can I try LOAD without a NAS?  Where's the privacy policy?</h3>
+      <p>No accounts: you pair with the code shown on your NAS and that's all.  The privacy policy is linked in Settings and on the pairing screens.</p>
+      <p>You can try LOAD without a NAS.  When LOAD doesn't find a NAS, the last option is "Don't have a NAS yet? See how lumento LOAD works".  It simulates pairing, Load All and Load Album, the audit and the import report on your phone, it's badged as a demo, and it sends nothing anywhere.</p>
+      <h3 id="versions">Does the app need updating at the same time as STORE?</h3>
+      <p>Keep both up to date.  The app doesn't compare versions with STORE and shows no "update needed" message; if STORE is much older and lacks something, you'd see an ordinary error.</p>
+      <h3 id="generic-mode">What does Generic mode do and not do?</h3>
+      <p>Generic mode writes to any NAS that serves WebDAV over HTTPS.  Files are named and filed like STORE does it.  LOAD checks each file's size and spot-checks blocks when it arrives, duplicates are found on the phone only, and a dropped upload restarts that file.  It doesn't re-check before you remove a photo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="removing">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Removing photos from the phone</div>
+      <h2>Freeing space on your iPhone.</h2>
+      <p>LOAD only offers to remove what's verified on your NAS.</p>
+    </div>
+    <div>
+      <h3 id="wont-be-deleted">Why does LOAD list "These won't be deleted"?</h3>
+      <p>LOAD only offers to remove a photo that's verified on your NAS right now.  It lists the ones it won't, with the reason:</p>
+      <ul>
+        <li>"Not archived yet — run a Load"</li>
+        <li>"Edited since it was archived — run a Load"</li>
+        <li>"Your iPhone is still processing it"</li>
+        <li>"Has a part lumento LOAD can't archive"</li>
+        <li>"Has more parts than lumento LOAD archives"</li>
+        <li>"Part of a burst that isn't fully archived"</li>
+      </ul>
+      <p>Hidden photos are left out without being listed.</p>
+      <h3 id="bursts">I deleted a burst and LOAD held it back.  Why?</h3>
+      <p>LOAD sends every frame of a burst, but it only offers to remove a burst when every frame is verified on your NAS.  If any frame isn't, the whole burst is set aside with "Part of a burst that isn't fully archived".  Run a Load and try again.  The count in LOAD's list includes every frame, but iOS's own confirmation counts the burst once, so the two numbers can differ.</p>
+      <h3 id="recently-deleted">Where do deleted photos go?</h3>
+      <p>To Recently Deleted on the iPhone, where iOS keeps them for 30 days.  After that, your NAS holds the only copy.  LOAD says so before and after: "moved to Recently Deleted on this iPhone.  Once Recently Deleted empties, your NAS holds the only copy."  For an edited photo the archive holds the edited picture and the original; the editable recipe stays only in Photos and goes with this copy.</p>
+      <h3 id="report-zero">After Free Up Space the Import Report says 0 and "your NAS has forgotten them here".  Did I lose them?</h3>
+      <p>No.  The report line is "N photos from this Load are no longer on this iPhone, so your NAS has forgotten them here.  Their files are still in your archive."  It means the phone no longer holds them; the files stay on your NAS.  The same line appears when photos leave the phone any other way.  The NAS forgets only its bookkeeping, never the files.</p>
+      <h3 id="deleted-restored">I deleted or restored a photo in Photos.  What happens to the NAS copy?</h3>
+      <p>Deleting in Photos never touches the NAS files.  The phone tells the NAS it no longer has that photo, and the NAS stops treating it as "already archived" from this phone.  If you restore the photo, the next Load sends it again as a photo the phone holds; because the bytes at the same name are identical, the NAS adopts them rather than storing a second copy.</p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>

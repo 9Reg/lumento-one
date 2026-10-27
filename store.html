@@ -43,7 +43,7 @@
       <ol>
         <li><strong>Install</strong> lumento STORE from App Central.</li>
         <li><strong>Claim it.</strong>  Open its admin page and set a password.  The first password set in the five minutes after a fresh install owns it.  If you miss that window, restart the app from App Central to open a new one.</li>
-        <li><strong>Pick a folder.</strong>  Choose where your archive should live.  STORE never assumes a default and never needs a share with a special name.  It creates a single <code>_lumento</code> folder inside the one you pick and leaves everything else there alone.</li>
+        <li><strong>Pick a folder.</strong>  Choose where your archive should live.  STORE never assumes a default and never needs a share with a special name.  It uses a folder called <code>_lumento</code> inside the one you pick for what arrives, keeps a small hidden marker file beside it, and leaves everything else there alone.  Any destination folders you set up are created beside it.</li>
         <li><strong>Pair a device.</strong>  Start pairing on the NAS, and your iPhone finds STORE on the local network.  Enter the six-digit code and you're done.</li>
       </ol>
     </div>
@@ -56,7 +56,7 @@
     <h2>Accept it, check it, file it.<br>Then leave it alone.</h2>
     <div class="features">
       <div class="feature"><h3>Checked before it's accepted</h3><p>STORE computes its own SHA-256 fingerprint from the bytes that actually arrived.  A file whose fingerprint doesn't match is never stored.</p></div>
-      <div class="feature"><h3>Camera-card import, built in</h3><p>Open STORE's admin page and read a camera card straight into your archive from your browser.  The browser fingerprints every file before sending it, so STORE checks each one against a fingerprint it didn't make.  RAW+JPEG pairs stay together, and a card you've already imported isn't copied twice.  In our test, a 10&nbsp;GB card went from a MacBook's card reader to the NAS in 3 minutes over Wi-Fi&nbsp;6.  Your speed depends on your card reader, your network and your NAS.</p></div>
+      <div class="feature"><h3>Camera-card import, built in</h3><p>Open STORE's admin page and read a camera card straight into your archive from your browser.  The browser fingerprints every file before sending it, so STORE checks each one against a fingerprint it didn't make.  RAW+JPEG pairs stay together, and a card you've already imported isn't copied twice.  Your speed depends on your card reader, your network and your NAS.</p></div>
       <div class="feature"><h3>Named by when it was taken</h3><p>Each file is renamed by the moment it was taken, like <code>2026.09.14 18.03.52.120.HEIC</code>, and filed in <code>_lumento/2026.09/</code> and so on.  A video is dated from its own bytes: an iPhone video by its own clock and time zone, a camcorder clip by the camera's own clock.  When STORE can't read a date, the name says it's an estimate.  The original name stays in the import report.  You choose the date style in STORE's settings.  They're ordinary files in ordinary folders, so any other app can read them.</p></div>
       <div class="feature"><h3>Nothing stored twice</h3><p>A file the archive already holds is recognised by its exact fingerprint, whichever paired device sends it, and isn't written again.  For your phone, that check happens before any bytes are sent.</p></div>
       <div class="feature"><h3>Written safely to disk</h3><p>A file only counts as archived once it's been written all the way to disk and moved into its final place in one step, and its folder entry is on disk too.  After a power cut you get either the whole file or no file.</p></div>
@@ -80,6 +80,7 @@
     <div>
       <p><strong>lumento LOAD</strong> on your iPhone and the <strong>camera-card import</strong> in your browser both send files to STORE.  The import page is part of STORE, and lumento ONE shows it to your household too.  Both use the same <a href="loadmento.html">protocol</a>, so files from both are named, filed, checked and de-duplicated the same way.</p>
       <p>STORE doesn't need lumento ONE: import a card from STORE's own admin page.  ONE doesn't need STORE to show your photos, but its card import is STORE's page.  Together, a card fresh from the camera ends up in the same archive as your phone's photos, and when the run is done the screen tells you whether everything on the card is on the NAS.</p>
+      <p><strong>Questions?</strong>  See the <a href="store-faq.html">STORE FAQ</a>.</p>
     </div>
   </div>
 </section>
