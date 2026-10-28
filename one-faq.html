@@ -32,14 +32,15 @@
 </section>
 
 <section class="section alt" id="playing">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Playing and converting</div>
       <h2>Why some videos start at once.</h2>
       <p>ONE picks the cheapest way to show each video in the browser you're using.  That's why one clip starts straight away and another says "Preparing".</p>
     </div>
-    <div>
-      <h3 id="preparing">Why do some videos play at once and others say "Preparing"?</h3>
+      <details id="preparing">
+        <summary>Why do some videos play at once and others say "Preparing"?</summary>
+        <div class="answer">
       <p>ONE picks one of four ways, per video and per browser:</p>
       <ol>
         <li><strong>Plays as it is.</strong>  Your browser can play the file, so ONE just hands it over.  Nothing is converted.</li>
@@ -48,134 +49,209 @@
         <li><strong>Camcorder pipeline.</strong>  Old camcorder and disc footage (AVCHD, MiniDV, DVD, anything interlaced) is deinterlaced, its picture shape is corrected and its sound is levelled.  You can't skip ahead in it until the conversion finishes.</li>
       </ol>
       <p>"Preparing" means the video is being repackaged or converted.</p>
-      <h3 id="cache">What happens the first time, and the next?</h3>
+      
+        </div>
+      </details>
+      <details id="cache">
+        <summary>What happens the first time, and the next?</summary>
+        <div class="answer">
       <p>The first watch converts the video and ONE keeps the result in its cache.  Later watches play from the cache and start at once.  The cache holds 50 GB and keeps a video for 30 days since it was last watched, by default.  A curator can change both.  The cache is ONE's own, never inside your shares.</p>
-      <h3 id="one-at-a-time">Why does ONE convert one video at a time?</h3>
+      
+        </div>
+      </details>
+      <details id="one-at-a-time">
+        <summary>Why does ONE convert one video at a time?</summary>
+        <div class="answer">
       <p>Converting is heavy work for a NAS, and ONE does it quietly so browsing stays quick.  By default it converts one video at once, and others wait their turn.  A curator can raise that, up to four, under "Conversions at once" in Settings.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="sound-and-colour">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Sound and colour</div>
       <h2>Levelled sound, HDR and log.</h2>
       <p>A few things ONE does to a clip while it converts it, and a few it deliberately leaves alone.</p>
     </div>
-    <div>
-      <h3 id="sound">Why is camcorder sound levelled but phone sound isn't?</h3>
+      <details id="sound">
+        <summary>Why is camcorder sound levelled but phone sound isn't?</summary>
+        <div class="answer">
       <p>Only the camcorder pipeline evens out loudness.  Old recordings can be very quiet, so ONE brings them to a sensible volume.  Today's phones record at a sensible level, so their sound stays exactly as recorded.  Where the camcorder pipeline meets 5.1 surround sound, ONE mixes it down to stereo.</p>
-      <h3 id="hdr">What does ONE do with HDR video and 60 frames a second?</h3>
+      
+        </div>
+      </details>
+      <details id="hdr">
+        <summary>What does ONE do with HDR video and 60 frames a second?</summary>
+        <div class="answer">
       <p>HLG video, which is what an iPhone records, plays as it is.  HDR10 video is converted to look right on an ordinary screen, so it isn't washed out.  A converted video plays at half the frame rate when the original is above 30 (59.94 becomes 29.97, 50 becomes 25), which makes it convert sooner.</p>
-      <h3 id="log">My camera's log footage looks grey.  How do I fix it?</h3>
+      
+        </div>
+      </details>
+      <details id="log">
+        <summary>My camera's log footage looks grey.  How do I fix it?</summary>
+        <div class="answer">
       <p>A camera's log mode records a flat, grey picture meant for grading.  ONE shows it in normal colours.  Sony cameras are recognised from the clip itself, so it just works.  For other makers, a curator opens the clip in the modern viewer and picks its colour profile: Automatic, Normal, or one of the log profiles.  The choice is per clip and ONE keeps it in its own database, so the video file isn't changed.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section alt" id="models">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">ARM and Intel models</div>
       <h2>Why a Drivestor is slower to convert.</h2>
       <p>What your NAS's processor can do decides how long a first watch takes.  Photos, and videos your browser plays as they are, aren't affected on any model.</p>
     </div>
-    <div>
-      <h3 id="arm">How slow are ARM models (Drivestor series)?</h3>
+      <details id="arm">
+        <summary>How slow are ARM models (Drivestor series)?</summary>
+        <div class="answer">
       <p>These models have no video hardware lumento can use, so a video that has to be converted is converted by the processor alone, and slowly.  ONE uses a faster, less compact setting on them, so converted files in the cache are about three times larger.  The first time you play such a video, expect to wait about two to four times its length before it starts: a 10-minute camcorder clip can take 20 to 40 minutes, and a 4K phone video much longer.  After that first time it plays at once.</p>
-      <h3 id="intel-gpu">What does the graphics chip on Intel models do?</h3>
+      
+        </div>
+      </details>
+      <details id="intel-gpu">
+        <summary>What does the graphics chip on Intel models do?</summary>
+        <div class="answer">
       <p>On models with an Intel graphics chip, ONE converts video on it, which is much faster than the processor alone.  Each time it starts, ONE tests the chip.  If the test fails, it converts on the processor for that run.  Models whose processor has no Intel graphics chip, and AMD graphics, convert on the processor.  On Intel models, a curator can turn the graphics chip off with the "Use the GPU" switch in Settings.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="library">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Library and folders</div>
       <h2>Your files, and who sees them.</h2>
       <p>ONE reads your folders where they are.  It doesn't keep a second copy of your library.</p>
     </div>
-    <div>
-      <h3 id="files-changed">Does ONE change my files?</h3>
+      <details id="files-changed">
+        <summary>Does ONE change my files?</summary>
+        <div class="answer">
       <p>No.  ONE only reads your originals.  A photo you rotate is remembered in ONE's own gallery database, and a clip's colour profile in its projects database.  Its thumbnails and cache live outside your shares.  The files themselves stay exactly as they were.</p>
-      <h3 id="folders">Which folders can ONE show?</h3>
+      
+        </div>
+      </details>
+      <details id="folders">
+        <summary>Which folders can ONE show?</summary>
+        <div class="answer">
       <p>Any folder inside any share, up to 100, not only the <code>/Photos</code> share the stock gallery needs.  A curator picks them in Settings.  <a href="specs.html#one-folders">The limits are on the specifications page</a>.  By default ONE skips ADM's recycle bin (<code>#Recycle</code>), files and folders whose names start with a dot, <code>Thumbs.db</code>, and any folder named <code>private</code>, in any capitals.  A curator can review that list.</p>
-      <h3 id="who-sees-what">Who sees what?</h3>
+      
+        </div>
+      </details>
+      <details id="who-sees-what">
+        <summary>Who sees what?</summary>
+        <div class="answer">
       <p>People sign in with their NAS accounts, and each person sees only the folders ADM lets them read.  Viewers can browse.  Curators, which means members of ADM's administrators group, can also manage library folders and settings.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section alt" id="formats-faq">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Formats and browsers</div>
       <h2>Old TVs, new browsers, Canon RAW.</h2>
       <p>The <a href="one.html#formats">full list of formats</a> is on the ONE page.</p>
     </div>
-    <div>
-      <h3 id="old-tv">Will it work on my old TV's browser?</h3>
+      <details id="old-tv">
+        <summary>Will it work on my old TV's browser?</summary>
+        <div class="answer">
       <p>Yes.  ONE has two front ends.  The legacy one is for older browsers, such as 2013 Samsung smart TVs: plain pages whose controls are ordinary links.  Browsing and viewing work there, even with JavaScript turned off.  Current Chrome, Safari, Firefox and Edge, and a Fire TV Stick, get the modern front end automatically, and new features are built there.</p>
-      <h3 id="cr3">What about Canon <code>.cr3</code> files?</h3>
+      
+        </div>
+      </details>
+      <details id="cr3">
+        <summary>What about Canon <code>.cr3</code> files?</summary>
+        <div class="answer">
       <p>They show up in your library as named tiles that say they can't be displayed yet.  They'll start displaying, with no re-indexing, once a CR3 decoder is added.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="phone-sign-in">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Signing in on a phone</div>
       <h2>Why your phone says "not private".</h2>
       <p>When you scan the TV's sign-in code, your phone moves from <code>http://…:20904</code> to <code>https://…:20907</code> before it asks for your password.  That's a security measure.  Over plain <code>http</code>, anyone on the same Wi-Fi could read your password as it crosses the network.  Over <code>https</code> it's encrypted.</p>
     </div>
-    <div>
-      <h3 id="warning-expected">The warning is expected</h3>
+      <details id="warning-expected">
+        <summary>The warning is expected</summary>
+        <div class="answer">
       <p>Your phone will then say the connection isn't private.  It isn't a fault.  ONE encrypts the connection with a certificate it makes for your NAS itself, and your phone has no way to check who made it, so it asks you.  If this is your own NAS at home, continue:</p>
       <ul>
         <li><strong>iPhone (Safari):</strong> tap <strong>Show Details</strong>, then <strong>visit this website</strong>, then <strong>Visit Website</strong>.</li>
         <li><strong>Android (Chrome):</strong> tap <strong>Advanced</strong>, then <strong>Proceed to … (unsafe)</strong>.</li>
       </ul>
       <p>Your phone remembers the choice.  You'll see the warning again only when ONE has to make a new certificate: about every two years, or when the NAS gets a new network address.</p>
-      <h3 id="page-blank">If the page stays blank</h3>
+      
+        </div>
+      </details>
+      <details id="page-blank">
+        <summary>If the page stays blank</summary>
+        <div class="answer">
       <p>Close it and scan the TV's code again.  Safari sometimes remembers your choice but doesn't load the page that first time.</p>
-      <h3 id="proper-certificate">To get rid of the warning for good</h3>
+      
+        </div>
+      </details>
+      <details id="proper-certificate">
+        <summary>To get rid of the warning for good</summary>
+        <div class="answer">
       <p>Give the NAS a proper certificate in ADM, for example from Let's Encrypt, under ADM's certificate settings.  ONE notices it within a minute and uses it instead of its own.  Such a certificate names a domain (say <code>nas.example.com</code>), not an IP address, so open ONE on the TV by that name too.  The phone follows the address the TV used.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section alt" id="card-import-faq">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Card import</div>
       <h2>Camera cards, step by step.</h2>
       <p>How a card gets from your reader onto the NAS is on the <a href="one.html#card-import">ONE page</a>.</p>
     </div>
-    <div>
-      <h3 id="card-needs">What does card import need?</h3>
+      <details id="card-needs">
+        <summary>What does card import need?</summary>
+        <div class="answer">
       <p>lumento STORE installed and paired with ONE, and a current browser.  Before it shows the import form, ONE tests what your browser can do, and if the test fails you get a plain explanation instead of a form that half works.  Without STORE, ONE still works as a complete gallery.  By default only curators can import, and a curator can let any signed-in person do it.</p>
-      <h3 id="card-companions">What happens to a Sony clip's extra files?</h3>
+      
+        </div>
+      </details>
+      <details id="card-companions">
+        <summary>What happens to a Sony clip's extra files?</summary>
+        <div class="answer">
       <p>A Sony camera writes two small files beside each clip: its settings for that clip (an <code>.XML</code>) and a preview picture.  STORE files both beside the clip under its new name, untouched, and ONE shows the clip once, never its preview as a photo of its own.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="projects-faq">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Projects</div>
       <h2>Picking photos for print.</h2>
       <p>A project is a list of photos you mark, such as a year's picks for a calendar.</p>
     </div>
-    <div>
-      <h3 id="projects-zip">What's in a project's zip?</h3>
+      <details id="projects-zip">
+        <summary>What's in a project's zip?</summary>
+        <div class="answer">
       <p>The photos, ready to upload to a print shop.  Videos stay on the project's list but aren't in the zip, because one camcorder clip can outweigh a hundred photos.  The zip is limited to 250 MB by default, and a curator can set that anywhere from 10 MB to 2 GB.  A <code>list.txt</code> inside names every file in the zip and where it came from, and lists any video or missing photo that was left out.</p>
-      <h3 id="projects-size">How many photos can a project hold?</h3>
+      
+        </div>
+      </details>
+      <details id="projects-size">
+        <summary>How many photos can a project hold?</summary>
+        <div class="answer">
       <p>Up to 250 marked photos and videos together.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
@@ -203,5 +279,8 @@
     <div class="foot-links"><a href="specs.html">Specs</a><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
   </div>
 </footer>
+<script>
+(function(){function o(){var e=location.hash&&document.getElementById(location.hash.slice(1));if(e&&e.tagName==="DETAILS"){e.open=true;e.scrollIntoView()}}addEventListener("hashchange",o);o()})();
+</script>
 </body>
 </html>
