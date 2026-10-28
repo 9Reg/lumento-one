@@ -250,3 +250,17 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .rules .feature .status{display:inline-block;margin-bottom:10px;color:var(--ink-soft)}
 .rules .feature p+p{margin-top:8px}
 .advice-note p{color:var(--ink-soft);font-size:15px;max-width:740px;overflow-wrap:anywhere}
+
+/* specs page (specs.html) */
+.p-hero.plain{grid-template-columns:1fr}
+.jump{font-size:15px;color:var(--ink-soft);margin:0}
+.jump a{color:var(--ink)}
+.compare tr[id]{scroll-margin-top:90px}
+.compare td:first-child{width:28%}
+.compare td code{overflow-wrap:anywhere}
+.spec-sub{font-size:22px;letter-spacing:-.02em;margin:48px 0 0;font-weight:600}
+.spec-sub + .table-wrap{margin-top:16px}
+.section .wrap > .intro a{color:var(--ink)}
+@media(max-width:640px){
+  .compare td:first-child{width:auto}
+}

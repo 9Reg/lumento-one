@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The limits and requirements of lumento ONE, STORE, LOAD and KEEP, in plain words.">
+<title>lumento specifications</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand product-name" href="index.html">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </a>
+      <a class="link" href="index.html#family">The lumento family</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap p-hero plain">
+  <div>
+    <a class="crumb" href="index.html#family">← The lumento family</a>
+    <h1>lumento specifications</h1>
+    <p class="lede">The limits and requirements you might hit, in plain words.</p>
+    <p class="jump"><a href="#one">ONE</a> · <a href="#store">STORE</a> · <a href="#load">LOAD</a> · <a href="#keep">KEEP</a></p>
+  </div>
+</section>
+
+<section class="section alt" id="one">
+  <div class="wrap">
+    <div class="kicker">lumento ONE</div>
+    <h2>What ONE needs and where it stops.</h2>
+    <p class="intro">Your gallery on the NAS: what it runs on, which files it shows, and its limits.</p>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th>What</th><th>Limit</th></tr></thead>
+          <tbody>
+            <tr id="one-nas"><td>NAS needed</td><td>An Asustor NAS running ADM 5.1.0 or newer. Runs on x86-64 and 64-bit ARM models. <a href="one-faq.html#arm">More</a></td></tr>
+            <tr id="one-ports"><td>Network ports</td><td>ONE uses ports 20904 (HTTP) and 20907 (HTTPS). Another app on the same ports will clash.</td></tr>
+            <tr id="one-folders"><td>Library folders</td><td>Up to 100 folders. A curator adds them from a picker in Settings. <a href="one-faq.html#folders">More</a></td></tr>
+            <tr id="one-folder-rules"><td>Where a folder can be</td><td>Inside a share (for example <code>/volume1/Photos/...</code>). Not a whole volume, not ADM&rsquo;s system folders, not another person&rsquo;s home folder. <a href="one-faq.html#folders">More</a></td></tr>
+            <tr id="one-folder-path"><td>Folder path length</td><td>Up to 4096 bytes.</td></tr>
+            <tr id="one-folder-name"><td>Folder display name</td><td>Up to 100 characters.</td></tr>
+            <tr id="one-photo-types"><td>Photo types</td><td>JPEG, PNG, HEIC, HEIF, FlashPix. Camera RAW: ARW, NEF, CR2, DNG (shown from the preview inside the file). <a href="one-faq.html#cr3">More</a></td></tr>
+            <tr id="one-cr3"><td>Canon CR3</td><td>Listed, but shows a placeholder tile for now. <a href="one-faq.html#cr3">More</a></td></tr>
+            <tr id="one-photo-other"><td>Photo types not shown</td><td>Other RAW brands (ORF, RW2, RAF and more), WebP, GIF, TIFF, AVIF, BMP.</td></tr>
+            <tr id="one-photo-big"><td>Very large photos</td><td>A photo over 100 megapixels, or a file over 256 MiB, shows a placeholder tile.</td></tr>
+            <tr id="one-video-types"><td>Video types</td><td>MP4, M4V, MOV, AVI, MTS, M2TS, MKV, WMV, MPG, MPEG, and DVD-Video folders.</td></tr>
+            <tr id="one-video-play"><td>How video plays</td><td>Plays as-is when your screen can play the file; otherwise ONE changes the container or converts it when you press play. <a href="one-faq.html#preparing">More</a></td></tr>
+            <tr id="one-video-cap"><td>Converted video</td><td>Converted video is H.264 up to 1080p. Frame rates above 30 are halved. Originals that play as-is keep their size and frame rate. <a href="one-faq.html#hdr">More</a></td></tr>
+            <tr id="one-convert-slots"><td>Conversions at once</td><td>One at a time. A curator can raise it to 4. <a href="one-faq.html#one-at-a-time">More</a></td></tr>
+            <tr id="one-cache"><td>Viewing-copy cache</td><td>Converted videos and large-photo copies are kept up to 50 GB and for 30 days after last use. A curator can change both. Thumbnails aren&rsquo;t counted. <a href="one-faq.html#cache">More</a></td></tr>
+            <tr id="one-keepfree"><td>Free space kept</td><td>ONE keeps the larger of 10 GiB or 5% of the volume free, and stops converting below that. A curator can set it. <a href="one-faq.html#cache">More</a></td></tr>
+            <tr id="one-mark-limit"><td>Items per project</td><td>Up to 250 marked photos and videos together in one project. <a href="one-faq.html#projects-size">More</a></td></tr>
+            <tr id="one-projects"><td>Projects</td><td>Up to 500 projects. A name is 1 to 60 characters and can&rsquo;t repeat. <a href="one-faq.html#projects-size">More</a></td></tr>
+            <tr id="one-zip"><td>Project zip</td><td>Photos only (videos stay on the list). Capped at 250 MB by default; a curator can set 10 MB to 2 GB. Photos that don&rsquo;t fit are named in <code>list.txt</code>. <a href="one-faq.html#projects-zip">More</a></td></tr>
+            <tr id="one-accounts"><td>Who can sign in</td><td>People with an account on the NAS. Two roles: Viewer (browse and watch) and Curator (also manage). Curators are the NAS administrators. <a href="one-faq.html#who-sees-what">More</a></td></tr>
+            <tr id="one-session"><td>Staying signed in</td><td>30 days per device; up to 50 devices per account (the 51st signs out the oldest).</td></tr>
+            <tr id="one-reask"><td>Curator changes</td><td>Curators type their password again after 15 minutes idle.</td></tr>
+            <tr id="one-tv"><td>TV remote link</td><td>Ends 10 minutes after the TV stops checking, or 4 hours after the last press.</td></tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</section>
+
+<section class="section" id="store">
+  <div class="wrap">
+    <div class="kicker">lumento STORE</div>
+    <h2>What STORE needs and where it stops.</h2>
+    <p class="intro">The archive on your NAS: what it runs on, how it names files, and the limits you can hit.</p>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th>What</th><th>Limit</th></tr></thead>
+          <tbody>
+            <tr id="store-nas"><td>NAS needed</td><td>An Asustor NAS running ADM 5.1.0 or newer, installed from App Central. Runs on x86-64 and 64-bit ARM models. Other brands aren&rsquo;t supported yet. <a href="store-faq.html#which-nas">More</a></td></tr>
+            <tr id="store-ports"><td>Network ports</td><td>Phones and the admin page use 20903 (HTTPS). <a href="store-faq.html#admin-page-port">More</a></td></tr>
+            <tr id="store-folder"><td>Archive folder</td><td>You pick one existing folder inside a volume (for example <code>/volume1/Photos</code>), never a bare volume. STORE doesn&rsquo;t create it. <a href="store-faq.html#archive-folder">More</a></td></tr>
+            <tr id="store-writes"><td>Where STORE writes</td><td>Only inside that folder: <code>_lumento</code>, the destination folders you add beside it, and one small hidden marker file. <a href="store-faq.html#hidden-files">More</a></td></tr>
+            <tr id="store-destinations"><td>Destinations</td><td>Up to 500, nested up to 8 levels. A name is one folder name, up to 255 bytes, with none of <code>/ \ : * ? &quot; &lt; &gt; |</code>, and can&rsquo;t be <code>_lumento</code>, <code>default</code>, <code>#recycle</code> or a bare <code>2026.08</code>.</td></tr>
+            <tr id="store-names"><td>File names</td><td>Capture date and time to the millisecond, original extension kept, for example <code>2026.08.30 13.46.33.123.HEIC</code>, in a month folder. A clash gets (2), (3). <a href="store-faq.html#file-names">More</a></td></tr>
+            <tr id="store-estimated"><td>Estimated dates</td><td>An &ldquo;e&rdquo; after the time means the date couldn&rsquo;t be read from the file. <a href="store-faq.html#estimated-date">More</a></td></tr>
+            <tr id="store-never"><td>Existing files</td><td>STORE never renames, moves or deletes a file it saved. Changing naming settings affects new files only. <a href="store-faq.html#move-or-delete">More</a></td></tr>
+            <tr id="store-pairing"><td>Pairing a phone</td><td>Start on the admin page. The code is 6 digits, works for 5 minutes and for one try. Pairing works only on your home network. <a href="store-faq.html#pairing-code">More</a></td></tr>
+            <tr id="store-lockout"><td>Wrong pairing codes</td><td>25 wrong tries from one address in 24 hours locks it out for 24 hours (7 days if it happens again). <a href="store-faq.html#pairing-code">More</a></td></tr>
+            <tr id="store-password"><td>Admin password</td><td>At least 15 characters. Set the first one within 5 minutes of STORE starting, from your home network. <a href="store-faq.html#password-wont-set">More</a></td></tr>
+            <tr id="store-login"><td>Admin login</td><td>Signs out after 15 minutes idle and after 4 hours at most. 10 wrong passwords in 15 minutes lock that address out for 15 minutes. <a href="store-faq.html#forgot-password">More</a></td></tr>
+            <tr id="store-disk-full"><td>When the disk is nearly full</td><td>STORE refuses new uploads when saving would leave less than 500 MiB free. Phones carry on by themselves when space returns. <a href="store-faq.html#out-of-space">More</a></td></tr>
+            <tr id="store-bigfile"><td>Largest file</td><td>512 GiB per file.</td></tr>
+            <tr id="store-card"><td>Card import</td><td>An admin can turn it off. <a href="store-faq.html#card-who">More</a></td></tr>
+            <tr id="store-admin-home"><td>Admin page</td><td>Opens only from your home network.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="spec-sub" id="store-settings">Settings you can change</h3>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th>Setting</th><th>Default</th><th>Range</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr id="store-set-headroom"><td>Free space kept on the archive disk<br><code>archive_free_space_headroom_bytes</code></td><td data-label="Default">500 MiB</td><td data-label="Range">64 MiB to 64 TiB</td><td data-label="What it does">Free space STORE keeps on the archive disk. Below it, uploads wait.</td></tr>
+            <tr id="store-set-bigfile"><td>Largest photo or video accepted<br><code>max_announced_resource_bytes</code></td><td data-label="Default">512 GiB</td><td data-label="Range">1 MiB to 64 TiB</td><td data-label="What it does">Largest single photo or video STORE accepts.</td></tr>
+            <tr id="store-set-destinations"><td>Number of destination folders<br><code>max_destinations</code></td><td data-label="Default">500</td><td data-label="Range">1 to 100,000</td><td data-label="What it does">How many destination folders can exist.</td></tr>
+            <tr id="store-set-depth"><td>Destination folder depth<br><code>max_destination_depth</code></td><td data-label="Default">8</td><td data-label="Range">1 to 32</td><td data-label="What it does">How many folder levels deep a destination can go.</td></tr>
+            <tr id="store-set-uploads"><td>Uploads at once<br><code>upload_capacity</code></td><td data-label="Default">8</td><td data-label="Range">1 to 64</td><td data-label="What it does">Uploads accepted at once, shared among phones and card imports.</td></tr>
+            <tr id="store-set-code-ttl"><td>Pairing code lifetime<br><code>pairing_code_ttl</code></td><td data-label="Default">5 minutes</td><td data-label="Range">30 seconds to 1 hour</td><td data-label="What it does">How long a pairing code works.</td></tr>
+            <tr id="store-set-code-tries"><td>Tries per pairing code<br><code>pairing_code_max_tries</code></td><td data-label="Default">1</td><td data-label="Range">1 to 10</td><td data-label="What it does">How many tries one pairing code gets.</td></tr>
+            <tr id="store-set-idle"><td>Admin page idle sign-out<br><code>admin_token_idle_timeout</code></td><td data-label="Default">15 minutes</td><td data-label="Range">1 minute to 30 days</td><td data-label="What it does">Idle time before the admin page signs you out (never longer than 4 hours in all).</td></tr>
+            <tr id="store-set-card"><td>Card import allowed<br><code>card_import_enabled</code></td><td data-label="Default">on</td><td data-label="Range">on or off</td><td data-label="What it does">Whether card imports can be started.</td></tr>
+            <tr id="store-set-card-memory"><td>How long a card import is remembered<br><code>card_import_retention</code></td><td data-label="Default">180 days</td><td data-label="Range">1 minute to 3650 days</td><td data-label="What it does">How long the NAS remembers a card import. After that, the same card copies again.</td></tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</section>
+
+<section class="section alt" id="load">
+  <div class="wrap">
+    <div class="kicker">lumento LOAD</div>
+    <h2>What LOAD needs and where it stops.</h2>
+    <p class="intro">Your iPhone, loaded to the NAS: what it needs and the limits you can hit.</p>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th>What</th><th>Limit</th></tr></thead>
+          <tbody>
+            <tr id="load-ios"><td>iPhone needed</td><td>An iPhone with iOS 18 or later. iPhone only (not iPad), portrait.</td></tr>
+            <tr id="load-access"><td>Photos access</td><td>Needs full access to your photos (&ldquo;All Photos&rdquo;). With selected photos only, the overnight backup won&rsquo;t run. <a href="load-faq.html#limited-access">More</a></td></tr>
+            <tr id="load-what"><td>What gets loaded</td><td>Photos, videos and Live Photos. Audio and other items are skipped. Hidden photos are never loaded. Photos from shared albums and photos synced from a computer aren&rsquo;t loaded. <a href="load-faq.html#wont-be-deleted">More</a></td></tr>
+            <tr id="load-bursts"><td>Bursts</td><td>Every frame of a burst is loaded. <a href="load-faq.html#bursts">More</a></td></tr>
+            <tr id="load-edits"><td>Edits</td><td>An edited photo or video arrives beside the original. Apple&rsquo;s edit data isn&rsquo;t copied. <a href="load-faq.html#names-dates">More</a></td></tr>
+            <tr id="load-parts"><td>Files per photo</td><td>Up to 4 files for one photo (a Live Photo with an edit is 4). Anything beyond that is left out, and the photo is reported as only partly reached.</td></tr>
+            <tr id="load-modes"><td>Slo-mo, Cinematic, Portrait, ProRAW</td><td>Load like any other photo or video; no special handling. <a href="load-faq.html#capture-modes">More</a></td></tr>
+            <tr id="load-icloud"><td>Photos only in iCloud</td><td>LOAD downloads them first and tells you the count before the Load. <a href="load-faq.html#icloud-only">More</a></td></tr>
+            <tr id="load-space"><td>Free space on the phone</td><td>A Load pauses when the phone has under 500 MB free, and carries on by itself when there&rsquo;s room. <a href="load-faq.html#phone-full">More</a></td></tr>
+            <tr id="load-network"><td>Network</td><td>Phone and NAS must be on the same network. LOAD asks iOS for Local Network permission to find the NAS. No away-from-home access. <a href="load-faq.html#local-network">More</a></td></tr>
+            <tr id="load-code"><td>Pairing code</td><td>6 digits, typed as 123 456. Made on the NAS, works 5 minutes, one try. <a href="load-faq.html#code-failed">More</a></td></tr>
+            <tr id="load-one-nas"><td>NAS per phone</td><td>A phone is paired with one NAS at a time. Pairing again replaces it, and the next Load only sends what&rsquo;s missing. <a href="load-faq.html#pair-again">More</a></td></tr>
+            <tr id="load-overnight"><td>Overnight backup</td><td>Off until you turn it on. Runs when the switch is on, the phone is charging, LOAD is in the background, you&rsquo;ve allowed full photo access, and you&rsquo;ve done one Load. iOS chooses when; there&rsquo;s no fixed time. <a href="load-faq.html#overnight-backup">More</a></td></tr>
+            <tr id="load-stall"><td>A Load that stalls</td><td>A Load with no file landing for 48 hours stops by itself. <a href="load-faq.html#crashes">More</a></td></tr>
+            <tr id="load-delete"><td>Freeing up space</td><td>LOAD never deletes from your phone unless you start &ldquo;Delete Uploaded Photos&rdquo;, and then only photos it has just checked are safely on the NAS. They go to Recently Deleted (30 days, Apple&rsquo;s rule). STORE never deletes archived files. <a href="load-faq.html#recently-deleted">More</a></td></tr>
+            <tr id="load-account"><td>Account</td><td>None. No sign-in. <a href="load-faq.html#account-demo">More</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</section>
+
+<section class="section" id="load-generic">
+  <div class="wrap">
+    <div class="kicker">LOAD Generic mode</div>
+    <h2>For a NAS without STORE.</h2>
+    <p class="intro">Generic mode is coming soon, and its specifications will go here.</p>
+  </div>
+</section>
+
+<section class="section alt" id="keep">
+  <div class="wrap">
+    <div class="kicker">lumento KEEP</div>
+    <h2>What KEEP needs and where it stops.</h2>
+    <p class="intro">Your NAS, watched for failed backups and silent damage: what KEEP needs and the limits you can hit.</p>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th>What</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr id="keep-nas"><td>NAS needed</td><td>An Asustor NAS running ADM 5.1 or newer. Runs on x86-64 and 64-bit ARM models.</td></tr>
+          <tr id="keep-share"><td>What it watches</td><td>The Photos share (<code>/volume1/Photos</code>) for now. Watching every share is next.</td></tr>
+          <tr id="keep-window"><td>When it reads</td><td>Only inside a nightly window you pick, in the NAS&rsquo;s local time, and nothing until you pick one. A window can cross midnight; the same start and end means all day.</td></tr>
+          <tr id="keep-limit"><td>Nightly read limit</td><td>Optional, in GiB. Blank means no limit.</td></tr>
+          <tr id="keep-pause"><td>Staying out of the way</td><td>It pauses while a RAID sync, a scrub or a backup runs.</td></tr>
+          <tr id="keep-files"><td>Your files</td><td>It only reads. It never repairs, renames, copies over or deletes a file, and the kernel blocks it from writing. It writes only its own index, pages and log lines.</td></tr>
+          <tr id="keep-fs"><td>File systems</td><td>It warns about an ext4 volume, and an exFAT, FAT or NTFS backup disk, because they can&rsquo;t catch damage by themselves. ext4 has no scrub.</td></tr>
+          <tr id="keep-notices"><td>Notices</td><td>In ADM&rsquo;s System log, once per change. KEEP checks that ADM will email you, but doesn&rsquo;t send email itself.</td></tr>
+          <tr id="keep-stale"><td>When it warns</td><td>A backup with no success in 7 days, or in its schedule plus a day if that&rsquo;s longer. A snapshot older than 2 days. A scrub or RAID check older than 35 days.</td></tr>
+          <tr id="keep-locked"><td>Locked shares</td><td>A locked encrypted share isn&rsquo;t checked until you unlock it.</td></tr>
+          <tr id="keep-admin"><td>Admin page</td><td>HTTPS on port 20816, on your home network. Don&rsquo;t forward it to the internet.</td></tr>
+          <tr id="keep-password"><td>Admin password</td><td>At least 12 characters. A sign-in lasts 12 hours.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="intro">Something missing? <a href="mailto:hello@lumento.one">Tell us</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="footer-brand">
+      <div class="brand product-name">
+        <span class="lu">lu</span><span class="mento">mento</span>
+      </div>
+    </div>
+    <div>Your media, your storage, no cloud, on your terms. Coming soon.</div>
+    <div class="foot-links"><a href="specs.html">Specs</a><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+  </div>
+</footer>
+</body>
+</html>
