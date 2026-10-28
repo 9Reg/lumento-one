@@ -469,7 +469,7 @@ Intro line for the section: "Importing a camera card happens in your browser, on
 **Sources.** CODE-D Q9 (layer.rs:1-11; import-auth.js:456). **Confidence.** CONFIRMED (layer.rs:4-9: admin session or a ONE importer token; app token and phone token get 401). ONE dropped from the question and answer (LOAD and STORE only).
 
 #### C20. Can I undo an import?
-**A.** No. Cancel stops the run; files already archived stay archived. STORE never deletes what it has archived.
+**A.** No. Cancel stops the run; files already archived stay archived. STORE never deletes what it has archived. But you can.
 **Sources.** CODE-D Q9 (giveup.rs:3; import.js:1703-1709). **Confidence.** CONFIRMED.
 
 #### C21. Does importing change or delete anything on my card?

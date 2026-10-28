@@ -17,6 +17,7 @@
         <span class="lu">lu</span><span class="mento">mento</span>
       </a>
       <a class="link" href="index.html#family">The lumento family</a>
+      <a class="link" href="specs.html">Specs</a>
     </nav>
   </div>
 </header>
@@ -32,120 +33,199 @@
 </section>
 
 <section class="section alt" id="setup">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Setting up</div>
       <h2>Getting STORE running on your NAS.</h2>
       <p>Passwords, the admin page, your archive folder and what STORE needs from your NAS.</p>
     </div>
-    <div>
-      <h3 id="password-wont-set">The admin page won't let me set a password, or says it's already claimed.</h3>
+      <details id="password-wont-set">
+        <summary>The admin page won't let me set a password, or says it's already claimed.</summary>
+        <div class="answer">
       <p>The first password set in the five minutes after STORE starts owns it. It needs at least 15 characters and mustn't be an obvious one. Setting the first password works only from a device on your home network.</p>
       <p>If the five minutes passed and nobody claimed it, turn lumento STORE off and on again in App Central for a fresh five minutes. If the page says "already claimed", someone set the password. If that was you, log in.</p>
-      <h3 id="certificate-warning">The browser warns about the certificate. Is it safe?</h3>
+      
+        </div>
+      </details>
+      <details id="certificate-warning">
+        <summary>The browser warns about the certificate. Is it safe?</summary>
+        <div class="answer">
       <p>Yes, that's expected. STORE makes its own security certificate, which your browser doesn't know, so it warns. The connection is still encrypted.</p>
       <p>Your iPhone doesn't rely on the browser's check. It remembers the certificate's fingerprint when you pair and refuses to talk to anything else. The certificate effectively never expires and is only remade if its files go missing, in which case phones must pair again.</p>
-      <h3 id="admin-page-port">Where is the admin page, and why port 20903?</h3>
+      
+        </div>
+      </details>
+      <details id="admin-page-port">
+        <summary>Where is the admin page, and why port 20903?</summary>
+        <div class="answer">
       <p>Open <code>https://&lt;your NAS&gt;:20903/</code> in a browser, or open it from the lumento STORE icon on the ADM desktop. The page has three tabs: Settings, Card import and Logs. The number is just the port STORE listens on.</p>
-      <h3 id="forgot-password">I forgot the admin password.</h3>
+      
+        </div>
+      </details>
+      <details id="forgot-password">
+        <summary>I forgot the admin password.</summary>
+        <div class="answer">
       <p>There's no reset button, on purpose. Uninstall lumento STORE, install it again, and set a new password within five minutes.</p>
       <p>You'll lose STORE's settings, the password, your destinations, your phone pairings and its security certificate, so phones pair again. You keep your photos and the marker file in your archive. If you pick the same archive folder again, STORE recognises the marker and carries on with that archive. Phones then announce everything again, but files already at the right name with identical contents are adopted, not stored twice.</p>
       <p>Files you renamed or moved, or a changed naming style, would be written again.</p>
-      <h3 id="archive-folder">Why does STORE ask for a folder? Can I change it later?</h3>
+      
+        </div>
+      </details>
+      <details id="archive-folder">
+        <summary>Why does STORE ask for a folder? Can I change it later?</summary>
+        <div class="answer">
       <p>STORE writes only inside the folder you choose and leaves the rest of the NAS alone. It must be a folder inside a volume (for example <code>/volume1/Photos</code>), not the bare volume.</p>
       <p>You can change it later on the admin page ("Change folder"), but nothing already archived is moved. STORE treats the new folder as a new archive: photos loaded before stop counting as loaded, and phones send everything once again (anything already there is skipped). The page doesn't warn you when you change it, and changing back later doesn't bring the old archive's records back.</p>
-      <h3 id="which-nas">Which NAS works, and why only Asustor? Does it need Docker?</h3>
+      
+        </div>
+      </details>
+      <details id="which-nas">
+        <summary>Which NAS works, and why only Asustor? Does it need Docker?</summary>
+        <div class="answer">
       <p>Today STORE is an App Central package for Asustor NAS (ADM 5.1 or later; x86-64 and ARM). It's one package and needs no Docker, database or other app.</p>
       <p>On any other NAS that serves WebDAV over HTTPS, LOAD's Generic mode is the way in.</p>
-      <h3 id="nas-permissions">What NAS permissions does STORE need?</h3>
+      
+        </div>
+      </details>
+      <details id="nas-permissions">
+        <summary>What NAS permissions does STORE need?</summary>
+        <div class="answer">
       <p>STORE runs as its own system account (<code>lumentostore</code>, not root), which is in ADM's administrators group, so it can reach any folder that group can write. It only writes inside the archive folder you choose.</p>
       <p>The admin page's folder browser lists folders under your volumes to whoever has STORE's password. Files are saved readable by others (0644, folders 0755), so ADM share permissions decide who can see them.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="on-your-nas">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">What STORE puts on your NAS</div>
       <h2>What you&rsquo;ll find in your archive folder.</h2>
       <p>The files STORE keeps, how it names them, and what you can safely move around.</p>
     </div>
-    <div>
-      <h3 id="hidden-files">What are <code>.lumento-archive-id.json</code>, <code>.staging</code>, <code>.chunks</code> and <code>.part</code>? Can I delete them?</h3>
+      <details id="hidden-files">
+        <summary>What are <code>.lumento-archive-id.json</code>, <code>.staging</code>, <code>.chunks</code> and <code>.part</code>? Can I delete them?</summary>
+        <div class="answer">
       <p>Leave them alone. STORE looks after them.</p>
       <ul>
       <li><code>.lumento-archive-id.json</code> is a small marker beside <code>_lumento</code> that tells STORE which archive this is. Don't delete it: STORE would treat the archive as new and phones would send everything again.</li>
       <li><code>.staging</code> and <code>.chunks</code> (hidden, inside <code>_lumento</code>) hold files still arriving. STORE cleans them up itself. A <code>.part</code> file name appears in chunk storage under <code>.chunks</code>.</li>
       <li>STORE never creates <code>.DS_Store</code>. macOS does.</li>
       </ul>
-      <h3 id="file-names">How are files named, and can I change the date style or keep original names?</h3>
+      
+        </div>
+      </details>
+      <details id="file-names">
+        <summary>How are files named, and can I change the date style or keep original names?</summary>
+        <div class="answer">
       <p>By default a file is named like <code>2026.08.30 13.46.33.123.HEIC</code> and filed in <code>_lumento/2026.08/</code>.</p>
       <p>On the admin page, Filename rules lets you choose the date style (2026.08.30, 2026-08-30, 20260830 or original filename), the joiner (space or underscore), seconds or milliseconds, a person label (off, after the time, before the date) and whether months sit in year folders.</p>
       <p>A change affects only new files. STORE never renames old ones, so two styles can sit side by side. That's intended.</p>
-      <h3 id="estimated-date">What's the &ldquo;e&rdquo; at the end of a time like <code>&hellip;000e.MOV</code>? Why are some files in the wrong month?</h3>
+      
+        </div>
+      </details>
+      <details id="estimated-date">
+        <summary>What's the &ldquo;e&rdquo; at the end of a time like <code>&hellip;000e.MOV</code>? Why are some files in the wrong month?</summary>
+        <div class="answer">
       <p>The "e" means the date is an estimate: STORE couldn't read a date inside the file. That happens for files with no readable date, such as PNG screenshots, videos with no date or a UTC-only date, and files from a camera card with no date inside.</p>
       <p>For those, STORE uses the file's own date, which can be wrong, and files are filed in the month of the name. Photos, iPhone videos and the other formats STORE can read are dated from inside the file, with no "e".</p>
-      <h3 id="numbered-names">Some files end in (2), or two look identical. Are they duplicates?</h3>
+      
+        </div>
+      </details>
+      <details id="numbered-names">
+        <summary>Some files end in (2), or two look identical. Are they duplicates?</summary>
+        <div class="answer">
       <p>No. A " (2)" means two different files would have had the same name (the same moment, or names that differ only by capitals), so the second got a number.</p>
       <p>Files that are byte for byte identical aren't stored twice, so identical copies don't pile up.</p>
-      <h3 id="move-or-delete">I moved or deleted photos inside <code>_lumento</code>. Will LOAD send them again?</h3>
+      
+        </div>
+      </details>
+      <details id="move-or-delete">
+        <summary>I moved or deleted photos inside <code>_lumento</code>. Will LOAD send them again?</summary>
+        <div class="answer">
       <p>No. STORE never looks at the archive after writing a file, so it doesn't notice, and LOAD still counts them as archived. Reorganise the folders freely.</p>
       <p>Deleting the marker file is the exception: STORE then sees a new archive and phones send everything again.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section alt" id="phones">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Phones and pairing</div>
       <h2>Connecting and disconnecting phones.</h2>
       <p>How the pairing code works, how to unpair a phone, and what a new phone sends.</p>
     </div>
-    <div>
-      <h3 id="pairing-code">What does the pairing code do, why is it one try, and how long do lockouts last?</h3>
+      <details id="pairing-code">
+        <summary>What does the pairing code do, why is it one try, and how long do lockouts last?</summary>
+        <div class="answer">
       <p>Start pairing on the admin page ("Generate pairing code"). The code is six digits, lasts five minutes and allows one try. A new code cancels the old one. It works only on your home network.</p>
       <p>Repeated wrong tries from one address (25 in a day) lock that address out for 24 hours, or 7 days if it repeats. Many addresses at once pause pairing across the whole NAS until it clears itself after six hours. You can press "Clear" on the admin page.</p>
-      <h3 id="unpair-phone">How do I unpair a phone?</h3>
+      
+        </div>
+      </details>
+      <details id="unpair-phone">
+        <summary>How do I unpair a phone?</summary>
+        <div class="answer">
       <p>On the admin page, go to Paired devices and press "Unpair". The phone stops being able to send photos at once and can only return by pairing with a new code. Photos it already sent stay where they are.</p>
       <p>On the phone, "Forget lumento STORE" does the same from its side.</p>
-      <h3 id="new-phone">I reinstalled LOAD or have a new iPhone. Will everything upload again?</h3>
+      
+        </div>
+      </details>
+      <details id="new-phone">
+        <summary>I reinstalled LOAD or have a new iPhone. Will everything upload again?</summary>
+        <div class="answer">
       <p>No. LOAD checks everything on the phone once, but the NAS skips what it already holds, by content. Nothing is stored twice.  <a href="load-faq.html#pair-again">More in the LOAD FAQ</a>.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="trouble">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">When something goes wrong</div>
       <h2>Full disks, updates and interrupted imports.</h2>
       <p>What STORE does when space runs out, after an update, and when a card import ends early.</p>
     </div>
-    <div>
-      <h3 id="out-of-space">The NAS ran out of space. Did I lose photos?</h3>
+      <details id="out-of-space">
+        <summary>The NAS ran out of space. Did I lose photos?</summary>
+        <div class="answer">
       <p>No. STORE refuses new uploads while free space is below its cushion (500 MiB by default), tells the phone to wait, keeps everything already verified and carries on once there's room.</p>
       <p>The admin page's System section shows free space and says "Phones are waiting for space."</p>
-      <h3 id="updating-store">Will updating STORE log out my phone or lose settings?</h3>
+      
+        </div>
+      </details>
+      <details id="updating-store">
+        <summary>Will updating STORE log out my phone or lose settings?</summary>
+        <div class="answer">
       <p>No. An update keeps your settings, password, destinations and pairings, and phones stay paired. STORE saves its database and its certificate before the update and restores them after.</p>
       <p>If an update stops partway, STORE won't start until that saved copy is restored, and it tries again at each start.</p>
-      <h3 id="partial-import-safe">Is my archive OK after an import ended &ldquo;partial&rdquo;, or the card was pulled?</h3>
+      
+        </div>
+      </details>
+      <details id="partial-import-safe">
+        <summary>Is my archive OK after an import ended &ldquo;partial&rdquo;, or the card was pulled?</summary>
+        <div class="answer">
       <p>Yes. Files that were archived stay archived: a file only counts once it's fully written and verified. A partial upload is cleared when the run ends.</p>
       <p>Run the import again with the card, and files already archived are skipped.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section alt" id="private">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Staying private</div>
       <h2>What leaves your network, and what doesn&rsquo;t.</h2>
       <p>STORE sends nothing out by itself, and your phone can reach it from away only if you set that up.</p>
     </div>
-    <div>
-      <h3 id="leaves-network">Does anything leave my network? Can I use LOAD away from home?</h3>
+      <details id="leaves-network">
+        <summary>Does anything leave my network? Can I use LOAD away from home?</summary>
+        <div class="answer">
       <p>STORE sends nothing out by itself: no update checks, no telemetry, no cloud, and the admin page loads no outside assets. LOAD talks to your NAS and nowhere else, over an encrypted connection to the NAS's port 20903.</p>
       <p>What crosses that link on a Load: the files, their fingerprints, and each file's name, size and capture time (plus the destination and the person label). The NAS replies with what it did, including where each file was filed. Pairing a phone and claiming STORE work only from your home network.</p>
       <p><strong>Away from home.</strong> Yes, once you set it up. STORE's admin page has an "Outside access" section that holds one address: a DDNS name or a host name you own, with a port if your router maps a different outside port to 20903.</p>
@@ -154,28 +234,50 @@
       <p>You make the address reachable yourself: forward your router's port 20903 to the NAS, or use a VPN. Don't use a proxy or tunnel program on another computer at home: STORE would take its visitors for home devices.</p>
       <p>Forwarding port 20903 lets your phone reach STORE from away, and nothing else. The admin page, card import included, opens only from your home network.</p>
       <p>In LOAD's Settings, "Load over cellular" is off at first: until you turn it on, LOAD transfers only on Wi-Fi, and a Personal Hotspot counts as cellular. If no outside address is set, LOAD says "lumento STORE can be reached only at home. Its administrator can set an outside address."</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 
 <section class="section" id="card-import">
-  <div class="wrap split">
-    <div>
+  <div class="wrap faq">
+    <div class="faq-head">
       <div class="kicker">Importing a camera card</div>
       <h2>Getting photos off a card and onto your NAS.</h2>
       <p>It happens in your browser, on STORE's admin page, in the Card import tab: the card stays plugged into your computer, and the page reads it and sends it to your NAS.</p>
     </div>
-    <div>
-      <h3 id="card-upload-prompt">The browser asked &ldquo;Upload N files to this site?&rdquo; Is my card going to the internet?</h3>
+      <details id="card-upload-prompt">
+        <summary>The browser asked &ldquo;Upload N files to this site?&rdquo; Is my card going to the internet?</summary>
+        <div class="answer">
       <p>No. That's your browser's standard question for any folder you choose, and the "site" is your NAS. Say yes: that starts the import. The page sends the files to STORE over your network.</p>
-      <h3 id="card-read-twice">Why does it &ldquo;read&rdquo; the whole card first, then read each file twice?</h3>
+      
+        </div>
+      </details>
+      <details id="card-read-twice">
+        <summary>Why does it &ldquo;read&rdquo; the whole card first, then read each file twice?</summary>
+        <div class="answer">
       <p>Each file is read once to take its fingerprint (SHA-256) and again as it's sent, so STORE can check what arrived against a fingerprint it didn't make. Reading and sending run at the same time.</p>
       <p>Keep the card in until the import finishes.</p>
-      <h3 id="card-browsers">Which browsers work?</h3>
+      
+        </div>
+      </details>
+      <details id="card-browsers">
+        <summary>Which browsers work?</summary>
+        <div class="answer">
       <p>A current Chrome, Edge, Firefox or Safari. If the page says it needs JavaScript, turn JavaScript on or switch to one of these.</p>
-      <h3 id="card-drag">Can I drag the card folder instead of picking it?</h3>
+      
+        </div>
+      </details>
+      <details id="card-drag">
+        <summary>Can I drag the card folder instead of picking it?</summary>
+        <div class="answer">
       <p>No. Choose the card with the "Choose the card and start…" button (pick its top level), and that starts the import.</p>
-      <h3 id="card-interrupted">I closed the tab, my Mac slept, STORE restarted, or my login expired. Is anything lost?</h3>
+      
+        </div>
+      </details>
+      <details id="card-interrupted">
+        <summary>I closed the tab, my Mac slept, STORE restarted, or my login expired. Is anything lost?</summary>
+        <div class="answer">
       <p>Nothing already archived is lost.</p>
       <ul>
       <li><strong>Closed tab:</strong> the import stops (your browser warns first). Archived files stay, and a re-run skips them.</li>
@@ -183,58 +285,139 @@
       <li><strong>STORE restarted or updated:</strong> the page says so. Import the card again.</li>
       <li><strong>Login expired:</strong> a small login box appears. Log in and it carries on.</li>
       </ul>
-      <h3 id="card-pulled">The card was pulled. Why 18 minutes, and what's &ldquo;Finish without the card&rdquo;?</h3>
+      
+        </div>
+      </details>
+      <details id="card-pulled">
+        <summary>The card was pulled. Why 18 minutes, and what's &ldquo;Finish without the card&rdquo;?</summary>
+        <div class="answer">
       <p>The page waits up to 18 minutes for you to put the card back, and carries on by itself when you do. If it isn't back in time, the import finishes without the files it hasn't sent, and says it's partial.</p>
       <p>Pulling the card again uses what's left of the 18 minutes. The full time comes back only once a file has landed since you put it back. "Finish without the card" ends the import now, the same way.</p>
       <p>Either way, run the import again with the card to send the rest. What's archived is skipped.</p>
-      <h3 id="card-partial">What does &ldquo;only partial&rdquo; or &ldquo;we got 22 of 23&rdquo; mean? Is it safe to wipe the card?</h3>
+      
+        </div>
+      </details>
+      <details id="card-partial">
+        <summary>What does &ldquo;only partial&rdquo; or &ldquo;we got 22 of 23&rdquo; mean? Is it safe to wipe the card?</summary>
+        <div class="answer">
       <ul>
       <li>"Only partial": the card stopped being readable partway. Run the import again to send the rest.</li>
       <li>"We got 22 of 23": one file couldn't be read. Copy it yourself.</li>
       <li>When everything's in, the page says "Import finished. Every file on this card is archived and checksum verified."</li>
       </ul>
       <p>If it says it "cannot confirm that every file on this card is archived", check the card against what's archived before you erase anything. STORE never says it's "safe to format". That's your decision.</p>
-      <h3 id="card-twice">I imported the same card twice, or two cards with the same file names (DSC0001). Duplicates?</h3>
+      
+        </div>
+      </details>
+      <details id="card-twice">
+        <summary>I imported the same card twice, or two cards with the same file names (DSC0001). Duplicates?</summary>
+        <div class="answer">
       <p>No. STORE recognises files by content, across the whole archive, so a file it already holds isn't sent or stored again ("Already in the archive").</p>
       <p>Files are named by when they were taken, not by the camera's number, so two cards with the same names don't collide. The rare same-moment pair gets a "(2)". For six months (a setting) the page also hints "You have imported this file before."</p>
-      <h3 id="card-odd-files">The report says 23 on the card, 22 archived, 1 already there and housekeeping files skipped. Why does a <code>.cube</code> or <code>.CPI</code> file import?</h3>
+      
+        </div>
+      </details>
+      <details id="card-odd-files">
+        <summary>The report says 23 on the card, 22 archived, 1 already there and housekeeping files skipped. Why does a <code>.cube</code> or <code>.CPI</code> file import?</summary>
+        <div class="answer">
       <p>The page doesn't filter by file type. It skips only computer housekeeping files (such as <code>.DS_Store</code> and <code>Thumbs.db</code>) and a few camera index files, by exact name, and sends everything else, including unusual files. Those are named from the file's date with an "e" and filed by month.</p>
-      <h3 id="card-dates">My card reader reset dates to today, or the camera clock was off. Which date is used?</h3>
+      
+        </div>
+      </details>
+      <details id="card-dates">
+        <summary>My card reader reset dates to today, or the camera clock was off. Which date is used?</summary>
+        <div class="answer">
       <p>Photos and clips with a readable date are unaffected: the date comes from inside the file.</p>
       <p>Files with no date inside (such as <code>.cube</code> or loose index files) use the card's file date, which may be wrong, and get an "e". If the camera's own clock was wrong, the name carries that wrong time.</p>
-      <h3 id="card-options">What do Destination, Folder and Label mean? Can I preview the names?</h3>
+      
+        </div>
+      </details>
+      <details id="card-options">
+        <summary>What do Destination, Folder and Label mean? Can I preview the names?</summary>
+        <div class="answer">
       <ul>
       <li><strong>Destination:</strong> where this card's files go (by default, filed by month).</li>
       <li><strong>Folder</strong> (optional): puts the whole card in one folder inside the destination, instead of by month, for this import only.</li>
       <li><strong>Label</strong> (optional): a name sent with the card. It shows in file names only if STORE's person label is turned on.</li>
       </ul>
       <p>These are fixed once an import starts. There's no preview: STORE names each file as it archives it, and the real names appear in the report.</p>
-      <h3 id="card-report-shrank">Why did the report shrink to &ldquo;cannot confirm that every file is archived&rdquo; later?</h3>
+      
+        </div>
+      </details>
+      <details id="card-report-shrank">
+        <summary>Why did the report shrink to &ldquo;cannot confirm that every file is archived&rdquo; later?</summary>
+        <div class="answer">
       <p>The full report is kept while the import is in use. After 30 minutes with nobody opening it, STORE rebuilds it from its own record. That record lists the archived files and where they are, but not each file's path on the card, so it can't prove every file was archived.</p>
       <p>Check the card against the archive before erasing it.</p>
-      <h3 id="card-pause">The page says the NAS asked for a pause, or froze for a few seconds. Is the NAS busy because my phone is loading?</h3>
+      
+        </div>
+      </details>
+      <details id="card-pause">
+        <summary>The page says the NAS asked for a pause, or froze for a few seconds. Is the NAS busy because my phone is loading?</summary>
+        <div class="answer">
       <p>Possibly. STORE shares its upload capacity. The card import keeps to an equal share and pauses when STORE is busy; the page says STORE asked lumento to pause and that the import resumes by itself.</p>
       <p>A phone Load is never held back by a card import: the card waits. A big clip can also pause for a moment while it's fingerprinted. Nothing is lost.</p>
-      <h3 id="card-speed">How fast should an import be?</h3>
+      
+        </div>
+      </details>
+      <details id="card-speed">
+        <summary>How fast should an import be?</summary>
+        <div class="answer">
       <p>It depends on your card, reader, network and NAS. Reading the card and sending run together, and a big clip waits to be fingerprinted before it goes. No speed is promised.</p>
-      <h3 id="card-raw-jpeg">Why do the RAW and JPEG share a name, and why do they count as one?</h3>
+      
+        </div>
+      </details>
+      <details id="card-raw-jpeg">
+        <summary>Why do the RAW and JPEG share a name, and why do they count as one?</summary>
+        <div class="answer">
       <p>A RAW and a JPEG with the same name in the same folder travel as one photo, so they get the same time-based name with their own endings. The report counts files, so the two show as two files.</p>
-      <h3 id="card-avchd">What about AVCHD and Sony XAVC cards?</h3>
+      
+        </div>
+      </details>
+      <details id="card-avchd">
+        <summary>What about AVCHD and Sony XAVC cards?</summary>
+        <div class="answer">
       <p>AVCHD camcorder cards import. Each clip (<code>.MTS</code> or <code>.M2TS</code>) arrives as a video, named from the date and time the camcorder recorded inside it, as its own clock showed. A clip with no date STORE can read is named from its date on the card instead, with an "e".</p>
       <p>STORE doesn't treat AVCHD's folders as one recording, so the card's other files (its index, playlist and clip-information files) are archived too, as ordinary files named from their card date with an "e". Nothing on the card is left behind.</p>
       <p>Sony XAVC cards: each clip is kept together as one item (the video, its XML description, its thumbnail and its proxy) and dated from the clip's XML. A few of the camera's own card index files are skipped, because they describe no single clip and the camera rebuilds them.</p>
-      <h3 id="card-unreadable">A file is marked &ldquo;unreadable&rdquo;.</h3>
+      
+        </div>
+      </details>
+      <details id="card-unreadable">
+        <summary>A file is marked &ldquo;unreadable&rdquo;.</summary>
+        <div class="answer">
       <p>The browser couldn't read that file from the card. It fails alone and the rest goes through. It's listed under "These need you" with "This file could not be read from the card", and in the report as "Not read from the card". Keep the card and copy the file yourself.</p>
-      <h3 id="card-no-archive">The Card import tab says &ldquo;Set an archive location in Settings first&rdquo;.</h3>
+      
+        </div>
+      </details>
+      <details id="card-no-archive">
+        <summary>The Card import tab says &ldquo;Set an archive location in Settings first&rdquo;.</summary>
+        <div class="answer">
       <p>STORE doesn't know where to put the card's files yet. Choose the archive folder in Settings, come back, and the Start button works. The page re-checks when you return to it.</p>
       <p>"Card import is turned off on this NAS" means the admin switched card import off in Settings.</p>
-      <h3 id="card-who">Who can import a card?</h3>
+      
+        </div>
+      </details>
+      <details id="card-who">
+        <summary>Who can import a card?</summary>
+        <div class="answer">
       <p>Anyone logged in to STORE's admin page with the admin password. A paired phone, or a command-line app token, can't import a card.</p>
-      <h3 id="card-undo">Can I undo an import?</h3>
-      <p>No. Cancel stops the run, and files already archived stay archived. STORE never deletes what it has archived.</p>
-      <h3 id="card-readonly">Does importing change or delete anything on my card?</h3>
+      
+        </div>
+      </details>
+      <details id="card-undo">
+        <summary>Can I undo an import?</summary>
+        <div class="answer">
+      <p>No. Cancel stops the run, and files already archived stay archived. STORE never deletes what it has archived.  But you can.</p>
+      
+        </div>
+      </details>
+      <details id="card-readonly">
+        <summary>Does importing change or delete anything on my card?</summary>
+        <div class="answer">
       <p>No. The page only reads the card. It has no way to write, rename or delete files on it.</p>
-    </div>
+        </div>
+      </details>
   </div>
 </section>
 </main>
@@ -247,8 +430,11 @@
       </div>
     </div>
     <div>Your media, your storage, no cloud, on your terms. Coming soon.</div>
-    <div class="foot-links"><a href="specs.html">Specs</a><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
+    <div class="foot-links"><a href="privacy.html">Privacy</a><a href="impressum.html">Impressum</a></div>
   </div>
 </footer>
+<script>
+(function(){function o(){var e=location.hash&&document.getElementById(location.hash.slice(1));if(e&&e.tagName==="DETAILS"){e.open=true;e.scrollIntoView()}}addEventListener("hashchange",o);o()})();
+</script>
 </body>
 </html>
