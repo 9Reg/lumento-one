@@ -6,7 +6,7 @@ Sources, all read from `main` with `git show` / `git grep`:
 - lumento STORE and LOAD: `/Users/greg/Dev/loadmento` main `ba627fce` (origin/main `77caffbc` adds specs only, no code).
 - Research notes (leads, not truth): `specs-one-a.md`, `specs-one-b.md`, `specs-store.md`, `specs-load.md` in the session scratchpad.
 
-Rules applied: code on main wins over spec. Only limits a user can realistically hit, or a buyer wants before buying, are published. No "tested on" lines, no measured speeds, no app version. Contractions in all copy. Tags: **CONFIRMED** = code on main proves it (file:line). **UNVERIFIED** = spec only, code not traced; not published as current.
+Rules applied: code on main wins over spec, except that a feature the owner has committed to the first release (the apps aren't released yet) may be published as "coming soon": Generic mode, demo mode, and the STORE admin page's home-only rule (owner, 2026-10-28). Only limits a user can realistically hit, or a buyer wants before buying, are published. No "tested on" lines, no measured speeds, no app version. Contractions in all copy. Tags: **CONFIRMED** = code on main proves it (file:line). **UNVERIFIED** = spec only, code not traced; not published as current.
 
 ---
 
@@ -29,6 +29,7 @@ Each product section is one compact table, columns **What | Limit**, with an opt
 | lumento ONE | `#one` | table 2.1 |
 | lumento STORE | `#store` | table 3.1, then "Settings you can change" table 4 |
 | lumento LOAD | `#load` | table 5.1 |
+| LOAD Generic mode | `#load-generic` | Its own short section after LOAD, no table yet: "Generic mode, for a NAS without STORE: coming soon. Its specifications will go here." Rows get added once it's built. |
 | lumento KEEP | `#keep` | one placeholder line: "lumento KEEP: specifications to come." (owner decides; leave out until KEEP has a page) |
 
 Anchors: every row gets an id, `<tr id="one-folders">`, so in-app text (STORE admin descriptions) and the FAQs can link `specs.html#store-headroom`. Pattern: `<product>-<short-word>`. Proposed ids appear in the tables below. Also add one line at the bottom: "Something missing? Tell us" (contact link as the other pages use).
@@ -47,9 +48,10 @@ Table 2.1. All rows CONFIRMED unless stated. "More" = FAQ anchor on `one-faq.htm
 | one-ports | Network ports | ONE uses ports 20904 (HTTP) and 20907 (HTTPS). Another app on the same ports will clash. | | `cmd/lumento/config.go:151-152` |
 | one-folders | Library folders | Up to 100 folders. A curator adds them from a picker in Settings. | #folders | `internal/library/config.go:67`, `:396`; `settings.tmpl:86` |
 | one-folder-rules | Where a folder can be | Inside a share (for example `/volume1/Photos/...`). Not a whole volume, not ADM's system folders, not another person's home folder. | #folders | `rootpolicy.go:45`, `:129`, `:136-140` |
+| one-folder-path | Folder path length | Up to 4096 bytes. | | `config.go:69`, `:360` |
 | one-folder-name | Folder display name | Up to 100 characters. | | `config.go:71` |
 | one-photo-types | Photo types | JPEG, PNG, HEIC, HEIF, FlashPix. Camera RAW: ARW, NEF, CR2, DNG (shown from the preview inside the file). | #cr3 | `internal/indexer/classify.go:33-40`, `:77-83` |
-| one-cr3 | Canon CR3 | Listed, but shows a placeholder tile for now. (Hold until Q3 is answered.) | #cr3 | `classify.go:81` comment |
+| one-cr3 | Canon CR3 | Listed, but shows a placeholder tile for now. (Matches one-faq #cr3. Support is a ONE task, see Q3.) | #cr3 | `classify.go:81` comment |
 | one-photo-other | Photo types not shown | Other RAW brands (ORF, RW2, RAF and more), WebP, GIF, TIFF, AVIF, BMP. | | `classify.go:33-40` (absent) |
 | one-photo-big | Very large photos | A photo over 100 megapixels, or a file over 256 MiB, shows a placeholder tile. | | `indexer/thumbnail.go:122`, `:143`; `images/printcopy.go:43` |
 | one-video-types | Video types | MP4, M4V, MOV, AVI, MTS, M2TS, MKV, WMV, MPG, MPEG, and DVD-Video folders. | | `classify.go:86-95` |
@@ -66,7 +68,7 @@ Table 2.1. All rows CONFIRMED unless stated. "More" = FAQ anchor on `one-faq.htm
 | one-reask | Curator changes | Curators type their password again after 15 minutes idle. | | `auth/session_manage.go:250` |
 | one-tv | TV remote link | Ends 10 minutes after the TV stops checking, or 4 hours after the last press. | | `remote/link.go:36-37` |
 
-21 rows. Owner may drop one-folder-name, one-ports, one-tv as minor (counted under SKIPPED-optional in section 7).
+22 rows. Owner may drop one-folder-name, one-ports, one-tv as minor (counted under SKIPPED-optional in section 7).
 
 ---
 
@@ -91,8 +93,9 @@ Table 3.1. "More" = anchor on `store-faq.html`.
 | store-disk-full | When the disk is nearly full | STORE refuses new uploads when saving would leave less than 500 MiB free. Phones carry on by themselves when space returns. | #out-of-space | `settings.rs:611`; `lip/chunk_ingest.rs:481` |
 | store-bigfile | Largest file | 512 GiB per file. | | `settings.rs:732` |
 | store-card | Card import | An admin can turn it off. | #card-who | `settings.rs:1171` |
+| store-admin-home | Admin page | Opens only from your home network. | | Not built yet: decision #380, `ADMIN-HOME-ONLY-1.md` (origin/main); owner says it ships in the first release |
 
-15 rows. The admin-page row is deliberately absent (see section 6).
+16 rows.
 
 ---
 
@@ -156,7 +159,7 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 
 **F2. one-faq.html:177 "Up to 250."** Proposed: "Up to 250 marked photos and videos together." (Projects can hold marked videos; only the zip leaves videos out, see line 175.) Same limit is `projects.go:39`.
 
-**F3. load-faq.html:219-220 Generic mode** (check 3). Current text quoted in section 0. Generic mode is not built, and its spec says "Not planned, not built" (`GENERIC-MODE.md:7`, design v2.4, two reviews BLOCKED). That also undercuts `load.html:89` ("Coming before release") and `:92` ("designed and being built"): "designed" is true, "coming before release" isn't backed by any plan. (The owner's 2026-10-27 first-release decision was demo mode, not Generic.) Options: (a) take Generic off both pages until it's planned; (b) keep it on both as "planned, not yet built", no release timing, and put the FAQ answer in the future tense ("Generic mode will write to any NAS..."). Recommend (a). Owner picks (Q16).
+**F3. load-faq.html:219-220 Generic mode** (check 3). Current text quoted in section 0. **Dropped (owner, 2026-10-28).** Generic and demo mode both ship in the first release (App Store approval needs both), so `load.html:89` "Coming before release" is right and the FAQ answer stays as written. The spec header's "Not planned, not built" (`GENERIC-MODE.md:7`) is stale on "not planned"; that's a loadmento spec fix, not a site one.
 
 **F4. load.html:68 "while the phone charges overnight"** (a research note said line 22; the sentence is at 68). Current: "LOAD sends what's new since your last Load while the phone charges overnight." Code: iOS decides when (`BackgroundStagingScheduler.swift:48-55`); there's no overnight guarantee. The FAQ (load-faq.html:184) already says "iOS runs the backup when it chooses (usually overnight)". Proposed: "...LOAD sends what's new since your last Load while the phone charges, when iOS decides to run it, usually overnight: new photos, and photos you've edited since." Also the feature title "Overnight, while it charges" can stay.
 
@@ -170,9 +173,9 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 
 | Item | Spec ref | State on main |
 |---|---|---|
-| STORE admin page home-only (decision #380) | `ADMIN-HOME-ONLY-1.md:3-4,14-30` (origin/main only) | Designed, not built. Today only pairing and first-password claim are home-only (`lip_handlers.rs:101`, `control/handlers.rs:187`); admin routes aren't (`server.rs:44-62`). Page must not say "admin is home-only". |
+| STORE admin page home-only (decision #380) | `ADMIN-HOME-ONLY-1.md:3-4,14-30` (origin/main only) | Designed, not built. Today only pairing and first-password claim are home-only (`lip_handlers.rs:101`, `control/handlers.rs:187`); admin routes aren't (`server.rs:44-62`). Owner: ships in the first release, so it's published (row store-admin-home). |
 | 300-files-per-month folder split (`2026.07 (2)`) | `PRODUCT.md:320-324,542` | Not built; all of a month goes in one folder (`placement.rs:13-14`). |
-| LOAD Generic (WebDAV) mode | `GENERIC-MODE.md:1-8` | No code. Don't give it a row. |
+| LOAD Generic (WebDAV) mode | `GENERIC-MODE.md:1-8` | No code. Ships in the first release (owner): its own "coming soon" section, no rows yet. |
 | ONE Safari gets original HEIC unless rotated | `images/SPEC.md:93-96` | Code not traced. |
 | ONE thumbnails regenerate after upgrade (134,000 photos is about 6 GB) | `storage:301,328` | Release item; not traced. |
 | ONE downloads/password only on home network, remote approval refused outside | `auth:1662-1667,1811-1817,1701` | Not traced (UNVERIFIED), so no row. |
@@ -188,7 +191,6 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 
 | Item | Reason |
 |---|---|
-| Folder path 4096 bytes (`config.go:69,360`) | **Owner decides.** Recommend SKIP: nobody reaches it; a NAS path is rarely 100 characters. Keep only if you want the full list. |
 | ONE: duplicate folder refused (`config.go:404`) | Obvious. |
 | ONE: symlink refusal (`rootopen_linux.go`) | Wording unproven; code resolves symlinks, not traced. |
 | ONE: gitignore-style ignore patterns | Feature, not a limit; in `#folders` text. |
@@ -222,28 +224,28 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 Each answerable in a word or a number.
 
 General
-1. Which version number do you want shown on the page: none, 0.1.105 (ONE packaging), or 0.1.141 (spec)? Recommend none.
+1. ~~Version number on the page?~~ **Answered: never.**
 2. Add a KEEP section now, or leave the placeholder line? (now / placeholder)
 
 ONE
-3. Does a Canon CR3 photo show a real image yet, or still a placeholder tile? (real / placeholder)
+3. ~~CR3 real or placeholder?~~ **Answered: placeholder (code on main); owner wants support.** CR3 is every Canon camera's raw format since 2018. Support is a ONE task in `lumento`: per `images/SPEC.md:664-670,780`, first try real CR3 samples on the existing marker scan, and only if that fails write the ISO-BMFF box walk. The page row stays "placeholder for now".
 4. Publish "ADM 5.1.0 or newer"? It is the packager's value; nobody tested older. (yes / no)
 5. Name a minimum NAS memory or a maximum library size? Specs give neither. (number / none)
 6. Publish the browser list (Chrome, Safari, Firefox, Fire TV, webOS, Tizen, Android TV)? Spec only, not verified. (yes / hold)
-7. Folder path 4096 bytes: skip or keep? (skip / keep)
+7. ~~Folder path 4096 bytes?~~ **Answered: keep** (row one-folder-path).
 
 STORE
 8. Is there a cap on phones paired to one STORE? None found. (none / a number)
 9. Is the arm64 package sold as supported? (yes / no)
 10. Say "Asustor only for now" or stay silent on other brands? (say / silent)
-11. Will the admin-page home-only rule (#380) ship before release? It decides whether the page says anything about admin access. (yes / no)
+11. ~~Admin home-only (#380) before release?~~ **Answered: yes** (row store-admin-home).
 12. Publish only the ten settings in section 4? (yes / add: name)
 
 LOAD
 13. Say "same network only, no away-from-home access"? Code finds the NAS by Bonjour on the local network. (yes / no)
 14. Say "iPhone with iOS 18 or later" with no model list? (yes / no)
 15. Is one NAS per phone meant to stay? (stay / change)
-16. Generic mode (F3), spec says "Not planned": take it off load.html and load-faq.html, or keep it as "planned, not yet built"? (remove / keep)
+16. ~~Generic mode on the site?~~ **Answered: stays; first release; own "coming soon" section on specs.html.**
 17. Where does LOAD refuse Load All with limited access? Text not located in code. (point me / skip the row's Load All claim)
 
 Count: 17.
