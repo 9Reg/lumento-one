@@ -54,6 +54,8 @@ nav{height:72px;display:flex;align-items:center;justify-content:space-between}
 }
 .brand .suffix{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:700;font-size:.36em;letter-spacing:.04em;margin-left:.35em;vertical-align:.16em}
 nav a.link{color:var(--ink-soft);text-decoration:none;font-size:14px}
+nav a.link{margin-left:auto}
+nav a.link + a.link{margin-left:24px}
 .hero{
   min-height:610px;display:grid;grid-template-columns:1.15fr .85fr;
   gap:70px;align-items:center;padding:92px 0 80px;
