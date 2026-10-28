@@ -271,10 +271,10 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .faq-head p{margin:0;color:var(--ink-soft);font-size:17px}
 .faq details{border-top:1px solid var(--border)}
 .faq details:last-child{border-bottom:1px solid var(--border)}
-.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 4px;font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.35}
+.faq summary{list-style:none;cursor:pointer;position:relative;display:block;padding:18px 40px 18px 4px;font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.35}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
-.faq details[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+.faq summary::after{content:"";position:absolute;right:8px;top:50%;margin-top:-6px;width:9px;height:9px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(45deg);transition:transform .15s}
+.faq details[open] summary::after{transform:rotate(225deg);margin-top:-2px}
 .faq summary:hover{color:var(--teal)}
 .faq .answer{padding:0 4px 18px;max-width:78ch}
 .faq .answer p,.faq .answer li{color:var(--ink-soft);font-size:17px}
