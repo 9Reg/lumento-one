@@ -181,7 +181,7 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 | ONE downloads/password only on home network, remote approval refused outside | `auth:1662-1667,1811-1817,1701` | Not traced (UNVERIFIED), so no row. |
 | ONE failed-photo retry after 1 hour; HEIC multi-image cap of 16 | `images/SPEC.md:115,288-296` | Not located. |
 | ONE modern-UI browser list (Chrome, Safari, Firefox, Fire TV, webOS, Tizen, Android TV) | `modern-ui/SPEC.md:27-31`; `ui-shell:24` | Gate script not read; targets named, not verified. |
-| ONE upgrade safety copy of projects: 16 GiB, 10 minutes; failed copy blocks upgrade | `app/SPEC.md:105-106` | Constant at `cmd/lumento/snapshot.go:35` confirmed; behaviour is a release item. |
+| ONE upgrade safety copy of projects: 16 GiB, 10 minutes; failed copy blocks upgrade | `app/SPEC.md:105-106` | Constant at `cmd/lumento/snapshot.go:35` confirmed; behavior is a release item. |
 | LOAD 12-hour "keep going?" prompt, 8 MB chunk resume, notification timings (8 s, 12 s, 10 min, 30 min) | `PS:116-128` | Values not line-checked in app code. |
 | STORE phones-per-NAS cap | none | No cap found anywhere; see Q8. |
 
@@ -199,7 +199,7 @@ Table 5.1. "More" = anchor on `load-faq.html`.
 | ONE: 2 photo conversions at once, 60 s timeout, 3 HLS sessions, 2 parked conversions, 6 h / 4x conversion cap, remux 2+8 (`limiter.go:25-26`, `hls/session.go:19`, `slots.go:27`, `pause.go:17-18`, `remux.go:44,49`) | Internal tuning, nobody tunes or notices. |
 | ONE: request body 1 MiB / 16 KiB, username/password byte caps | Internal. |
 | ONE: pairing code 5 min and 20 pending, 5 pending TV links, 183-day owner records | Internal. |
-| ONE: Fire TV / Silk behaviour, Classic UI for 2013 Samsung, iPhone orientation notes | Device observations ("tested on" style), forbidden. |
+| ONE: Fire TV / Silk behavior, Classic UI for 2013 Samsung, iPhone orientation notes | Device observations ("tested on" style), forbidden. |
 | ONE: resume position rule (10 s / 15 s), date source order | Feature detail; may fit a FAQ, not specs. |
 | STORE: card import limits (32 open imports, 100,000 files, 1024-byte path, 60 s stall, 23 min per file) | Rare, internal. |
 | STORE: 1000 announces per batch, 1000 per forget, 4 files per photo | Internal protocol. App sends 500. |
