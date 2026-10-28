@@ -1,6 +1,6 @@
 # SPECS-PLAN: specs.html (new, one shared page for all lumento products)
 
-**Status: DRAFT for owner review; nothing in html changed.** Branch `site/specs`. Written by Sonnet from four Sonnet research passes; reviewed by Opus 2026-10-28 (F3 corrected, three rows re-tagged UNVERIFIED or narrowed, cache reserve traced to the conversion check).
+**Status: html written (specs.html, 2026-10-28); KEEP rows from lumento-keep main 80340c8.** Branch `site/specs`. Written by Sonnet from four Sonnet research passes; reviewed by Opus 2026-10-28 (F3 corrected, three rows re-tagged UNVERIFIED or narrowed, cache reserve traced to the conversion check).
 Sources, all read from `main` with `git show` / `git grep`:
 - lumento ONE: `/Users/greg/Dev/lumento` main `7455e09` (packaging says 0.1.105; specs say 0.1.141: see Q1).
 - lumento STORE and LOAD: `/Users/greg/Dev/loadmento` main `ba627fce` (origin/main `77caffbc` adds specs only, no code).
