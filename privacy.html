@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app, and lumento KEEP and ONE, the NAS apps.">
+<meta name="description" content="Privacy policy for lumento LOAD, the iPhone app, and lumento KEEP and ONE, the NAS apps, including what ONE&rsquo;s maps send to OpenFreeMap.">
 <title>Privacy — lumento LOAD, KEEP and ONE</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -105,11 +105,11 @@
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section" id="one">
   <div class="wrap">
     <div class="kicker">Privacy policy</div>
     <h2>lumento ONE</h2>
-    <p class="intro">ONE runs on your own NAS and shows your photos and videos in your browser. It makes no requests to the internet. It has no accounts of its own, no analytics, no advertising and no tracking.</p>
+    <p class="intro">ONE runs on your own NAS and shows your photos and videos in your browser. Unless you turn on <a href="#one-maps">maps</a>, it makes no requests to the internet. It has no accounts of its own, no analytics, no advertising and no tracking.</p>
 
     <div class="legal">
       <section>
@@ -149,6 +149,50 @@
         <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>.</p>
 
         <p>Effective 21 October 2026.</p>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="section alt" id="one-maps">
+  <div class="wrap">
+    <div class="kicker">Privacy policy · coming in a future version of ONE</div>
+    <h2>lumento ONE maps</h2>
+    <p class="intro">ONE can show a small map of where a photo or video was taken. The maps come from <a href="https://openfreemap.org/">OpenFreeMap</a>, a free OpenStreetMap map service. ONE downloads them once, keeps them on your NAS and draws them from there, so looking at a map sends nothing to anyone. Maps are off until a curator turns them on.</p>
+
+    <div class="legal">
+      <section>
+        <h3>What each level sends</h3>
+        <p>A curator picks one of three levels in Settings. Whatever the level, the only thing that leaves your NAS is requests for map squares, sent from your NAS's own internet address to <code>tiles.openfreemap.org</code> with a <code>User-Agent: lumento/&lt;version&gt; (+https://lumento.one)</code> header. ONE never sends a GPS coordinate, a photo, a date, a file name or anything else from your files.</p>
+
+        <h4>Off</h4>
+        <p>Nothing is downloaded and nothing is sent. This is the default.</p>
+
+        <h4>World</h4>
+        <p>A map of the whole world down to country level: the same 341 squares (29 MB) that every NAS asks for. The requests say nothing about where your photos were taken.</p>
+
+        <h4>Detailed</h4>
+        <p>World, plus maps of the regions and streets where your photos were taken. To get the right pieces, ONE asks for map squares and rectangles around the places your photos were taken. It never sends their GPS coordinates. From the rectangles, OpenFreeMap could tell roughly which parts of the world you have photos from, to within a few hundred kilometers. From the street squares, it could tell roughly which streets, to within a few kilometers (a block of 3 &times; 3 squares, each about 2.4 km across), but not which house. ONE asks before it turns Detailed on, and says this on that page.</p>
+
+        <h4>Turning maps down or off</h4>
+        <p>Lowering the level deletes the maps it no longer needs from your NAS, after a confirm page that says how much is deleted. Nothing is sent.</p>
+      </section>
+
+      <section>
+        <h3>What OpenFreeMap keeps</h3>
+        <p>This is OpenFreeMap's promise, not mine. Its <a href="https://openfreemap.org/privacy/">privacy policy</a> (last updated 8 October 2026) says:</p>
+        <ul>
+          <li>&ldquo;We do <strong>not</strong> store IP addresses in our access logs&rdquo;</li>
+          <li>&ldquo;If the server encounters an error, the error log may include the IP address and requested URL. These logs are deleted after 7 days.&rdquo;</li>
+          <li>&ldquo;if we detect a security incident (such as an attack on our service) or misuse, we may temporarily enable IP logging for a maximum of 30 days to investigate and resolve the issue.&rdquo;</li>
+          <li>&ldquo;We may use Cloudflare as a CDN to improve service delivery.&rdquo;</li>
+          <li>&ldquo;We do <strong>not</strong> have user accounts&rdquo; and &ldquo;We do <strong>not</strong> use cookies or tracking technologies&rdquo;</li>
+        </ul>
+        <p>If you'd rather not share even roughly where your photos were taken, choose World. What I receive is still nothing.</p>
+
+        <h4>Thank you, OpenFreeMap</h4>
+        <p>ONE's maps exist because <a href="https://openfreemap.org/">OpenFreeMap</a> is free. It's run by one person on donations, and ONE depends on it. So ONE downloads slowly on purpose: one connection, at most one request a second, an hour's rest after each download and at most four downloads a day, and it backs off when OpenFreeMap asks. If you enjoy the maps, please consider <a href="https://github.com/sponsors/hyperknot">sponsoring OpenFreeMap on GitHub</a>.</p>
+
+        <p>Questions: <a href="mailto:hello@lumento.one">hello@lumento.one</a>.</p>
       </section>
     </div>
   </div>

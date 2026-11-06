@@ -256,7 +256,44 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section alt" id="maps">
+  <div class="wrap faq">
+    <div class="faq-head">
+      <div class="kicker">Maps · coming in a future version</div>
+      <h2>Where a photo was taken.</h2>
+      <p>The viewer's info panel can show a small map of where a photo or video was taken. The maps come from <a href="https://openfreemap.org/">OpenFreeMap</a> and are kept on your NAS, so looking at one sends nothing.</p>
+    </div>
+      <details id="map-levels">
+        <summary>What do the three map levels do?</summary>
+        <div class="answer">
+      <p>A curator picks one in Settings, under Maps.  <strong>Off</strong>, the default, downloads nothing.  <strong>World</strong> downloads a map of the whole world down to country level, 29 MB, the same for every NAS, so nothing about your photos leaves the NAS.  <strong>Detailed</strong> adds maps of the regions and streets where your photos were taken, enough to see which street, not which house.  To fetch the right pieces, ONE asks OpenFreeMap for the map areas around your photos, never their exact positions.  The <a href="privacy.html#one-maps">privacy statement</a> says exactly what each level sends.</p>
+      <p>Without maps, a photo's info still links out to open its place in another map.</p>
+        </div>
+      </details>
+      <details id="map-first-fill">
+        <summary>Why does the first fill take days or weeks?</summary>
+        <div class="answer">
+      <p>Because OpenFreeMap is free and ONE plays fair with it.  ONE uses one connection, asks for at most one map square a second, rests an hour after each download and does at most four downloads a day.  World arrives in one go.  Detailed then fills in region by region and place by place, newest photos first.  A library with photos from thousands of places can take weeks.  Settings shows how far it's got, roughly how long is left, and how much space the maps take.</p>
+      <p>Maps refresh by themselves every six months, slowly and at the lowest priority.  There's no button to fetch everything again at once.</p>
+        </div>
+      </details>
+      <details id="map-delete">
+        <summary>How do I delete the maps?</summary>
+        <div class="answer">
+      <p>Turn the level down.  Detailed to World deletes the region and street maps and keeps the world map.  Off deletes them all.  A confirm page says how much is deleted first.  There's no separate Delete button, and turning maps off and on again doesn't make them come back any faster: the daily limit still applies.</p>
+      <p>Maps are capped at 10 GB by default, and a curator can change that.  At the cap ONE stops fetching, and places without street maps show the closest level it has.</p>
+        </div>
+      </details>
+      <details id="map-thanks">
+        <summary>Who makes the maps?</summary>
+        <div class="answer">
+      <p><a href="https://openfreemap.org/">OpenFreeMap</a>, built on OpenStreetMap.  It's free for everyone and run by one person on donations, and ONE's maps exist because of it.  Thank you.  If you enjoy them, please consider <a href="https://github.com/sponsors/hyperknot">sponsoring OpenFreeMap on GitHub</a>.</p>
+        </div>
+      </details>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap">
     <div class="kicker">The rest of the family</div>
     <div class="family-strip">
