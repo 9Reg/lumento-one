@@ -285,3 +285,40 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .faq .answer strong{color:var(--ink);font-weight:600}
 .faq .answer>:last-child{margin-bottom:0}
 .faq > *{min-width:0}
+
+/* screenshots: a picture beside a short text, or full width.
+   .shot.phone holds an iPhone screenshot (portrait), .shot.laptop a 16:10 browser window.
+   Until a picture arrives, .slot draws an empty frame with a label saying what goes there. */
+.showcase{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;align-items:center}
+.showcase.with-phone{grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:72px}
+.showcase.flip > .shot{order:2}
+.showcase.flip.with-phone{grid-template-columns:minmax(0,1fr) minmax(0,300px)}
+.showcase p,.showcase li{color:var(--ink-soft);font-size:17px}
+.showcase ul{padding-left:20px;margin:0 0 16px}
+.showcase li{margin-bottom:8px}
+.showcase strong{color:var(--ink);font-weight:600}
+.showcase h2{margin-top:10px}
+.shot{margin:0}
+.shot .frame{position:relative;overflow:hidden;background:var(--white);box-shadow:0 24px 60px rgba(28,24,21,.12)}
+.shot .frame img{display:block;width:100%;height:auto}
+.shot.phone .frame{aspect-ratio:1179/2556;max-width:300px;margin:auto;border:9px solid var(--ink);border-radius:46px}
+.shot.phone .frame img{height:100%;object-fit:cover}
+.shot.laptop .frame{aspect-ratio:16/10;border:1px solid var(--border);border-radius:14px}
+.shot.laptop .frame img{height:100%;object-fit:cover;object-position:top left}
+.shot.wide{margin-top:44px}
+.shot.wide .frame{max-width:1040px;margin:auto}
+.shot figcaption{margin-top:14px;font-size:14px;color:var(--ink-soft);text-align:center}
+.slot{position:absolute;inset:14px;display:grid;place-items:center;text-align:center;padding:16px;
+  border:2px dashed var(--border);border-radius:10px;color:var(--ink-soft);font-size:14px;line-height:1.4;background:var(--paper)}
+.shot.phone .slot{border-radius:30px}
+.slot strong{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.shot-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+@media(max-width:800px){
+  .showcase,.showcase.with-phone,.showcase.flip.with-phone,.shot-pair{grid-template-columns:1fr;gap:32px}
+  .showcase.flip > .shot{order:0}
+  .shot.phone .frame{max-width:240px}
+}
+.shot-pair figcaption{text-align:left;font-size:15px}
+.shot-pair figcaption strong{color:var(--ink);font-weight:600}
+.after-grid{margin-top:28px}
+.after-grid a{color:var(--ink)}
