@@ -305,6 +305,8 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .shot.phone .frame img{height:100%;object-fit:cover}
 .shot.laptop .frame{aspect-ratio:16/10;border:1px solid var(--border);border-radius:14px}
 .shot.laptop .frame img{height:100%;object-fit:cover;object-position:top left}
+.shot .frame:has(>img){aspect-ratio:auto}
+.shot .frame:has(>img) img{height:auto;object-fit:initial}
 .shot.wide{margin-top:44px}
 .shot.wide .frame{max-width:1040px;margin:auto}
 .shot figcaption{margin-top:14px;font-size:14px;color:var(--ink-soft);text-align:center}
