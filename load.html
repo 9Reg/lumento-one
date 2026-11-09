@@ -110,15 +110,15 @@
     <div>
       <div class="kicker">Coming before release · Generic mode</div>
       <h2>Works with any NAS.<br>No install needed.</h2>
-      <p>Generic mode is for you if you'd rather not install lumento STORE, or your NAS can't run it: for now STORE runs only on Asustor.  It lets LOAD write straight to any NAS that can serve WebDAV over HTTPS, including Asustor, Synology and QNAP.  On most of them that's a setting you turn on, not an app you install.</p>
+      <p>Generic mode is for you if you'd rather not install lumento STORE, or your NAS can't run it: for now STORE runs only on Asustor.  It lets LOAD write straight to any NAS that can serve WebDAV over HTTPS, including Asustor, Synology and QNAP.  On most of them that's a setting you turn on, not an app you install.  On Synology it's a small package from the NAS's own app store.  <a href="webdav-setup.html">Step-by-step: set up your NAS for Generic mode.</a></p>
       <p class="note">Generic mode is designed and being built.  LOAD won't be released without it.  It's described here as it's intended to work.</p>
     </div>
     <div>
       <h3>How it works</h3>
       <p><strong>Why WebDAV and not SMB.</strong>  WebDAV runs over HTTP, so LOAD can hand each upload to iOS's background upload service, the same one Verified mode uses.  An SMB connection runs on raw sockets inside the app, and it stops as soon as iOS suspends the app.  SMB isn't slower on a LAN.  WebDAV was chosen because it's the one that keeps going when the phone is locked.</p>
       <p><strong>Writing a file.</strong>  Each file is uploaded under a temporary <code>.part</code> name and then moved to its final name in one step.  A half-finished upload never appears under a real filename.</p>
-      <pre><code>PUT  _lumento/2026.09/.2026.09.14 18.03.52.120.HEIC.{device}.{id}.part
-MOVE → _lumento/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></pre>
+      <pre><code>PUT  _lumento/2026/2026.09/.2026.09.14 18.03.52.120.HEIC.{device}.{id}.part
+MOVE → _lumento/2026/2026.09/2026.09.14 18.03.52.120.HEIC   (Overwrite: F)</code></pre>
       <p><strong>Same layout as Verified mode.</strong>  LOAD names and files each photo by the same rules STORE uses: <code>{root}/_lumento/{YYYY.MM}/</code>, named by when it was taken.  Your archive looks the same whichever mode filled it.</p>
       <p><strong>Checked after it lands.</strong>  LOAD fingerprints every file in small blocks as it sends it.  Once the file is in place, it asks the NAS for its size and reads back a few blocks at random to compare.  LOAD judges it once, when the file arrives; nothing re-checks it later.</p>
       <p><strong>Duplicate checking moves to the phone.</strong>  LOAD keeps a local list of every file it's sent, with its hash, and a copy of that list on the NAS itself, so a reinstalled app still knows what it sent.  If you load photos it already copied, it asks before sending them again.</p>

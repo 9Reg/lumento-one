@@ -265,6 +265,7 @@ table.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:520px
 .spec-sub{font-size:22px;letter-spacing:-.02em;margin:48px 0 0;font-weight:600}
 .spec-sub + .table-wrap{margin-top:16px}
 .section .wrap > .intro a{color:var(--ink)}
+.callout a,.split p a,.split li a,.split td a{color:var(--ink)}
 @media(max-width:640px){
   .compare td:first-child{width:auto}
 }
