@@ -37,11 +37,12 @@
   <div class="wrap split">
     <div>
       <div class="kicker">What you need</div>
-      <h2>Three things.<br>About 10 minutes.</h2>
+      <h2>Four things.<br>About 10 minutes.</h2>
     </div>
     <div>
       <ul>
         <li><strong>A NAS that serves WebDAV over HTTPS.</strong>  Asustor, Synology and QNAP all do.  So do most others.</li>
+        <li><strong>Your iPhone</strong>, with lumento LOAD installed.</li>
         <li><strong>A computer</strong> on the same network, to set the NAS up from.  You'll use its browser to open the NAS's settings.</li>
         <li><strong>About 10 minutes.</strong></li>
       </ul>
@@ -60,21 +61,21 @@
     </div>
     <div>
       <h3>Where it works</h3>
-      <p>The address you enter <strong>is</strong> the folder LOAD works in.  Inside it, LOAD makes one folder, <code>_lumento</code>, and puts your photos in month folders like <code>_lumento/2026.11</code>.  Beside it, it keeps two small hidden items: <code>.lumento-generic-archive.json</code>, and a <code>.lumento-generic</code> folder holding a copy of LOAD's list of what it sent, so a reinstalled app still knows.  Nothing else.</p>
-      <p>When you connect, LOAD also writes two tiny test files into <code>_lumento</code> and removes them again.</p>
+      <p>The address you enter <strong>is</strong> the folder LOAD works in.  Inside it, LOAD makes one folder, <code>_lumento</code>, and puts your photos in year and month folders like <code>_lumento/2026/2026.11</code>.  Beside it, it keeps two small hidden items: <code>.lumento-generic-archive.json</code>, and a <code>.lumento-generic</code> folder holding a copy of LOAD's list of what it sent, so a reinstalled app still knows.  While it writes them, a temporary hidden <code>.part</code> file sits beside each.  Nothing else.</p>
+      <p>When you connect, LOAD also writes two tiny test files into <code>_lumento</code> and tries to remove them again.  If the folder you chose has a recycle bin turned on, turn it off for this folder, or empty it now and then: LOAD's temporary files may collect there.</p>
       <h3>How a file lands</h3>
-      <p>Each file is uploaded under a temporary <code>.part</code> name, then renamed to its final name in one step, with the "don't overwrite" flag.  An existing file is never replaced, and a half-finished upload never shows up under a real name.</p>
+      <p>Each file is uploaded under a temporary <code>.part</code> name, then renamed to its final name in one step, with the "don't overwrite" flag.  An existing file is never replaced, and a half-finished upload never shows up under a real name.  The <code>.part</code> names start with a dot, so most file browsers hide them.  The "don't overwrite" flag only works if your NAS honours it, so LOAD's connection test checks that, and LOAD refuses to use a NAS that doesn't.</p>
       <h3>What it deletes</h3>
       <p>LOAD never deletes a photo once it has passed its check.  It deletes only:</p>
       <ul>
         <li>its own leftover <code>.part</code> files from a failed upload,</li>
         <li>its own connection-test files, and</li>
-        <li>in the rare case that a file it has just written fails its check, that one file, and only if the NAS says nothing has touched it since.  LOAD then uploads it again.</li>
+        <li>in the rare case that a file it has just written fails its check, that one file, and only if it is unchanged since LOAD wrote it, checked just before the delete.  Otherwise LOAD leaves it and uploads a fresh copy beside it.</li>
       </ul>
       <h3>Your password</h3>
-      <p>LOAD only connects over <code>https://</code>.  It refuses <code>http://</code>, because your password would cross your network in clear.  The password is kept in your iPhone's Keychain.</p>
+      <p>LOAD accepts only an <code>https://</code> address.  It refuses <code>http://</code>, because your password would cross your network in clear.  The password is kept in your iPhone's Keychain.</p>
       <div class="callout">
-        <p><strong>What Generic mode can't do.</strong>  It checks each file's size and, once the file lands, reads back a few random blocks.  It doesn't verify every byte the way STORE does.  See the <a href="load.html#generic">comparison table</a> for the rest.</p>
+        <p><strong>What Generic mode can't do.</strong>  It checks each file's size and, once the file lands, reads back some blocks and compares them with the phone's copy.  It doesn't check every byte, and it can't tell that the file reached the disk, which STORE does.  See the <a href="load.html#generic">comparison table</a> for the rest.</p>
       </div>
     </div>
   </div>
@@ -84,7 +85,14 @@
   <div class="wrap">
     <div class="kicker">The setup</div>
     <h2>Pick your NAS.</h2>
-    <p class="intro">Every NAS needs the same four things, in the same order: turn on WebDAV over HTTPS and note the port; make a folder just for your photos; make a user that can use only that folder; check there's no separate WebDAV permission in the way.</p>
+    <p class="intro">Every NAS needs the same four things, in the same order (QNAP adds a fifth): turn on WebDAV over HTTPS and note the port; make a folder just for your photos; make a user that can use only that folder; check there's no separate WebDAV permission in the way.</p>
+    <p class="intro"><strong>Find your NAS's address first.</strong>  You'll need it in LOAD.  Use the same name or IP address you type in your computer's browser to open the NAS's settings.  If you don't know it, look in one of these places:</p>
+    <!-- source: none. No vendor page on finder apps could be read on 2026-11-09 (Synology's KB article text is not served to curl, QNAP's finder page returned 404, Asustor's College page did not mention it); kept to general terms. -->
+    <ul class="intro">
+      <li>the finder app your NAS maker offers for computers (the NAS's manual or box names it);</li>
+      <li>your router's list of connected devices, where the NAS shows by name;</li>
+      <li>the NAS's own network settings, which show its IP address, such as <code>192.168.1.20</code>.</li>
+    </ul>
     <p class="intro"><strong>Why a user just for LOAD?</strong>  It's optional, but we recommend it.  Then the NAS itself keeps LOAD out of everything else, whatever LOAD does.</p>
     <p class="jump">Jump to: <a href="#asustor">Asustor</a> · <a href="#synology">Synology</a> · <a href="#qnap">QNAP</a> · <a href="#other">Another NAS</a></p>
   </div>
@@ -99,20 +107,20 @@
     </div>
     <div>
       <h3>1. Turn on WebDAV with HTTPS</h3>
-      <!-- source: https://www.asustor.com/online/College_topic?topic=208, read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/College_topic?topic=208 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
       <p>In ADM, open [Services] → [WebDAV].  Tick [Enable secured WebDAV service (SSL)], then click [Apply].  The default HTTPS port is <strong>9802</strong> (the plain HTTP port, 9800, is the one LOAD refuses).  Write down the port if you've changed it.</p>
       <h3>2. Make a shared folder for your photos</h3>
-      <!-- source: https://web.archive.org/web/2026/https://www.asustor.com/online/online_help_V5?id=39 (archived copy of asustor.com online help, Shared Folders; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
       <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  ADM's help page doesn't name the button, so look for the one that adds a folder.</p>
       <h3>3. Make a user that can use only that folder</h3>
-      <!-- source: https://www.asustor.com/online/online_help_V5?id=35 (Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
-      <!-- source: https://web.archive.org/web/2026/https://www.asustor.com/online/online_help_V5?id=39 ("the system will automatically create a shared folder 'public'. By default, all users can access the files in this folder."), read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=35 (archived copy dated 2026-06-23; Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; "the system will automatically create a shared folder 'public'. By default, all users can access the files in this folder."), read 2026-11-09 -->
       <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  Then give it rights to your photo folder: [Read &amp; Write].</p>
-      <p><strong>Watch the default folders.</strong>  ADM makes a shared folder called <code>public</code>, and by default all users can open it.  It also makes a personal folder for each user.  In [Shared Folders], set the new user to [Deny Access] on <code>public</code> and on every other folder, so it can reach only your photo folder.</p>
+      <p><strong>Watch the default folders.</strong>  ADM makes a shared folder called <code>public</code>, and by default all users can open it.  It also makes a personal folder for each user, and ADM's help says only that user can open it.  In [Shared Folders], set the new user to [Deny Access] on <code>public</code> and on every other shared folder.  The user's own personal folder stays reachable to it, which is fine: it holds nothing of yours.</p>
       <h3>4. Check for a separate WebDAV permission</h3>
-      <!-- source: https://www.asustor.com/online/College_topic?topic=208 ("You can access the NAS shared folders with the privilege of the login account"), read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/College_topic?topic=208 (archived copy dated 2026-06-23; "You can access the NAS shared folders with the privilege of the login account"), read 2026-11-09 -->
       <p>There isn't one.  ADM says WebDAV uses the login account's shared-folder rights, and the levels are [Read &amp; Write], [Read Only] and [Deny Access].  So step 3 is all you need.</p>
-      <p>Your address will look like <code>https://nas.local:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -137,11 +145,11 @@
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/file_user_create?version=7, read 2026-11-09 -->
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/file_share_privilege?version=7 (Read/Write, Read only, No access; No access wins over Read/Write), read 2026-11-09 -->
       <p>Go to <strong>Control Panel</strong> &gt; <strong>User &amp; Group</strong> &gt; <strong>User</strong> and click <strong>Create</strong>.  Enter a name such as <code>load</code> and a strong password.</p>
-      <p>The wizard has a <strong>Join groups</strong> page and an <strong>Assign shared folders permissions</strong> page.  A group the user joins can bring folder rights with it, and when a user's rights and a group's rights disagree, <strong>No access</strong> wins.  So on the permissions page, give the new user <strong>Read/Write</strong> on your photo folder and <strong>No access</strong> on every other shared folder, such as the default <code>photo</code>, <code>video</code>, <code>music</code> and <code>homes</code> folders.  The <strong>Preview</strong> column shows what the user can really reach.</p>
+      <p>The wizard has a <strong>Join groups</strong> page and an <strong>Assign shared folders permissions</strong> page.  A group the user joins can bring folder rights with it, and when a user's rights and a group's rights disagree, <strong>No access</strong> wins.  So on the permissions page, give the new user <strong>Read/Write</strong> on your photo folder and <strong>No access</strong> on every other shared folder, such as <code>homes</code>.  The <strong>Preview</strong> column shows what the user can really reach.</p>
       <h3>4. Check for a separate WebDAV permission</h3>
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/file_user_create?version=7 ("On the Assign application permissions page, you can control which services the user can access. The Deny permission has priority over Allow permission."), read 2026-11-09 -->
       <p>The same wizard has an <strong>Assign application permissions</strong> page, which controls which services the user can use.  Deny beats Allow there, so don't deny this user WebDAV.</p>
-      <p>Your address will look like <code>https://nas.local:5006/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:5006/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -156,22 +164,25 @@
     <div>
       <h3>1. Turn on WebDAV with HTTPS</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/configuring-webdav-settings-CDDF133D.html, read 2026-11-09 -->
-      <p>Log on to QTS as an administrator.  Go to <strong>Control Panel</strong> &gt; <strong>Network &amp; File Services</strong> &gt; <strong>Win/MAC/NFS/WebDAV</strong> &gt; <strong>WebDAV</strong> and select <strong>Enable WebDAV</strong>.  To pick the ports yourself, choose <strong>Dedicated port number</strong> and set the <strong>HTTPS port number</strong>.  Click <strong>Apply</strong>.</p>
-      <p>Write down the HTTPS port number you chose.  QNAP's page doesn't name a default, so use the number your NAS shows.</p>
-      <h3>2. Make a shared folder for your photos</h3>
+      <p>Log on to QTS as an administrator.  Go to <strong>Control Panel</strong> &gt; <strong>Network &amp; File Services</strong> &gt; <strong>Win/MAC/NFS/WebDAV</strong> &gt; <strong>WebDAV</strong> and select <strong>Enable WebDAV</strong>.  Choose <strong>Dedicated port number</strong>, enter an <strong>HTTPS port number</strong> (any free port) and click <strong>Apply</strong>.  Write that number down.</p>
+      <p>If you keep <strong>Web server port number</strong> instead, the port is the Web Server's own, and HTTPS WebDAV needs the Web Server's HTTPS switched on, as in the next step.  QNAP's page doesn't name a default port.</p>
+      <h3>2. Switch on the Web Server's HTTPS</h3>
+      <!-- source: lumento iOS app, GenericVendorHints.swift ("QNAP: Web Server → HTTPS"), which is inferred, not measured on every firmware. The QNAP WebDAV page above does not mention it and no QNAP page we could read gives the menu path, so the path is not given; read 2026-11-09. -->
+      <p>Open QTS's <strong>Web Server</strong> settings and make sure <strong>HTTPS</strong> is on.  LOAD's own hint for a QNAP that fails the first test steps is <strong>Web Server → HTTPS</strong>.  This is required if you kept <strong>Web server port number</strong> above; it does no harm with a dedicated port.</p>
+      <h3>3. Make a shared folder for your photos</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/creating-a-shared-folder-961E8DD8.html, read 2026-11-09 -->
       <p>Open <strong>File Station</strong>, use the create button on the menu bar, and choose <strong>Shared Folder</strong>.  Give it a <strong>Folder Name</strong> such as <code>phone-photos</code> and pick a <strong>Disk Volume</strong>.</p>
-      <h3>3. Make a user that can use only that folder</h3>
+      <h3>4. Make a user that can use only that folder</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/creating-a-local-user-A3835C8C.html, read 2026-11-09 -->
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/default-shared-folders-CC9C2CBE.html ("Public: This folder can be used by any user account. The default permission of this folder is Read Only."), read 2026-11-09 -->
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/shared-folder-permissions-52AE082A.html (Read Only, Read/Write, Deny), read 2026-11-09 -->
       <p>Go to <strong>Control Panel</strong> &gt; <strong>Privilege</strong> &gt; <strong>Users</strong>, click <strong>Create</strong> &gt; <strong>Create a User</strong> and enter a username such as <code>load</code> and a strong password.  Under <strong>Shared Folder Permission</strong>, click <strong>Edit</strong> and give the user <strong>Read/Write</strong> on your photo folder.</p>
       <p><strong>Watch the default folders.</strong>  QTS makes <code>Multimedia</code>, <code>Public</code> and <code>Web</code> folders.  Any user account can use <code>Public</code>, with <strong>Read Only</strong> by default.  Set the new user to <strong>Deny</strong> on those folders and on any other folder you don't want LOAD near.</p>
       <p>The same window lets you edit <strong>Application Privilege</strong>.  QNAP recommends denying a user the apps and network services it doesn't need.  Do that, but leave WebDAV allowed.</p>
-      <h3>4. Choose the WebDAV permission type</h3>
+      <h3>5. Choose the WebDAV permission type</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/configuring-webdav-settings-CDDF133D.html (two options, "Shared folder permission" and "WebDAV permission"; the page does not say what they mean), read 2026-11-09 -->
       <p>Back on the WebDAV page, QNAP offers two options: <strong>Shared folder permission</strong> and <strong>WebDAV permission</strong>.  QNAP's page doesn't say what they mean.  Choose <strong>Shared folder permission</strong>, so the folder rights from step 3 are the ones that count.  If LOAD's connection test then says the account is refused, this is the first thing to check.</p>
-      <p>Your address will look like <code>https://nas.local:&lt;HTTPS port&gt;/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -206,19 +217,19 @@
     <div>
       <p>In LOAD, choose <strong>Connect over WebDAV</strong>.  On the <strong>Connect your NAS</strong> screen, fill in:</p>
       <ul>
-        <li><strong>Address:</strong> <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/&lt;shared folder&gt;/</code>.  The address can be a name like <code>nas.local</code> or an IP address like <code>192.168.1.20</code>.</li>
+        <li><strong>Address:</strong> <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/&lt;shared folder&gt;/</code>.  The address is the name or IP address you found at the top of the setup section, such as <code>192.168.1.20</code>.  The examples below use <code>&lt;your NAS's address&gt;</code> as a placeholder: replace it with yours.</li>
         <li><strong>Username:</strong> the user you made.</li>
         <li><strong>Password:</strong> that user's password.</li>
       </ul>
       <h3>Examples</h3>
       <ul>
-        <li>Asustor: <code>https://nas.local:9802/phone-photos/</code></li>
-        <li>Synology: <code>https://nas.local:5006/phone-photos/</code></li>
-        <li>QNAP: <code>https://nas.local:&lt;HTTPS port&gt;/phone-photos/</code></li>
+        <li>Asustor: <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code></li>
+        <li>Synology: <code>https://&lt;your NAS's address&gt;:5006/phone-photos/</code></li>
+        <li>QNAP: <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/phone-photos/</code></li>
       </ul>
       <p>The folder at the end of the address is where LOAD works, so a deeper folder such as <code>…/phone-photos/iphone/</code> works too.</p>
       <h3>The connection test</h3>
-      <p>Tap <strong>Connect</strong>.  The button reads <strong>Testing…</strong> while LOAD runs its test on your NAS.  It checks that the NAS speaks WebDAV, that your folder can be read, and that LOAD can write a file, rename it into place, refuse to overwrite, report a size and read part of a file.  It then removes its test files.  Each step shows as it passes.  When they all pass, you'll see <strong>Connected.</strong></p>
+      <p>Tap <strong>Connect</strong>.  The button reads <strong>Testing…</strong> while LOAD runs its test on your NAS.  It checks that the NAS speaks WebDAV, that your folder can be read, and that LOAD can write a file and rename it into place, that your NAS refuses to overwrite, and that it reports a size and lets LOAD read part of a file.  It then removes its test files.  Each step shows as it passes.  When they all pass, you'll see <strong>Connected.</strong></p>
       <div class="callout">
         <p><strong>If it says your NAS uses HTTP/2:</strong>  iPhones can't upload to an HTTP/2 server in the background, so LOAD copies while it's open.  Keep LOAD open for the Load.</p>
       </div>
@@ -236,20 +247,21 @@
     <div>
       <p>Most home NAS units make their own HTTPS certificate, so no outside authority vouches for it.  The first time you connect, LOAD shows you the certificate's <strong>SHA-256 fingerprint</strong> and asks you to accept it.  If you do, LOAD will talk only to a server showing exactly that certificate.</p>
       <h3>Check that it matches</h3>
-      <p>On your computer, open the same address you gave LOAD, up to the port, such as <code>https://nas.local:9802/</code>, in a browser.  Your browser will warn you about the certificate.  That's expected.  Look at the certificate's details and compare its SHA-256 fingerprint with the one on your iPhone.</p>
+      <p>On your computer, open the same address you gave LOAD, up to the port, such as <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/</code>, in a browser.  Your browser will warn you about the certificate.  That's expected.  Look at the certificate's details and compare its SHA-256 fingerprint with the one on your iPhone.</p>
       <!-- source: https://support.google.com/chrome/answer/95617?hl=en (select the icon left of the address for site information), read 2026-11-09. The certificate-details menu labels are not on a vendor page we could read; kept general. -->
       <!-- source: Apple's Safari User Guide (support.apple.com/guide/safari) has no page on viewing a certificate's fingerprint that we could find, read 2026-11-09; kept general. -->
       <ul>
-        <li><strong>Chrome:</strong> select the icon to the left of the address to open the site information, then open the certificate's details and find the line marked SHA-256 fingerprint.</li>
-        <li><strong>Safari:</strong> from the warning page or the address bar, open the certificate, then expand its details until you see the SHA-256 fingerprint.</li>
+        <li><strong>Chrome:</strong> look for the icon to the left of the address, which opens the site information, then look for the certificate's details and the line marked SHA-256 fingerprint.  Menu names change between versions.</li>
+        <li><strong>Safari:</strong> look for a way to view the certificate from the warning page or the address bar, then expand its details until you see the SHA-256 fingerprint.  Menu names change between versions.</li>
       </ul>
-      <p>The two should be identical.  If they are, tap <strong>Trust this certificate</strong>.  If not, tap <strong>Do not trust</strong> and check that you're on your own network.</p>
+      <p>The letters and numbers should be the same, in the same order.  Ignore spaces, colons and upper or lower case.  If they are, tap <strong>Trust this certificate</strong>.  If not, tap <strong>Do not trust</strong> and check that you're on your own network.</p>
       <h3>When there's no prompt</h3>
-      <!-- source: https://www.asustor.com/online/online_help_V5?id=68 (Certificate Manager can connect to Let's Encrypt), read 2026-11-09 -->
+      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=68 (archived copy dated 2026-06-23; Certificate Manager can connect to Let's Encrypt; it lists HTTPS for management, the Web server, FTP and mail, and does not say WebDAV), read 2026-11-09 -->
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_certificate?version=7 (Get a certificate from Let's Encrypt), read 2026-11-09 -->
-      <p>If your NAS uses a certificate from a public authority such as Let's Encrypt, iPhone already trusts it and LOAD shows no prompt.  Asustor gets one in <strong>Settings</strong> → <strong>Certificate Manager</strong>, and Synology in <strong>Control Panel</strong> &gt; <strong>Security</strong> &gt; <strong>Certificate</strong>.  Let's Encrypt checks your domain from the internet first, so this takes more setup than a self-made certificate.</p>
+      <p>If your NAS has a certificate from a public authority such as Let's Encrypt, and the address in LOAD is the domain name on that certificate, for example <code>https://myname.synology.me:5006/phone-photos/</code>, iPhone already trusts it and LOAD shows no prompt.  If you connect by <code>nas.local</code> or an IP address instead, the name doesn't match the certificate, so you will see the prompt anyway.  In that case don't set up Let's Encrypt for LOAD: it replaces the certificate every few months, and each renewal would pause LOAD.</p>
+      <p>Asustor offers Let's Encrypt in <strong>Settings</strong> → <strong>Certificate Manager</strong>, and Synology in <strong>Control Panel</strong> &gt; <strong>Security</strong> &gt; <strong>Certificate</strong>.  Check your NAS's own help that WebDAV uses that certificate.  Let's Encrypt checks your domain from the internet first, so this takes more setup than a self-made certificate.</p>
       <h3>If it changes later</h3>
-      <p>If your NAS later shows a different certificate, LOAD stops and pauses.  It shows <strong>Trusted before</strong> and <strong>Now presented</strong> side by side.  It doesn't connect until you decide.  A changed certificate is normal if you reset the NAS or made a new one.  Compare the two fingerprints the same way before you accept.</p>
+      <p>If your NAS later shows a different certificate, LOAD stops and pauses.  It shows <strong>Saved</strong> and <strong>Now presented</strong> side by side, with an <strong>Accept new certificate</strong> button.  It doesn't connect until you decide.  A changed certificate is normal if you reset the NAS, made a new one, or a renewed certificate arrived.  Compare the two fingerprints the same way before you accept.</p>
     </div>
   </div>
 </section>
@@ -263,6 +275,10 @@
       <table class="compare">
         <thead><tr><th>What LOAD says</th><th>What to check</th></tr></thead>
         <tbody>
+          <tr><td>Enter the address of your NAS's WebDAV folder.</td><td data-label="What to check">The Address box is empty.  Fill it in.</td></tr>
+          <tr><td>That does not look like an address. It should start with https:// and name your NAS.</td><td data-label="What to check">Start with <code>https://</code> and then your NAS's address, the port and the shared folder.</td></tr>
+          <tr><td>lumento only connects over https://. Over http:// your password would cross your network in the clear.</td><td data-label="What to check">Change <code>http://</code> to <code>https://</code> and use the HTTPS port.</td></tr>
+          <tr><td>Enter the folder's address only: no ? or # part, and no username or password in it. lumento asks for the username and password separately.</td><td data-label="What to check">Remove anything after <code>?</code> or <code>#</code>, and any <code>user:password@</code>.  Type the username and password in their own boxes.</td></tr>
           <tr><td>Your NAS did not answer. Check that it is on, on the same network, and that the address is right.</td><td data-label="What to check">The NAS is on and your iPhone is on the same Wi-Fi.  The address starts with <code>https://</code> and has the HTTPS port, not the HTTP one.  LOAD may also need your permission to use the local network in iPhone Settings.</td></tr>
           <tr><td>Your NAS refused this username or password.</td><td data-label="What to check">Retype both.  Use the NAS user you made, not your admin login.</td></tr>
           <tr><td>Your NAS refused this account access to this folder. Check that the account may read and write in it.</td><td data-label="What to check">The user has read and write on that shared folder, and isn't denied WebDAV.  On QNAP, see the WebDAV permission type.</td></tr>
@@ -272,18 +288,18 @@
           <tr><td>lumento could not read or write its saved settings on this iPhone.</td><td data-label="What to check">Nothing on the NAS.  Unlock your iPhone and try again, and restart it if it keeps happening.</td></tr>
           <tr><td>Your NAS's certificate is not the one pinned on this iPhone, and lumento kept the pin it has. Disconnect, then connect again, to trust the new certificate.</td><td data-label="What to check">Tap <strong>Disconnect</strong> in LOAD's settings, connect again, and <a href="#certificate">compare the fingerprint</a>.  Disconnecting makes LOAD forget what it already copied.  The copies on your NAS stay.</td></tr>
           <tr><td>This NAS's certificate is no longer trusted by iPhone. If you changed it, Disconnect, then connect again.</td><td data-label="What to check">Your NAS may have moved from a public certificate to its own.  Disconnect, connect again and <a href="#certificate">compare the fingerprint</a>.</td></tr>
-          <tr><td>This address does not look like a WebDAV server: it did not say it speaks WebDAV.</td><td data-label="What to check">WebDAV is switched on, with HTTPS.  Asustor: Services → WebDAV.  QNAP: the WebDAV page.  Synology: WebDAV Server.</td></tr>
+          <tr><td>This address does not look like a WebDAV server: it did not say it speaks WebDAV.</td><td data-label="What to check">WebDAV is switched on, with HTTPS.  Asustor: Services → WebDAV.  QNAP: Web Server → HTTPS, and the WebDAV page.  Synology: WebDAV Server.</td></tr>
           <tr><td>Your NAS answered, but the folder in this address cannot be read.</td><td data-label="What to check">The shared folder exists, its name is spelled right, and WebDAV is on.</td></tr>
-          <tr><td>This folder is already served by lumento STORE — pair with it instead.</td><td data-label="What to check">STORE is installed on that folder.  Open lumento on your iPhone and pair with it instead of using WebDAV.</td></tr>
+          <tr><td>This folder is already served by lumento STORE — pair with it instead.</td><td data-label="What to check">STORE is probably installed on that folder, or was once.  Open lumento on your iPhone and pair with it instead of using WebDAV.</td></tr>
           <tr><td>Your NAS would not let lumento create its working folder.</td><td data-label="What to check">The user can create folders, not only read, and WebDAV isn't set to read-only.</td></tr>
           <tr><td>Your NAS would not list, or clear, lumento's working folder.</td><td data-label="What to check">The user can list and delete files in the folder.  Read and write rights cover this.</td></tr>
           <tr><td>Your NAS would not accept a test file.</td><td data-label="What to check">The user can write in the folder, the NAS has free space, and WebDAV isn't read-only.</td></tr>
           <tr><td>Your NAS would not rename the test file into place. lumento writes each file under a temporary name and renames it, so a half-written file never appears under its own name.</td><td data-label="What to check">The WebDAV server supports renaming files (MOVE).  A proxy in front of the NAS may block it.</td></tr>
           <tr><td>Your NAS would not accept a second test file.</td><td data-label="What to check">The user can create files in the folder.</td></tr>
-          <tr><td>Your NAS replaced a file it was told not to replace. lumento will not use it: a rename could overwrite one of your photos.</td><td data-label="What to check">This NAS or its WebDAV server doesn't honor "don't overwrite".  LOAD refuses it on purpose, because a rename could overwrite one of your photos.  This NAS's WebDAV can't be used in Generic mode as it is.</td></tr>
+          <tr><td>Your NAS replaced a file it was told not to replace. lumento will not use it: a rename could overwrite one of your photos.</td><td data-label="What to check">Your NAS, or something between it and your iPhone such as a proxy, didn't refuse to overwrite as it should.  LOAD refuses on purpose, because a rename could overwrite one of your photos.  If you connect to the NAS directly and it still says this, its WebDAV can't be used in Generic mode as it is.</td></tr>
           <tr><td>Your NAS did not report the test file's size, which lumento needs to confirm a file arrived.</td><td data-label="What to check">A proxy in front of your NAS may be removing file sizes.  Connect to the NAS directly.</td></tr>
           <tr><td>Your NAS does not support partial reads, which lumento needs to check a file arrived.</td><td data-label="What to check">A proxy in front of your NAS may be removing partial reads (Range requests).  Connect to the NAS directly.</td></tr>
-          <tr><td>Your NAS would not delete the test files.</td><td data-label="What to check">The user can delete files in the folder, and a recycle bin or read-only setting isn't getting in the way.</td></tr>
+          <tr><td>Your NAS would not delete the test files.</td><td data-label="What to check">The user can delete files in the folder, and the folder isn't set to read-only.</td></tr>
         </tbody>
       </table>
     </div>
