@@ -108,18 +108,14 @@
     <div>
       <h3>1. Turn on WebDAV with HTTPS</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/College_topic?topic=208 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
-      <p>In ADM, open [Services] → [WebDAV].  Tick [Enable secured WebDAV service (SSL)], then click [Apply].  The default HTTPS port is <strong>9802</strong> (the plain HTTP port, 9800, is the one LOAD refuses).  Write down the port if you've changed it.</p>
+      <p>In ADM, open [Services] → [WebDAV].  Deselect [WebDAV over HTTP] and select [WebDAV over HTTPS], and accept the standard port <strong>9802</strong>.  Click [Apply].</p>
       <h3>2. Make a shared folder for your photos</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
-      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  ADM's help page doesn't name the button, so look for the one that adds a folder.</p>
+      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 3.  You can leave the next screens default or set as you want.</p>
+      <p>You can use existing shares, but we don't recommend it.</p>
       <h3>3. Make a user that can use only that folder</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=35 (archived copy dated 2026-06-23; Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
-      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; "the system will automatically create a shared folder 'public'. By default, all users can access the files in this folder."), read 2026-11-09 -->
-      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  Then give it rights to your photo folder: [Read &amp; Write].</p>
-      <p><strong>Watch the default folders.</strong>  ADM makes a shared folder called <code>public</code>, and by default all users can open it.  It also makes a personal folder for each user, and ADM's help says only that user can open it.  In [Shared Folders], set the new user to [Deny Access] on <code>public</code> and on every other shared folder.  The user's own personal folder stays reachable to it, which is fine: it holds nothing of yours.</p>
-      <h3>4. Check for a separate WebDAV permission</h3>
-      <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/College_topic?topic=208 (archived copy dated 2026-06-23; "You can access the NAS shared folders with the privilege of the login account"), read 2026-11-09 -->
-      <p>There isn't one.  ADM says WebDAV uses the login account's shared-folder rights, and the levels are [Read &amp; Write], [Read Only] and [Deny Access].  So step 3 is all you need.</p>
+      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  You can leave the user in the standard <code>users</code> group (recommended) or create a new one.  Then give it rights to your photo folder: [Read &amp; Write] (RW).</p>
       <p>Your address will look like <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
