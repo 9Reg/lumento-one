@@ -37,14 +37,13 @@
   <div class="wrap split">
     <div>
       <div class="kicker">What you need</div>
-      <h2>Four things.<br>About 10 minutes.</h2>
+      <h2>Three things.<br>About 10 minutes.</h2>
     </div>
     <div>
       <ul>
         <li><strong>A NAS that serves WebDAV over HTTPS.</strong>  Asustor, Synology and QNAP all do.  So do most others.</li>
         <li><strong>Your iPhone</strong>, with lumento LOAD installed.</li>
         <li><strong>A computer</strong> on the same network, to set the NAS up from.  You'll use its browser to open the NAS's settings.</li>
-        <li><strong>About 10 minutes.</strong></li>
       </ul>
       <h3>What's WebDAV?</h3>
       <p>It's a way for an app to put files on your NAS over the web.  It's built into the NAS, so on most units you turn it on rather than install it.  On some, like Synology, it's a small package from the NAS's own app store.  <strong>HTTPS</strong> is the encrypted version, so your password never crosses your network in the clear.</p>
@@ -85,8 +84,7 @@
   <div class="wrap">
     <div class="kicker">The setup</div>
     <h2>Pick your NAS.</h2>
-    <p class="intro">Every NAS needs the same four things, in the same order (QNAP adds a fifth): turn on WebDAV over HTTPS and note the port; make a folder just for your photos; make a user that can use only that folder; check there's no separate WebDAV permission in the way.</p>
-    <p class="intro"><strong>Find your NAS's address first.</strong>  You'll need it in LOAD.  Use the same name or IP address you type in your computer's browser to open the NAS's settings.  If you don't know it, look in one of these places:</p>
+        <p class="intro"><strong>Find your NAS's address first.</strong>  You'll need it in LOAD.  Use the same name or IP address you type in your computer's browser to open the NAS's settings.  If you don't know it, look in one of these places:</p>
     <!-- source: none. No vendor page on finder apps could be read on 2026-11-09 (Synology's KB article text is not served to curl, QNAP's finder page returned 404, Asustor's College page did not mention it); kept to general terms. -->
     <ul class="intro">
       <li>the finder app your NAS maker offers for computers (the NAS's manual or box names it);</li>
@@ -113,7 +111,7 @@
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
       <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 3.  You can leave the next screens default or set as you want.</p>
       <p>You can use existing shares, but we don't recommend it.</p>
-      <h3>3. Make a user that can use only that folder</h3>
+      <h3>3. Make a user for LOAD</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=35 (archived copy dated 2026-06-23; Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
       <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  You can leave the user in the standard <code>users</code> group (recommended) or create a new one.  Then give it rights to your photo folder: [Read &amp; Write] (RW).</p>
       <p>Your address will look like <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
@@ -161,10 +159,10 @@
       <h3>1. Turn on WebDAV with HTTPS</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/configuring-webdav-settings-CDDF133D.html, read 2026-11-09 -->
       <p>Log on to QTS as an administrator.  Go to <strong>Control Panel</strong> &gt; <strong>Network &amp; File Services</strong> &gt; <strong>Win/MAC/NFS/WebDAV</strong> &gt; <strong>WebDAV</strong> and select <strong>Enable WebDAV</strong>.  Choose <strong>Dedicated port number</strong>, enter an <strong>HTTPS port number</strong> (any free port) and click <strong>Apply</strong>.  Write that number down.</p>
-      <p>If you keep <strong>Web server port number</strong> instead, the port is the Web Server's own, and HTTPS WebDAV needs the Web Server's HTTPS switched on, as in the next step.  QNAP's page doesn't name a default port.</p>
+      <p>If you keep <strong>Web server port number</strong> instead, the port is the Web Server's own, and HTTPS WebDAV needs the Web Server's HTTPS switched on, as in the next step.</p>
       <h3>2. Switch on the Web Server's HTTPS</h3>
       <!-- source: lumento iOS app, GenericVendorHints.swift ("QNAP: Web Server → HTTPS"), which is inferred, not measured on every firmware. The QNAP WebDAV page above does not mention it and no QNAP page we could read gives the menu path, so the path is not given; read 2026-11-09. -->
-      <p>Open QTS's <strong>Web Server</strong> settings and make sure <strong>HTTPS</strong> is on.  LOAD's own hint for a QNAP that fails the first test steps is <strong>Web Server → HTTPS</strong>.  This is required if you kept <strong>Web server port number</strong> above; it does no harm with a dedicated port.</p>
+      <p>Open QTS's <strong>Web Server</strong> settings and make sure <strong>HTTPS</strong> is on.  This is required if you kept <strong>Web server port number</strong> above; it does no harm with a dedicated port.</p>
       <h3>3. Make a shared folder for your photos</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/creating-a-shared-folder-961E8DD8.html, read 2026-11-09 -->
       <p>Open <strong>File Station</strong>, use the create button on the menu bar, and choose <strong>Shared Folder</strong>.  Give it a <strong>Folder Name</strong> such as <code>phone-photos</code> and pick a <strong>Disk Volume</strong>.</p>
@@ -177,7 +175,7 @@
       <p>The same window lets you edit <strong>Application Privilege</strong>.  QNAP recommends denying a user the apps and network services it doesn't need.  Do that, but leave WebDAV allowed.</p>
       <h3>5. Choose the WebDAV permission type</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/configuring-webdav-settings-CDDF133D.html (two options, "Shared folder permission" and "WebDAV permission"; the page does not say what they mean), read 2026-11-09 -->
-      <p>Back on the WebDAV page, QNAP offers two options: <strong>Shared folder permission</strong> and <strong>WebDAV permission</strong>.  QNAP's page doesn't say what they mean.  Choose <strong>Shared folder permission</strong>, so the folder rights from step 3 are the ones that count.  If LOAD's connection test then says the account is refused, this is the first thing to check.</p>
+      <p>Back on the WebDAV page, QNAP offers two options: <strong>Shared folder permission</strong> and <strong>WebDAV permission</strong>.  Choose <strong>Shared folder permission</strong>, so the folder rights from step 3 are the ones that count.  If LOAD's connection test then says the account is refused, this is the first thing to check.</p>
       <p>Your address will look like <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
@@ -247,9 +245,10 @@
       <!-- source: https://support.google.com/chrome/answer/95617?hl=en (select the icon left of the address for site information), read 2026-11-09. The certificate-details menu labels are not on a vendor page we could read; kept general. -->
       <!-- source: Apple's Safari User Guide (support.apple.com/guide/safari) has no page on viewing a certificate's fingerprint that we could find, read 2026-11-09; kept general. -->
       <ul>
-        <li><strong>Chrome:</strong> look for the icon to the left of the address, which opens the site information, then look for the certificate's details and the line marked SHA-256 fingerprint.  Menu names change between versions.</li>
-        <li><strong>Safari:</strong> look for a way to view the certificate from the warning page or the address bar, then expand its details until you see the SHA-256 fingerprint.  Menu names change between versions.</li>
+        <li><strong>Chrome:</strong> look for the icon to the left of the address, which opens the site information, then look for the certificate's details and the line marked SHA-256 fingerprint.</li>
+        <li><strong>Safari:</strong> look for a way to view the certificate from the warning page or the address bar, then expand its details until you see the SHA-256 fingerprint.</li>
       </ul>
+      <p>Menu names change between browser versions.</p>
       <p>The letters and numbers should be the same, in the same order.  Ignore spaces, colons and upper or lower case.  If they are, tap <strong>Trust this certificate</strong>.  If not, tap <strong>Do not trust</strong> and check that you're on your own network.</p>
       <h3>When there's no prompt</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=68 (archived copy dated 2026-06-23; Certificate Manager can connect to Let's Encrypt; it lists HTTPS for management, the Web server, FTP and mail, and does not say WebDAV), read 2026-11-09 -->
