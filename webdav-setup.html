@@ -109,11 +109,16 @@
       <p>In ADM, open [Services] → [WebDAV].  Deselect [WebDAV over HTTP] and select [WebDAV over HTTPS], and accept the standard port <strong>9802</strong>.  Click [Apply].</p>
       <h3>2. Make a shared folder for your photos</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
-      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 3.  You can leave the next screens default or set as you want.</p>
+      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 4.  You can leave the next screens default or set as you want.</p>
       <p>You can use existing shares, but we don't recommend it.</p>
-      <h3>3. Make a user for LOAD</h3>
+      <h3>3. Take the shared folders away from the <code>users</code> group</h3>
+      <!-- source: 9Reg in ADM on the AS6704T, 2026-11-10: every active user is in the users group and cannot be taken out of it unless disabled; a new WebDAV user could read all 10 shares through it (LOAD's per-share check answered 207 for each) -->
+      <p>ADM puts every active user in the <code>users</code> group, and you can't take a user out of it.  So whatever <code>users</code> may open, LOAD's user may open too, and the only way to keep it to one folder is to take that group's rights away.</p>
+      <p>Open [Access Control] → [Local Groups], edit <code>users</code>, and remove every right it has on every shared folder.  Leave them empty rather than choosing [Deny]: every user is in <code>users</code>, so a deny there would shut out LOAD's user and your own accounts as well.</p>
+      <p>If people on your NAS reached their folders through <code>users</code>, make a new group for them, for example <code>standard</code>, give it the rights <code>users</code> had (read-only or read and write, folder by folder), and add those people to it.</p>
+      <h3>4. Make a user for LOAD</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=35 (archived copy dated 2026-06-23; Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
-      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  You can leave the user in the standard <code>users</code> group (recommended) or create a new one.  Then give it rights to your photo folder: [Read &amp; Write] (RW).</p>
+      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  Don't add it to any other group.  Give it [Read &amp; Write] (RW) on your photo folder, and nothing else.</p>
       <p>Your address will look like <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
