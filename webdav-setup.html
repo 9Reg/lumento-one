@@ -109,12 +109,17 @@
       <p>In ADM, open [Services] → [WebDAV].  Deselect [WebDAV over HTTP] and select [WebDAV over HTTPS], and accept the standard port <strong>9802</strong>.  Click [Apply].</p>
       <h3>2. Make a shared folder for your photos</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=39 (archived copy dated 2026-06-23; asustor.com refused connections on 2026-11-09), read 2026-11-09 -->
-      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 3.  You can leave the next screens default or set as you want.</p>
+      <p>Open [Access Control] → [Shared Folders] and add a new shared folder, for example <code>phone-photos</code>.  Deselect [Only accessible by administrator group users] so you can use a deprioritized user in step 4.  You can leave the next screens default or set as you want.</p>
       <p>You can use existing shares, but we don't recommend it.</p>
-      <h3>3. Make a user for LOAD</h3>
+      <h3>3. Take the shared folders away from the <code>users</code> group</h3>
+      <!-- source: 9Reg in ADM on the AS6704T, 2026-11-10: every active user is in the users group and cannot be taken out of it unless disabled; a new WebDAV user could read all 10 shares through it (LOAD's per-share check answered 207 for each) -->
+      <p>ADM puts every active user in the <code>users</code> group, and you can't take a user out of it.  So whatever <code>users</code> may open, LOAD's user may open too, and the only way to keep it to one folder is to take that group's rights away.</p>
+      <p>Open [Access Control] → [Local Groups], edit <code>users</code>, and remove every right it has on every shared folder.  Leave them empty rather than choosing [Deny]: every user is in <code>users</code>, so a deny there would shut out LOAD's user and your own accounts as well.</p>
+      <p>If people on your NAS reached their folders through <code>users</code>, make a new group for them, for example <code>standard</code>, give it the rights <code>users</code> had (read-only or read and write, folder by folder), and add those people to it.</p>
+      <h3>4. Make a user for LOAD</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=35 (archived copy dated 2026-06-23; Local Users: add users and assign their access rights to shared folders), read 2026-11-09 -->
-      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  You can leave the user in the standard <code>users</code> group (recommended) or create a new one.  Then give it rights to your photo folder: [Read &amp; Write] (RW).</p>
-      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>Open [Access Control] → [Local Users] and add a user, for example <code>load</code>, with a strong password.  We suggest you select [Password will not expire], for if it does expire, it will look to LOAD like a standard network error.  Don't add it to any other group.  Give it [Read &amp; Write] (RW) on your photo folder, and nothing else.</p>
+      <p>In LOAD you'll give your NAS's address and port <code>9802</code>, then pick <code>phone-photos</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -143,7 +148,7 @@
       <h3>4. Check for a separate WebDAV permission</h3>
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/file_user_create?version=7 ("On the Assign application permissions page, you can control which services the user can access. The Deny permission has priority over Allow permission."), read 2026-11-09 -->
       <p>The same wizard has an <strong>Assign application permissions</strong> page, which controls which services the user can use.  Deny beats Allow there, so don't deny this user WebDAV.</p>
-      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:5006/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>In LOAD you'll give your NAS's address and port <code>5006</code>, then pick <code>phone-photos</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -176,7 +181,7 @@
       <h3>5. Choose the WebDAV permission type</h3>
       <!-- source: https://docs.qnap.com/operating-system/qts/5.2.x/en-us/configuring-webdav-settings-CDDF133D.html (two options, "Shared folder permission" and "WebDAV permission"; the page does not say what they mean), read 2026-11-09 -->
       <p>Back on the WebDAV page, QNAP offers two options: <strong>Shared folder permission</strong> and <strong>WebDAV permission</strong>.  Choose <strong>Shared folder permission</strong>, so the folder rights from step 3 are the ones that count.  If LOAD's connection test then says the account is refused, this is the first thing to check.</p>
-      <p>Your address will look like <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/phone-photos/</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
+      <p>In LOAD you'll give your NAS's address and its WebDAV HTTPS port, then pick <code>phone-photos</code>.  Next, <a href="#connect">connect from LOAD</a>.</p>
     </div>
   </div>
 </section>
@@ -206,22 +211,19 @@
   <div class="wrap split">
     <div>
       <div class="kicker">Connect from LOAD</div>
-      <h2>Three boxes and a test.</h2>
+      <h2>Four boxes, a folder and a test.</h2>
     </div>
     <div>
       <p>In LOAD, choose <strong>Connect over WebDAV</strong>.  On the <strong>Connect your NAS</strong> screen, fill in:</p>
       <ul>
-        <li><strong>Address:</strong> <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/&lt;shared folder&gt;/</code>.  The address is the name or IP address you found at the top of the setup section, such as <code>192.168.1.20</code>.  The examples below use <code>&lt;your NAS's address&gt;</code> as a placeholder: replace it with yours.</li>
+        <li><strong>Address:</strong> the name or IP address you found at the top of the setup section, such as <code>192.168.1.20</code>.  LOAD puts <code>https://</code> in front for you.</li>
+        <li><strong>Port:</strong> your NAS's WebDAV HTTPS port.  The box starts with <code>9802</code>, Asustor's.  Synology uses <code>5006</code>.  On QNAP it's the HTTPS port you set.</li>
         <li><strong>Username:</strong> the user you made.</li>
         <li><strong>Password:</strong> that user's password.</li>
       </ul>
-      <h3>Examples</h3>
-      <ul>
-        <li>Asustor: <code>https://&lt;your NAS's address&gt;:9802/phone-photos/</code></li>
-        <li>Synology: <code>https://&lt;your NAS's address&gt;:5006/phone-photos/</code></li>
-        <li>QNAP: <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/phone-photos/</code></li>
-      </ul>
-      <p>The folder at the end of the address is where LOAD works, so a deeper folder such as <code>…/phone-photos/iphone/</code> works too.</p>
+      <h3>Pick the folder</h3>
+      <p>Tap <strong>Find folders</strong>.  LOAD signs in and lists the shared folders that user can open.  The first time, it may ask you to <a href="#certificate">check the certificate</a>.  Under <strong>Folder</strong>, choose the one you made, such as <code>phone-photos</code>.  LOAD copies your photos into this folder.  If the user can open only one folder, LOAD picks it for you.</p>
+      <p>If no folder shows, the user can't read and write in any shared folder yet.  Go back to your NAS's setup steps and check the user's access.</p>
       <h3>The connection test</h3>
       <p>Tap <strong>Connect</strong>.  The button reads <strong>Testing…</strong> while LOAD runs its test on your NAS.  It checks that the NAS speaks WebDAV, that your folder can be read, and that LOAD can write a file and rename it into place, that your NAS refuses to overwrite, and that it reports a size and lets LOAD read part of a file.  It then removes its test files.  Each step shows as it passes.  When they all pass, you'll see <strong>Connected.</strong></p>
       <div class="callout">
@@ -241,7 +243,7 @@
     <div>
       <p>Most home NAS units make their own HTTPS certificate, so no outside authority vouches for it.  The first time you connect, LOAD shows you the certificate's <strong>SHA-256 fingerprint</strong> and asks you to accept it.  If you do, LOAD will talk only to a server showing exactly that certificate.</p>
       <h3>Check that it matches</h3>
-      <p>On your computer, open the same address you gave LOAD, up to the port, such as <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/</code>, in a browser.  Your browser will warn you about the certificate.  That's expected.  Look at the certificate's details and compare its SHA-256 fingerprint with the one on your iPhone.</p>
+      <p>On your computer, open the same address and port you gave LOAD, such as <code>https://&lt;your NAS's address&gt;:&lt;HTTPS port&gt;/</code>, in a browser.  Your browser will warn you about the certificate.  That's expected.  Look at the certificate's details and compare its SHA-256 fingerprint with the one on your iPhone.</p>
       <!-- source: https://support.google.com/chrome/answer/95617?hl=en (select the icon left of the address for site information), read 2026-11-09. The certificate-details menu labels are not on a vendor page we could read; kept general. -->
       <!-- source: Apple's Safari User Guide (support.apple.com/guide/safari) has no page on viewing a certificate's fingerprint that we could find, read 2026-11-09; kept general. -->
       <ul>
@@ -253,7 +255,7 @@
       <h3>When there's no prompt</h3>
       <!-- source: https://web.archive.org/web/20260623/https://www.asustor.com/online/online_help_V5?id=68 (archived copy dated 2026-06-23; Certificate Manager can connect to Let's Encrypt; it lists HTTPS for management, the Web server, FTP and mail, and does not say WebDAV), read 2026-11-09 -->
       <!-- source: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_certificate?version=7 (Get a certificate from Let's Encrypt), read 2026-11-09 -->
-      <p>If your NAS has a certificate from a public authority such as Let's Encrypt, and the address in LOAD is the domain name on that certificate, for example <code>https://myname.synology.me:5006/phone-photos/</code>, iPhone already trusts it and LOAD shows no prompt.  If you connect by <code>nas.local</code> or an IP address instead, the name doesn't match the certificate, so you will see the prompt anyway.  In that case don't set up Let's Encrypt for LOAD: it replaces the certificate every few months, and each renewal would pause LOAD.</p>
+      <p>If your NAS has a certificate from a public authority such as Let's Encrypt, and the address in LOAD is the domain name on that certificate, for example <code>myname.synology.me</code>, iPhone already trusts it and LOAD shows no prompt.  If you connect by <code>nas.local</code> or an IP address instead, the name doesn't match the certificate, so you will see the prompt anyway.  In that case don't set up Let's Encrypt for LOAD: it replaces the certificate every few months, and each renewal would pause LOAD.</p>
       <p>Asustor offers Let's Encrypt in <strong>Settings</strong> → <strong>Certificate Manager</strong>, and Synology in <strong>Control Panel</strong> &gt; <strong>Security</strong> &gt; <strong>Certificate</strong>.  Check your NAS's own help that WebDAV uses that certificate.  Let's Encrypt checks your domain from the internet first, so this takes more setup than a self-made certificate.</p>
       <h3>If it changes later</h3>
       <p>If your NAS later shows a different certificate, LOAD stops and pauses.  It shows <strong>Saved</strong> and <strong>Now presented</strong> side by side, with an <strong>Accept new certificate</strong> button.  It doesn't connect until you decide.  A changed certificate is normal if you reset the NAS, made a new one, or a renewed certificate arrived.  Compare the two fingerprints the same way before you accept.</p>
