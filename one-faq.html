@@ -146,14 +146,15 @@
       <details id="missing-folders">
         <summary>I can't see folders in lumento ONE that I know are on the NAS.  Why is that?</summary>
         <div class="answer">
-      <p>First, ONE only shows folders inside a folder a curator has added under Library folders in Settings.  A folder copied in recently appears after ONE's next scan.  If that's all fine, there are four usual reasons:</p>
+      <p>First, ONE only shows folders inside a folder a curator has added under Library folders in Settings.  A folder copied in recently appears after ONE's next scan.  If that's all fine, there are five usual reasons:</p>
       <ol>
+        <li><strong>Your account can't see that shared folder.</strong>  Each person signs in to ONE with their own ADM account, and ONE shows only the shared folders ADM lets that account read (ADM's shared-folder access rights, set in Access Control).  So two people can see different folders.  An ADM administrator can fix it by giving that account read access to the shared folder.</li>
         <li><strong>A folder named "private".</strong>  ONE leaves out any folder named <code>private</code>, in any capitals, for everyone, curators included.  It's one of the folders ONE skips by default, and nobody marks it: only the name counts.  The exception is a camcorder card copied in whole, where the footage under <code>PRIVATE/AVCHD</code> or <code>PRIVATE/M4ROOT</code> is still shown.</li>
         <li><strong>A skip pattern.</strong>  Under Ignore patterns in Settings, a curator keeps a list of names ONE leaves out, one pattern per line.  A star stands for any letters, so <code>**/lost+found/**</code> skips every folder called <code>lost+found</code>.  Check that list for a pattern that matches the missing folder, change it and choose Save patterns.</li>
-        <li><strong>ONE isn't allowed to read the folder.</strong>  If its permissions in ADM were changed, for example in File Explorer, so that the lumento ONE app account can't read it, ONE hides it completely.  At the next scan it drops out of the gallery, as a deleted folder does.</li>
-        <li><strong>ONE can see the folder but not open it.</strong>  A folder can let the app list what's in it without letting it open anything.  ONE hides that one completely too, in the same way as the last.</li>
+        <li><strong>ONE isn't allowed to read the folder.</strong>  If the folder's own permissions were changed, for example in File Explorer, so that they shut lumento ONE itself out, ONE hides the folder completely.  It's hidden for everyone, whoever signs in, unlike a shared folder your account can't see.  At the next scan it drops out of the gallery, as a deleted folder does.</li>
+        <li><strong>ONE can see the folder but not open it.</strong>  A folder's permissions can let ONE list what's in it without letting it open anything.  ONE hides that one completely too, for everyone, in the same way as the last.</li>
       </ol>
-      <p>For the last two, give the lumento ONE app account access to the folder in ADM's Access Control.  The folder comes back at the next scan.</p>
+      <p>For the last two, ask an ADM administrator to put the folder's permissions back, for example as the folder above it has them.  The folder comes back at the next scan.</p>
         </div>
       </details>
       <details id="who-sees-what">
