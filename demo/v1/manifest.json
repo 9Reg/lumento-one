@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "demo_server_name": "Demo NAS",
+  "archive_location_name": "Demo Archive",
+  "pairing_code": "1234",
+  "report_footer": "Verified by lumento STORE — demo instance. No real files were ever transferred.",
+  "assets": [
+    {
+      "id": "demo-001",
+      "kind": "photo",
+      "filename": "IMG_0001.HEIC",
+      "captured_at": "2026-02-14T09:12:00Z",
+      "size_bytes": 3245000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-002",
+      "kind": "photo",
+      "filename": "IMG_0002.HEIC",
+      "captured_at": "2026-02-14T09:15:20Z",
+      "size_bytes": 2980000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-003",
+      "kind": "photo",
+      "filename": "IMG_0003.HEIC",
+      "captured_at": "2026-02-21T17:03:12Z",
+      "size_bytes": 3512000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-004",
+      "kind": "photo",
+      "filename": "IMG_0004.HEIC",
+      "captured_at": "2026-02-28T12:30:41Z",
+      "size_bytes": 2764000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-005",
+      "kind": "photo",
+      "filename": "IMG_0005.HEIC",
+      "captured_at": "2026-03-02T08:45:09Z",
+      "size_bytes": 3098000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-006",
+      "kind": "photo",
+      "filename": "IMG_0006.HEIC",
+      "captured_at": "2026-03-08T14:21:37Z",
+      "size_bytes": 3377000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-007",
+      "kind": "photo",
+      "filename": "IMG_0007.HEIC",
+      "captured_at": "2026-03-08T14:22:05Z",
+      "size_bytes": 3160000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-008",
+      "kind": "photo",
+      "filename": "IMG_0008.HEIC",
+      "captured_at": "2026-03-12T19:48:22Z",
+      "size_bytes": 2891000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-009",
+      "kind": "live_photo",
+      "filename": "IMG_0009.HEIC",
+      "captured_at": "2026-03-15T11:40:55Z",
+      "size_bytes": 4110000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-010",
+      "kind": "live_photo",
+      "filename": "IMG_0010.HEIC",
+      "captured_at": "2026-04-03T10:05:14Z",
+      "size_bytes": 3980000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-011",
+      "kind": "photo",
+      "filename": "IMG_0011.HEIC",
+      "captured_at": "2026-04-11T16:33:48Z",
+      "size_bytes": 3422000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-012",
+      "kind": "photo",
+      "filename": "IMG_0012.HEIC",
+      "captured_at": "2026-04-19T07:58:30Z",
+      "size_bytes": 2705000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-013",
+      "kind": "live_photo",
+      "filename": "IMG_0013.HEIC",
+      "captured_at": "2026-05-01T13:12:03Z",
+      "size_bytes": 4236000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-014",
+      "kind": "photo",
+      "filename": "IMG_0014.HEIC",
+      "captured_at": "2026-05-09T18:27:51Z",
+      "size_bytes": 3055000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-015",
+      "kind": "photo",
+      "filename": "IMG_0015.HEIC",
+      "captured_at": "2026-05-17T09:40:16Z",
+      "size_bytes": 3289000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-016",
+      "kind": "video",
+      "filename": "IMG_0016.MOV",
+      "captured_at": "2026-05-24T12:00:00Z",
+      "size_bytes": 96480000,
+      "duration_seconds": 7
+    },
+    {
+      "id": "demo-017",
+      "kind": "photo",
+      "filename": "IMG_0017.HEIC",
+      "captured_at": "2026-06-01T15:19:44Z",
+      "size_bytes": 3141000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-018",
+      "kind": "live_photo",
+      "filename": "IMG_0018.HEIC",
+      "captured_at": "2026-06-06T11:02:27Z",
+      "size_bytes": 4075000,
+      "duration_seconds": null
+    },
+    {
+      "id": "demo-019",
+      "kind": "video",
+      "filename": "IMG_0019.MOV",
+      "captured_at": "2026-06-10T15:00:00Z",
+      "size_bytes": 214532000,
+      "duration_seconds": 18
+    },
+    {
+      "id": "demo-020",
+      "kind": "video",
+      "filename": "IMG_0020.MOV",
+      "captured_at": "2026-06-22T20:15:30Z",
+      "size_bytes": 812345678,
+      "duration_seconds": 62
+    }
+  ]
+}
